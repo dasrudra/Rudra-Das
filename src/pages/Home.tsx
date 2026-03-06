@@ -18,7 +18,10 @@ import {
   Terminal,
   Monitor,
   ArrowUpRight,
-  Sparkles
+  Sparkles,
+  Building2,
+  Calendar,
+  BookOpen
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { services, projects, skills, timeline } from '../constants';
@@ -98,46 +101,77 @@ const Home = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-10 font-medium max-w-xl leading-relaxed">
-              Software Developer & <span className="text-corp-blue">SAP & Odoo Consultant</span>. 
+              Python <span className="text-corp-blue">Web Developer</span>. 
               Crafting robust enterprise solutions with technical precision and modern digital presence.
             </p>
 
             <div className="flex flex-wrap gap-6 items-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link 
-                  to="/portfolio" 
-                  className="bg-corp-blue hover:bg-glow-blue text-white px-10 py-5 rounded-2xl font-bold transition-all blue-glow flex items-center gap-3 group"
+              <div className="flex flex-wrap gap-4 w-full md:w-auto">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  View Portfolio <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </Link>
-              </motion.div>
+                  <Link 
+                    to="/portfolio" 
+                    className="bg-corp-blue hover:bg-glow-blue text-white px-8 py-5 rounded-2xl font-bold transition-all blue-glow flex items-center gap-3 group"
+                  >
+                    View Portfolio <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </Link>
+                </motion.div>
 
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="glass-card px-8 py-5 flex items-center gap-4"
-              >
-                <div className="text-3xl font-bold text-corp-blue">1+</div>
-                <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
-                  Years <br /> Experience
-                </div>
-              </motion.div>
-
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-navy-950 bg-navy-900 overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="client" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-                <div className="w-10 h-10 rounded-full border-2 border-navy-950 bg-corp-blue flex items-center justify-center text-[10px] font-bold">
-                  +12
-                </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <a 
+                    href="/Rudra_Das_CV.pdf" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="Rudra_Das_CV.pdf"
+                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold transition-all flex items-center gap-3 group"
+                  >
+                    Download CV <Sparkles size={18} className="text-corp-blue" />
+                  </a>
+                </motion.div>
               </div>
-              <p className="text-xs text-muted-slate font-medium">Trusted by <br /> 12+ Enterprise Clients</p>
+
+              <div className="flex flex-wrap gap-8 mt-4 md:mt-0">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="text-3xl font-bold text-corp-blue">1+</div>
+                  <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
+                    Year <br /> Experience
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="text-3xl font-bold text-corp-blue">5+</div>
+                  <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
+                    Projects <br /> Completed
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="text-3xl font-bold text-corp-blue">1</div>
+                  <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
+                    Research <br /> Publication
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
@@ -251,9 +285,8 @@ const Home = () => {
             </h2>
             <div className="space-y-6 text-muted-slate text-lg leading-relaxed">
               <p>
-                I specialize in developing high-performance enterprise applications that transform how businesses operate. 
-                Whether it's optimizing SAP workflows or building custom Odoo modules, my goal is to make complexity 
-                seamless and data-driven.
+                I specialize in developing high-performance web applications and enterprise solutions that transform how businesses operate. 
+                My goal is to make complexity seamless and data-driven through modern technical innovation.
               </p>
               <p>
                 With a background in Computer Science and hands-on experience in industrial IT and MIS roles, 
@@ -261,24 +294,24 @@ const Home = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-4">
               {[
-                { label: 'Education', val: 'BSc CSE', icon: <GraduationCap size={16} /> },
-                { label: 'Specialization', val: 'SAP ABAP', icon: <Cpu size={16} /> },
-                { label: 'Web Dev', val: 'Python', icon: <Globe size={16} /> },
-                { label: 'Systems', val: 'Odoo', icon: <Layers size={16} /> },
+                { label: 'Bachelor of Science (CSE)', val: 'East Delta University', sub: '2024 | CGPA: 3.41', icon: <GraduationCap size={16} /> },
+                { label: 'HSC (Science)', val: 'Govt. Haji Muhammad Mohsin College', sub: '2019 | CGPA: 4.25', icon: <Briefcase size={16} /> },
+                { label: 'SSC (Science)', val: 'Chattogram Collegiate School', sub: '2017 | CGPA: 5.00', icon: <Monitor size={16} /> },
               ].map((item, i) => (
                 <motion.div 
                   key={i}
-                  whileHover={{ scale: 1.02 }}
-                  className="glass-card p-6 flex items-center gap-4"
+                  whileHover={{ scale: 1.01 }}
+                  className="glass-card p-5 flex items-center gap-5"
                 >
-                  <div className="p-3 rounded-xl bg-corp-blue/10 text-corp-blue">
+                  <div className="p-3 rounded-xl bg-corp-blue/10 text-corp-blue shrink-0">
                     {item.icon}
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-slate">{item.label}</p>
-                    <p className="text-lg font-bold">{item.val}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-slate mb-1">{item.label}</p>
+                    <p className="text-base font-bold text-white">{item.val}</p>
+                    <p className="text-xs text-muted-slate">{item.sub}</p>
                   </div>
                 </motion.div>
               ))}
@@ -297,27 +330,24 @@ const Home = () => {
                   <Terminal size={32} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">Technical Philosophy</h3>
-                  <p className="text-muted-slate">Code that scales, systems that empower.</p>
+                  <h3 className="text-2xl font-bold">Technical Profile</h3>
+                  <p className="text-muted-slate">Expertise & Background</p>
                 </div>
               </div>
               
               <div className="space-y-8">
                 {[
-                  { title: 'Scalability', desc: 'Designing architectures that grow with your business needs.' },
-                  { title: 'Precision', desc: 'Meticulous ABAP and Python development for zero-error workflows.' },
-                  { title: 'Integration', desc: 'Seamlessly connecting disparate systems into a unified ecosystem.' },
+                  { title: 'Technical Expertise', desc: 'Python, ML, Data Analysis, ERP (ABAP)', icon: <Cpu size={20} /> },
+                  { title: 'Research Background', desc: 'Published researcher in predictive data modeling.', icon: <Globe size={20} /> },
+                  { title: 'Problem Solving', desc: 'Analytical mindset focused on organizational efficiency.', icon: <Layers size={20} /> },
+                  { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
                 ].map((point, i) => (
                   <div key={i} className="flex gap-6">
-                    <div className="w-1 h-auto bg-corp-blue/20 rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ height: 0 }}
-                        whileInView={{ height: '100%' }}
-                        className="w-full bg-corp-blue"
-                      />
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-corp-blue shrink-0">
+                      {point.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold mb-2">{point.title}</h4>
+                      <h4 className="font-bold mb-1 text-white">{point.title}</h4>
                       <p className="text-sm text-muted-slate leading-relaxed">{point.desc}</p>
                     </div>
                   </div>
@@ -328,31 +358,86 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Expertise Section */}
       <section id="services" className="bg-navy-900/30">
         <div className="section-padding">
-          <SectionHeading 
-            title="Core Expertise" 
-            subtitle="Specialized enterprise solutions designed to streamline operations and drive digital transformation."
-          />
+          <div className="text-center mb-20">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-corp-blue text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
+            >
+              Expertise
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-bold text-white"
+            >
+              Technical Skills & Professional Tools
+            </motion.h2>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, i) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+            {[
+              { title: 'Programming', tags: ['Python', 'ABAP', 'SQL', 'HTML', 'CSS', 'JavaScript'] },
+              { title: 'Data & ML', tags: ['Pandas', 'NumPy', 'Machine Learning', 'Data Analysis', 'Image Processing'] },
+              { title: 'Enterprise & IT', tags: ['SAP (PP Module)', 'ERP Systems', 'Odoo Basics', 'IT Audits', 'System Administration'] },
+              { title: 'Tools', tags: ['MS Office Suite', 'Git', 'VS Code', 'Windows OS'] },
+            ].map((cat, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`glass-card p-10 group hover:border-corp-blue/50 transition-all duration-500 ${service.size === 'large' ? 'md:col-span-2' : ''}`}
+                className="glass-card p-8 flex flex-col"
               >
-                <div className="w-16 h-16 rounded-2xl bg-corp-blue/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-corp-blue group-hover:text-white transition-all duration-500">
-                  {service.icon}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-corp-blue shadow-[0_0_10px_rgba(0,102,255,0.8)]" />
+                  <h3 className="text-xl font-bold text-white">{cat.title}</h3>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-slate leading-relaxed mb-8">{service.description}</p>
-                <div className="flex items-center gap-2 text-corp-blue font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
-                  Learn More <ChevronRight size={14} />
+                <div className="flex flex-wrap gap-2">
+                  {cat.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-corp-blue/30 hover:text-white transition-all">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
+            {[
+              { name: 'Python Development', level: 90 },
+              { name: 'SQL & Databases', level: 85 },
+              { name: 'Data Analysis', level: 85 },
+              { name: 'ERP (ABAP)', level: 75 },
+              { name: 'Machine Learning', level: 80 },
+              { name: 'Web Development (HTML/CSS)', level: 90 },
+            ].map((skill, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <div className="flex justify-between mb-3">
+                  <span className="text-sm font-bold text-white group-hover:text-corp-blue transition-colors">{skill.name}</span>
+                  <span className="text-xs text-corp-blue font-bold">{skill.level}%</span>
+                </div>
+                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "circOut" }}
+                    className="h-full bg-corp-blue blue-glow rounded-full"
+                  />
                 </div>
               </motion.div>
             ))}
@@ -460,88 +545,146 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills">
-        <div className="section-padding">
-          <SectionHeading 
-            title="Technical Stack" 
-            subtitle="A comprehensive overview of my technical expertise and software proficiency."
-          />
-          <div className="grid lg:grid-cols-3 gap-8">
-            {(['Programming', 'Technical', 'Microsoft'] as const).map((category, idx) => (
-              <motion.div 
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass-card p-10 space-y-10"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-corp-blue/10 flex items-center justify-center text-corp-blue">
-                    {category === 'Programming' ? <Code2 size={28} /> : 
-                     category === 'Technical' ? <Cpu size={28} /> : 
-                     <Monitor size={28} />}
-                  </div>
-                  <h3 className="text-2xl font-bold">{category}</h3>
-                </div>
-                <div className="space-y-8">
-                  {skills.filter(s => s.category === category).map((skill, i) => (
-                    <div key={i} className="group">
-                      <div className="flex justify-between mb-3">
-                        <span className="text-sm font-bold uppercase tracking-widest text-white/80 group-hover:text-corp-blue transition-colors">{skill.name}</span>
-                        <span className="text-xs text-corp-blue font-bold">{skill.level}%</span>
-                      </div>
-                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.5, ease: "circOut" }}
-                          className="h-full bg-corp-blue blue-glow rounded-full"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Experience Section */}
-      <section id="experience" className="bg-navy-900/30">
+      <section id="experience" className="bg-navy-900/30 overflow-hidden">
         <div className="section-padding">
-          <SectionHeading 
-            title="Professional Journey" 
-            subtitle="A timeline of my professional experience and academic background."
-          />
-          
-          <div className="max-w-4xl mx-auto space-y-12">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="relative flex gap-12 group"
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-corp-blue group-hover:bg-corp-blue group-hover:text-white transition-all duration-500 z-10">
-                    {item.type === 'experience' ? <Briefcase size={24} /> : <GraduationCap size={24} />}
-                  </div>
-                  <div className="w-0.5 h-full bg-white/5 group-last:hidden" />
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Left Column: Info & Publication */}
+            <div className="lg:col-span-5 space-y-12">
+              <div className="space-y-6">
+                <motion.span 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-corp-blue text-xs font-bold uppercase tracking-[0.4em] block"
+                >
+                  Career Path
+                </motion.span>
+                <motion.h2 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-4xl md:text-5xl font-bold text-white leading-tight"
+                >
+                  Professional Experience <br /> & Research
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-muted-slate text-lg leading-relaxed max-w-md"
+                >
+                  My professional journey has been focused on bridging the gap between complex data systems and practical business applications.
+                </motion.p>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex items-center gap-3 text-white font-bold text-xl">
+                  <BookOpen className="text-emerald-400" size={24} />
+                  <h3>Key Publication</h3>
                 </div>
-                
-                <div className="glass-card p-10 flex-1 group-hover:border-corp-blue/30 transition-all duration-500">
-                  <span className="text-xs font-bold text-corp-blue uppercase tracking-widest mb-4 block">{item.year}</span>
-                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-white/60 font-medium mb-6">{item.organization}</p>
-                  <p className="text-muted-slate leading-relaxed">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="glass-card p-8 border-l-4 border-l-emerald-400/50 relative group"
+                >
+                  <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest block mb-3">March 2024</span>
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                    Unveiling Predictive Factors in Apple Quality
+                  </h4>
+                  <p className="text-muted-slate text-sm leading-relaxed mb-6">
+                    2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
+                  </p>
+                  <a 
+                    href="https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-corp-blue text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
+                  >
+                    View Publication <ExternalLink size={14} />
+                  </a>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Right Column: Timeline */}
+            <div className="lg:col-span-7 relative">
+              {/* Vertical Line */}
+              <div className="absolute left-0 lg:left-8 top-0 bottom-0 w-px bg-white/5" />
+
+              <div className="space-y-12 lg:pl-20">
+                {[
+                  {
+                    title: "Assistant Engineer - Functional Applications (EAS)",
+                    company: "Tekvision (BD) Ltd. (Subsidiary of Youngone Holdings)",
+                    location: "Plot # 25, Block-A, Korean EPZ, Karnaphuli, Chattogram 4376",
+                    date: "December 2025 - Present",
+                    bullets: [
+                      "Serving as an ERP Developer within the Functional Applications Team, focused on designing and optimizing custom ABAP programs.",
+                      "Providing dedicated technical and functional support to SAP Production Planning (PP) module end-users.",
+                      "Collaborating with cross-functional teams to translate business requirements into technical specifications."
+                    ]
+                  },
+                  {
+                    title: "Officer - IT, MIS",
+                    company: "Padma Plastics Ltd. (Padma Group Of Converters)",
+                    location: "Dhaka, Bangladesh",
+                    date: "January 2025 - November 2025",
+                    bullets: [
+                      "Managed IT operations including data entry monitoring in SAP and data accuracy checking.",
+                      "Performed IT audits, system backup & recovery, and hardware/software maintenance.",
+                      "Maintained IT asset registers and handled warranty/replacement procedures.",
+                      "Supported departmental KPI evaluation and facilitated communication with management."
+                    ]
+                  }
+                ].map((job, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.2 }}
+                    className="relative"
+                  >
+                    {/* Dot */}
+                    <div className="absolute -left-[81px] top-8 w-3 h-3 rounded-full bg-corp-blue shadow-[0_0_10px_rgba(0,102,255,0.8)] z-10 hidden lg:block" />
+                    
+                    <div className="glass-card p-8 md:p-10 hover:border-corp-blue/30 transition-all duration-500">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                        <h3 className="text-2xl font-bold text-white max-w-md">{job.title}</h3>
+                        <div className="px-4 py-2 rounded-full bg-corp-blue/10 border border-corp-blue/20 text-corp-blue text-[11px] font-bold flex items-center gap-2 shrink-0 self-start md:self-center">
+                          <Calendar size={14} />
+                          {job.date}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-x-8 gap-y-3 mb-8 text-muted-slate text-sm">
+                        <div className="flex items-center gap-2">
+                          <Building2 size={16} className="text-corp-blue" />
+                          {job.company}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin size={16} className="text-corp-blue" />
+                          {job.location}
+                        </div>
+                      </div>
+
+                      <ul className="space-y-4">
+                        {job.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex gap-4 text-muted-slate text-sm leading-relaxed">
+                            <div className="w-1.5 h-1.5 rounded-full bg-corp-blue shrink-0 mt-1.5" />
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -562,7 +705,7 @@ const Home = () => {
                 <div className="space-y-8">
                   {[
                     { icon: <Mail />, label: 'Email', val: 'dasrudra738@gmail.com', href: 'mailto:dasrudra738@gmail.com' },
-                    { icon: <MapPin />, label: 'Location', val: 'Chittagong, Bangladesh' },
+                    { icon: <MapPin />, label: 'Location', val: 'Boxir-bit, Terribazar, Chattogram' },
                     { icon: <Phone />, label: 'Phone', val: '+880-1796726405', href: 'tel:+8801796726405' },
                     { icon: <Linkedin />, label: 'LinkedIn', val: 'linkedin.com/in/rudra-das-548bb42b2', href: 'https://www.linkedin.com/in/rudra-das-548bb42b2' },
                     { icon: <Github />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
