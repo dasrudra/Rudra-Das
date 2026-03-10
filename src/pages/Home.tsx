@@ -76,7 +76,13 @@ const Home = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="bg-mesh relative">
+      {/* Background Blobs */}
+      <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent-secondary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
         <div className="section-padding grid lg:grid-cols-12 gap-16 items-center w-full">
@@ -90,18 +96,18 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-corp-blue text-xs font-bold uppercase tracking-widest mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent-primary text-xs font-bold uppercase tracking-widest mb-8"
             >
               <Terminal size={14} />
               <span>Available for Enterprise Projects</span>
             </motion.div>
             
             <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] mb-8 text-gradient">
-              Rudra <br /> <span className="text-corp-blue">Das</span>
+              Rudra <br /> <span className="text-accent-primary">Das</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-10 font-medium max-w-xl leading-relaxed">
-              Python <span className="text-corp-blue">Web Developer</span>. 
+              Python <span className="text-accent-primary">Web Developer</span>. 
               Crafting robust enterprise solutions with technical precision and modern digital presence.
             </p>
 
@@ -113,7 +119,7 @@ const Home = () => {
                 >
                   <Link 
                     to="/portfolio" 
-                    className="bg-corp-blue hover:bg-glow-blue text-white px-8 py-5 rounded-2xl font-bold transition-all blue-glow flex items-center gap-3 group"
+                    className="bg-accent-primary hover:opacity-90 text-white px-8 py-5 rounded-2xl font-bold transition-all accent-glow flex items-center gap-3 group"
                   >
                     View Portfolio <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>
@@ -130,7 +136,7 @@ const Home = () => {
                     download="Rudra_Das_CV.pdf"
                     className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold transition-all flex items-center gap-3 group"
                   >
-                    Download CV <Sparkles size={18} className="text-corp-blue" />
+                    Download CV <Sparkles size={18} className="text-accent-primary" />
                   </a>
                 </motion.div>
               </div>
@@ -142,7 +148,7 @@ const Home = () => {
                   transition={{ delay: 0.4 }}
                   className="flex items-center gap-4"
                 >
-                  <div className="text-3xl font-bold text-corp-blue">1+</div>
+                  <div className="text-3xl font-bold text-accent-primary">1+</div>
                   <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
                     Year <br /> Experience
                   </div>
@@ -154,7 +160,7 @@ const Home = () => {
                   transition={{ delay: 0.5 }}
                   className="flex items-center gap-4"
                 >
-                  <div className="text-3xl font-bold text-corp-blue">5+</div>
+                  <div className="text-3xl font-bold text-accent-primary">5+</div>
                   <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
                     Projects <br /> Completed
                   </div>
@@ -166,7 +172,7 @@ const Home = () => {
                   transition={{ delay: 0.6 }}
                   className="flex items-center gap-4"
                 >
-                  <div className="text-3xl font-bold text-corp-blue">1</div>
+                  <div className="text-3xl font-bold text-accent-primary">1</div>
                   <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
                     Research <br /> Publication
                   </div>
@@ -196,11 +202,11 @@ const Home = () => {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="absolute -right-8 top-10 glass-card p-5 blue-glow z-20"
+                className="absolute -right-8 top-10 glass-card p-5 accent-glow z-20"
               >
                 <div className="flex items-center gap-3">
-                  <div className="bg-corp-blue/20 p-2 rounded-xl">
-                    <Code2 className="text-corp-blue w-5 h-5" />
+                  <div className="bg-accent-primary/20 p-2 rounded-xl">
+                    <Code2 className="text-accent-primary w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Expertise</p>
@@ -213,11 +219,11 @@ const Home = () => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="absolute -left-12 top-1/2 glass-card p-5 blue-glow z-20"
+                className="absolute -left-12 top-1/2 glass-card p-5 accent-glow z-20"
               >
                 <div className="flex items-center gap-3">
-                  <div className="bg-corp-blue/20 p-2 rounded-xl">
-                    <Briefcase className="text-corp-blue w-5 h-5" />
+                  <div className="bg-accent-primary/20 p-2 rounded-xl">
+                    <Briefcase className="text-accent-primary w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Role</p>
@@ -230,11 +236,11 @@ const Home = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.9 }}
-                className="absolute -bottom-10 -left-10 glass-card p-5 blue-glow z-20"
+                className="absolute -bottom-10 -left-10 glass-card p-5 accent-glow z-20"
               >
                 <div className="flex items-center gap-3">
-                  <div className="bg-corp-blue/20 p-2 rounded-xl">
-                    <Globe className="text-corp-blue w-5 h-5" />
+                  <div className="bg-accent-primary/20 p-2 rounded-xl">
+                    <Globe className="text-accent-primary w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Web</p>
@@ -247,11 +253,11 @@ const Home = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1.1 }}
-                className="absolute -bottom-20 right-0 glass-card p-5 blue-glow z-20"
+                className="absolute -bottom-20 right-0 glass-card p-5 accent-glow z-20"
               >
                 <div className="flex items-center gap-3">
-                  <div className="bg-corp-blue/20 p-2 rounded-xl">
-                    <Layers className="text-corp-blue w-5 h-5" />
+                  <div className="bg-accent-primary/20 p-2 rounded-xl">
+                    <Layers className="text-accent-primary w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Systems</p>
@@ -262,7 +268,7 @@ const Home = () => {
             </div>
             
             {/* Background Decoration */}
-            <div className="absolute inset-0 bg-corp-blue/20 blur-[100px] -z-10 rounded-full scale-75" />
+            <div className="absolute inset-0 bg-accent-primary/20 blur-[100px] -z-10 rounded-full scale-75" />
           </motion.div>
         </div>
       </section>
@@ -276,7 +282,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-corp-blue/10 text-corp-blue text-xs font-bold uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold uppercase tracking-widest">
               <Sparkles size={14} />
               <span>The Visionary Approach</span>
             </div>
@@ -305,7 +311,7 @@ const Home = () => {
                   whileHover={{ scale: 1.01 }}
                   className="glass-card p-5 flex items-center gap-5"
                 >
-                  <div className="p-3 rounded-xl bg-corp-blue/10 text-corp-blue shrink-0">
+                  <div className="p-3 rounded-xl bg-accent-primary/10 text-accent-primary shrink-0">
                     {item.icon}
                   </div>
                   <div>
@@ -326,7 +332,7 @@ const Home = () => {
           >
             <div className="glass-card p-10 space-y-12">
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-3xl bg-corp-blue flex items-center justify-center text-white blue-glow">
+                <div className="w-20 h-20 rounded-3xl bg-accent-primary flex items-center justify-center text-white accent-glow">
                   <Terminal size={32} />
                 </div>
                 <div>
@@ -343,7 +349,7 @@ const Home = () => {
                   { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
                 ].map((point, i) => (
                   <div key={i} className="flex gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-corp-blue shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-primary shrink-0">
                       {point.icon}
                     </div>
                     <div>
@@ -366,7 +372,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-corp-blue text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
+              className="text-accent-primary text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
             >
               Expertise
             </motion.span>
@@ -395,12 +401,12 @@ const Home = () => {
                 className="glass-card p-8 flex flex-col"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-corp-blue shadow-[0_0_10px_rgba(0,102,255,0.8)]" />
+                  <div className="w-2 h-2 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)]" />
                   <h3 className="text-xl font-bold text-white">{cat.title}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {cat.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-corp-blue/30 hover:text-white transition-all">
+                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-accent-primary/30 hover:text-white transition-all">
                       {tag}
                     </span>
                   ))}
@@ -426,8 +432,8 @@ const Home = () => {
                 className="group"
               >
                 <div className="flex justify-between mb-3">
-                  <span className="text-sm font-bold text-white group-hover:text-corp-blue transition-colors">{skill.name}</span>
-                  <span className="text-xs text-corp-blue font-bold">{skill.level}%</span>
+                  <span className="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">{skill.name}</span>
+                  <span className="text-xs text-accent-primary font-bold">{skill.level}%</span>
                 </div>
                 <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                   <motion.div
@@ -435,7 +441,7 @@ const Home = () => {
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, ease: "circOut" }}
-                    className="h-full bg-corp-blue blue-glow rounded-full"
+                    className="h-full bg-accent-primary accent-glow rounded-full"
                   />
                 </div>
               </motion.div>
@@ -453,7 +459,7 @@ const Home = () => {
             className="flex gap-20 items-center px-10"
           >
             {['SAP ABAP', 'Python', 'Odoo ERP', 'Flask', 'SQL', 'SQLite', 'React', 'Tailwind CSS', 'Machine Learning', 'Data Analysis'].map((tech) => (
-              <span key={tech} className="text-2xl font-bold font-display text-white/20 hover:text-corp-blue transition-colors cursor-default uppercase tracking-tighter">
+              <span key={tech} className="text-2xl font-bold font-display text-white/20 hover:text-accent-primary transition-colors cursor-default uppercase tracking-tighter">
                 {tech}
               </span>
             ))}
@@ -464,7 +470,7 @@ const Home = () => {
             className="flex gap-20 items-center px-10"
           >
             {['SAP ABAP', 'Python', 'Odoo ERP', 'Flask', 'SQL', 'SQLite', 'React', 'Tailwind CSS', 'Machine Learning', 'Data Analysis'].map((tech) => (
-              <span key={tech} className="text-2xl font-bold font-display text-white/20 hover:text-corp-blue transition-colors cursor-default uppercase tracking-tighter">
+              <span key={tech} className="text-2xl font-bold font-display text-white/20 hover:text-accent-primary transition-colors cursor-default uppercase tracking-tighter">
                 {tech}
               </span>
             ))}
@@ -504,7 +510,7 @@ const Home = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
-                          className="w-14 h-14 rounded-2xl bg-corp-blue text-white flex items-center justify-center blue-glow"
+                          className="w-14 h-14 rounded-2xl bg-accent-primary text-white flex items-center justify-center accent-glow"
                         >
                           <ExternalLink size={24} />
                         </motion.a>
@@ -516,12 +522,12 @@ const Home = () => {
                 <div className="space-y-4 px-4">
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map(t => (
-                      <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-corp-blue bg-corp-blue/10 px-3 py-1 rounded-full">
+                      <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-accent-primary bg-accent-primary/10 px-3 py-1 rounded-full">
                         {t}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-2xl font-bold group-hover:text-corp-blue transition-colors flex items-center gap-2">
+                  <h3 className="text-2xl font-bold group-hover:text-accent-primary transition-colors flex items-center gap-2">
                     {project.title}
                     <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                   </h3>
@@ -536,7 +542,7 @@ const Home = () => {
           <div className="mt-20 text-center">
             <Link 
               to="/portfolio" 
-              className="inline-flex items-center gap-3 text-corp-blue font-bold uppercase tracking-widest hover:gap-5 transition-all"
+              className="inline-flex items-center gap-3 text-accent-primary font-bold uppercase tracking-widest hover:gap-5 transition-all"
             >
               View Full Portfolio <ArrowUpRight size={20} />
             </Link>
@@ -556,7 +562,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-corp-blue text-xs font-bold uppercase tracking-[0.4em] block"
+                  className="text-accent-primary text-xs font-bold uppercase tracking-[0.4em] block"
                 >
                   Career Path
                 </motion.span>
@@ -580,7 +586,7 @@ const Home = () => {
 
               <div className="space-y-8">
                 <div className="flex items-center gap-3 text-white font-bold text-xl">
-                  <BookOpen className="text-emerald-400" size={24} />
+                  <BookOpen className="text-accent-primary" size={24} />
                   <h3>Key Publication</h3>
                 </div>
 
@@ -588,10 +594,10 @@ const Home = () => {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="glass-card p-8 border-l-4 border-l-emerald-400/50 relative group"
+                  className="glass-card p-8 border-l-4 border-l-accent-primary/50 relative group"
                 >
-                  <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest block mb-3">March 2024</span>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                  <span className="text-accent-primary text-[10px] font-bold uppercase tracking-widest block mb-3">March 2024</span>
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">
                     Unveiling Predictive Factors in Apple Quality
                   </h4>
                   <p className="text-muted-slate text-sm leading-relaxed mb-6">
@@ -601,7 +607,7 @@ const Home = () => {
                     href="https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-corp-blue text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
                   >
                     View Publication <ExternalLink size={14} />
                   </a>
@@ -649,12 +655,12 @@ const Home = () => {
                     className="relative"
                   >
                     {/* Dot */}
-                    <div className="absolute -left-[81px] top-8 w-3 h-3 rounded-full bg-corp-blue shadow-[0_0_10px_rgba(0,102,255,0.8)] z-10 hidden lg:block" />
+                    <div className="absolute -left-[81px] top-8 w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)] z-10 hidden lg:block" />
                     
-                    <div className="glass-card p-8 md:p-10 hover:border-corp-blue/30 transition-all duration-500">
+                    <div className="glass-card p-8 md:p-10 hover:border-accent-primary/30 transition-all duration-500">
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                         <h3 className="text-2xl font-bold text-white max-w-md">{job.title}</h3>
-                        <div className="px-4 py-2 rounded-full bg-corp-blue/10 border border-corp-blue/20 text-corp-blue text-[11px] font-bold flex items-center gap-2 shrink-0 self-start md:self-center">
+                        <div className="px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-[11px] font-bold flex items-center gap-2 shrink-0 self-start md:self-center">
                           <Calendar size={14} />
                           {job.date}
                         </div>
@@ -662,11 +668,11 @@ const Home = () => {
 
                       <div className="flex flex-wrap gap-x-8 gap-y-3 mb-8 text-muted-slate text-sm">
                         <div className="flex items-center gap-2">
-                          <Building2 size={16} className="text-corp-blue" />
+                          <Building2 size={16} className="text-accent-primary" />
                           {job.company}
                         </div>
                         <div className="flex items-center gap-2">
-                          <MapPin size={16} className="text-corp-blue" />
+                          <MapPin size={16} className="text-accent-primary" />
                           {job.location}
                         </div>
                       </div>
@@ -674,7 +680,7 @@ const Home = () => {
                       <ul className="space-y-4">
                         {job.bullets.map((bullet, idx) => (
                           <li key={idx} className="flex gap-4 text-muted-slate text-sm leading-relaxed">
-                            <div className="w-1.5 h-1.5 rounded-full bg-corp-blue shrink-0 mt-1.5" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent-primary shrink-0 mt-1.5" />
                             {bullet}
                           </li>
                         ))}
@@ -692,7 +698,7 @@ const Home = () => {
       <section id="contact" className="relative">
         <div className="section-padding">
           <div className="glass-card p-12 md:p-20 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-corp-blue/10 rounded-full blur-[100px] -z-10" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[100px] -z-10" />
             
             <div className="grid lg:grid-cols-2 gap-20">
               <div className="space-y-10">
@@ -710,7 +716,7 @@ const Home = () => {
                     { icon: <Github />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-6 group">
-                      <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-corp-blue group-hover:bg-corp-blue group-hover:text-white transition-all duration-500">
+                      <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-primary group-hover:bg-accent-primary group-hover:text-white transition-all duration-500">
                         {item.icon}
                       </div>
                       <div>
@@ -720,7 +726,7 @@ const Home = () => {
                             href={item.href} 
                             target={item.label !== 'Email' && item.label !== 'Phone' ? "_blank" : undefined}
                             rel={item.label !== 'Email' && item.label !== 'Phone' ? "noopener noreferrer" : undefined}
-                            className="text-xl font-bold hover:text-corp-blue transition-colors"
+                            className="text-xl font-bold hover:text-accent-primary transition-colors"
                           >
                             {item.val}
                           </a>
@@ -747,14 +753,14 @@ const Home = () => {
                     name="name"
                     type="text" 
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-corp-blue transition-all placeholder:text-muted-slate/50" 
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent-primary transition-all placeholder:text-muted-slate/50" 
                     placeholder="Your Name" 
                   />
                   <input 
                     name="email"
                     type="email" 
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-corp-blue transition-all placeholder:text-muted-slate/50" 
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent-primary transition-all placeholder:text-muted-slate/50" 
                     placeholder="Your Email" 
                   />
                 </div>
@@ -762,14 +768,14 @@ const Home = () => {
                   name="subject"
                   type="text" 
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-corp-blue transition-all placeholder:text-muted-slate/50" 
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent-primary transition-all placeholder:text-muted-slate/50" 
                   placeholder="Subject" 
                 />
                 <textarea 
                   name="message"
                   rows={5} 
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-corp-blue transition-all placeholder:text-muted-slate/50 resize-none" 
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent-primary transition-all placeholder:text-muted-slate/50 resize-none" 
                   placeholder="Message"
                 ></textarea>
                 
@@ -778,8 +784,8 @@ const Home = () => {
                     disabled={formStatus === 'sending'}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-full py-5 rounded-2xl font-bold uppercase tracking-widest transition-all blue-glow flex items-center justify-center gap-3 ${
-                      formStatus === 'sending' ? 'bg-muted-slate cursor-not-allowed' : 'bg-corp-blue hover:bg-glow-blue text-white'
+                    className={`w-full py-5 rounded-2xl font-bold uppercase tracking-widest transition-all accent-glow flex items-center justify-center gap-3 ${
+                      formStatus === 'sending' ? 'bg-muted-slate cursor-not-allowed' : 'bg-accent-primary hover:opacity-90 text-white'
                     }`}
                   >
                     {formStatus === 'sending' ? (

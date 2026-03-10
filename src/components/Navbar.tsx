@@ -28,7 +28,7 @@ const Navbar = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            RUDRA<span className="text-corp-blue">DAS</span>
+            RUDRA<span className="text-accent-primary">DAS</span>
           </motion.span>
         </Link>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
                   className="text-xs font-bold uppercase tracking-widest text-muted-slate hover:text-white transition-colors relative group"
                 >
                   {link.name}
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-corp-blue transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
               );
             }
@@ -60,7 +60,7 @@ const Navbar = () => {
                 className="text-xs font-bold uppercase tracking-widest text-muted-slate hover:text-white transition-colors relative group"
               >
                 {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-corp-blue transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent-primary transition-all duration-300 group-hover:w-full" />
               </Link>
             );
           })}
@@ -69,7 +69,7 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-corp-blue hover:bg-glow-blue text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all blue-glow"
+            className="bg-accent-primary hover:opacity-90 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all accent-glow"
           >
             Hire Me
           </motion.button>
@@ -96,12 +96,12 @@ const Navbar = () => {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-bold font-display hover:text-corp-blue transition-colors"
+                  className="text-2xl font-bold font-display hover:text-accent-primary transition-colors"
                 >
                   {link.name}
                 </Link>
               ))}
-              <button className="bg-corp-blue text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm">Hire Me</button>
+              <button className="bg-accent-primary text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm">Hire Me</button>
             </div>
           </motion.div>
         )}

@@ -15,23 +15,23 @@ export const services: Service[] = [
   {
     title: 'ERP Development',
     description: 'Custom ERP solutions tailored for enterprise business optimization and process automation.',
-    icon: <Layers className="w-8 h-8 text-corp-blue" />,
+    icon: <Layers className="w-8 h-8 text-accent-primary" />,
     size: 'large'
   },
   {
     title: 'SAP ABAP Customization',
     description: 'Expertise in SAP ABAP development, reports, and functional application enhancements.',
-    icon: <Cpu className="w-8 h-8 text-corp-blue" />,
+    icon: <Cpu className="w-8 h-8 text-accent-primary" />,
   },
   {
     title: 'Data Analysis Solutions',
     description: 'Advanced data processing and visualization for informed business decision-making.',
-    icon: <Database className="w-8 h-8 text-corp-blue" />,
+    icon: <Database className="w-8 h-8 text-accent-primary" />,
   },
   {
     title: 'Web Application Development',
     description: 'Modern, scalable web applications built with Python, Flask, and modern front-end stacks.',
-    icon: <Globe className="w-8 h-8 text-corp-blue" />,
+    icon: <Globe className="w-8 h-8 text-accent-primary" />,
     size: 'large'
   },
 ];

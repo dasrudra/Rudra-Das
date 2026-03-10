@@ -49,7 +49,7 @@ const PortfolioPage = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="w-14 h-14 rounded-2xl bg-corp-blue text-white flex items-center justify-center blue-glow"
+                        className="w-14 h-14 rounded-2xl bg-accent-primary text-white flex items-center justify-center accent-glow"
                       >
                         <ExternalLink size={24} />
                       </motion.a>
@@ -61,12 +61,12 @@ const PortfolioPage = () => {
               <div className="space-y-4 px-4">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map(t => (
-                    <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-corp-blue bg-corp-blue/10 px-3 py-1 rounded-full">
+                    <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-accent-primary bg-accent-primary/10 px-3 py-1 rounded-full">
                       {t}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-2xl font-bold group-hover:text-corp-blue transition-colors flex items-center gap-2">
+                <h3 className="text-2xl font-bold group-hover:text-accent-primary transition-colors flex items-center gap-2">
                   {project.title}
                   <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                 </h3>
