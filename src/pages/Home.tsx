@@ -337,7 +337,7 @@ const Home = () => {
               
               <div className="space-y-8">
                 {[
-                  { title: 'Technical Expertise', desc: 'Python, ML, Data Analysis, ERP (ABAP)', icon: <Cpu size={20} /> },
+                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing', icon: <Cpu size={20} /> },
                   { title: 'Research Background', desc: 'Published researcher in predictive data modeling.', icon: <Globe size={20} /> },
                   { title: 'Problem Solving', desc: 'Analytical mindset focused on organizational efficiency.', icon: <Layers size={20} /> },
                   { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
@@ -380,12 +380,11 @@ const Home = () => {
             </motion.h2>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
             {[
-              { title: 'Programming', tags: ['Python', 'ABAP', 'SQL', 'HTML', 'CSS', 'JavaScript'] },
-              { title: 'Data & ML', tags: ['Pandas', 'NumPy', 'Machine Learning', 'Data Analysis', 'Image Processing'] },
-              { title: 'Enterprise & IT', tags: ['SAP (PP Module)', 'ERP Systems', 'Odoo Basics', 'IT Audits', 'System Administration'] },
-              { title: 'Tools', tags: ['MS Office Suite', 'Git', 'VS Code', 'Windows OS'] },
+              { title: 'Programming', tags: ['Python', 'ABAP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'SQLite'] },
+              { title: 'Data & ML', tags: ['ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'Natural Language Processing (NLP)', 'Pandas', 'NumPy', 'TensorFlow', 'Scikit-Learn', 'Data Science', 'Data Analysis', 'Machine Learning', 'Image Processing'] },
+              { title: 'Tools', tags: ['Flask', 'FastAPI', 'GitHub', 'Git', 'MS Office Suite', 'VS Code', 'PyCharm', 'Windows OS'] },
             ].map((cat, i) => (
               <motion.div
                 key={i}
