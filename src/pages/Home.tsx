@@ -628,9 +628,10 @@ const Home = () => {
                     location: "Plot # 25, Block-A, Korean EPZ, Karnaphuli, Chattogram 4376",
                     date: "December 2025 - Present",
                     bullets: [
-                      "Serving as an ERP Developer within the Functional Applications Team, focused on designing and optimizing custom ABAP programs.",
-                      "Providing dedicated technical and functional support to SAP Production Planning (PP) module end-users.",
-                      "Collaborating with cross-functional teams to translate business requirements into technical specifications."
+                      "Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations. Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency data accuracy and system performance.",
+                      "Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.",
+                      "Actively involved in ERP customization system integration and process automation initiatives including participation in Odoo-based ERP evaluation and development activities",
+                      "Contributing to software engineering initiatives including development of AI-based computer vision systems, web applications and data analytics tools to support operational efficiency and innovation within enterprise systems."
                     ]
                   },
                   {
@@ -714,6 +715,7 @@ const Home = () => {
                     { icon: <Phone />, label: 'Phone', val: '+880-1796726405', href: 'tel:+8801796726405' },
                     { icon: <Linkedin />, label: 'LinkedIn', val: 'linkedin.com/in/rudra-das-548bb42b2', href: 'https://www.linkedin.com/in/rudra-das-548bb42b2' },
                     { icon: <Github />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
+                    { icon: <Database />, label: 'Kaggle', val: 'kaggle.com/rudradas2000', href: 'https://www.kaggle.com/rudradas2000' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-6 group">
                       <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-primary group-hover:bg-accent-primary group-hover:text-white transition-all duration-500">
@@ -743,7 +745,7 @@ const Home = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="space-y-6"
+                className="space-y-6 lg:mt-44"
                 onSubmit={handleFormSubmit}
               >
                 <div className="grid md:grid-cols-2 gap-6">
