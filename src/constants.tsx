@@ -38,6 +38,13 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
+    title: 'DistractCheck: Selective Attention in LLMs',
+    description: 'A hackathon project focused on measuring and evaluating the selective attention capabilities of Large Language Models when faced with distracting information.',
+    tech: ['Python', 'NLP', 'LLMs', 'Hackathon'],
+    image: 'https://picsum.photos/seed/hackathon/800/600',
+    link: 'https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models',
+  },
+  {
     title: 'Smart AI Detection System',
     description: 'Developed a real-time Smart Gate Detection Counting System using YOLOv8 and OpenCV to detect, track, and count people and vehicles crossing a virtual gate area. Built a data logging and analytics pipeline with SQLite and FastAPI.',
     tech: ['Python', 'YOLOv8', 'OpenCV', 'FastAPI', 'SQLite'],

@@ -177,6 +177,18 @@ const Home = () => {
                     Research <br /> Publication
                   </div>
                 </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="text-3xl font-bold text-accent-secondary">1</div>
+                  <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
+                    Hackathon <br /> Project
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -389,8 +401,8 @@ const Home = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
             {[
               { title: 'Programming', tags: ['Python', 'ABAP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'SQLite'] },
-              { title: 'Data & ML', tags: ['ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'Natural Language Processing (NLP)', 'Pandas', 'NumPy', 'TensorFlow', 'Scikit-Learn', 'Data Science', 'Data Analysis', 'Machine Learning', 'Image Processing'] },
-              { title: 'Tools', tags: ['Flask', 'FastAPI', 'GitHub', 'Git', 'MS Office Suite', 'VS Code', 'PyCharm', 'Windows OS'] },
+              { title: 'Data & ML', tags: ['ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'Natural Language Processing (NLP)', 'LLM Evaluation', 'Benchmark Design', 'Dataset Curation', 'Error Analysis', 'Pandas', 'NumPy', 'TensorFlow', 'Scikit-Learn', 'Data Science', 'Data Analysis', 'Machine Learning', 'Image Processing'] },
+              { title: 'Tools', tags: ['Flask', 'FastAPI', 'GitHub', 'Git', 'Kaggle Benchmarks', 'Google Colab', 'MS Office Suite', 'VS Code', 'PyCharm', 'Windows OS'] },
             ].map((cat, i) => (
               <motion.div
                 key={i}
@@ -587,7 +599,7 @@ const Home = () => {
               <div className="space-y-8">
                 <div className="flex items-center gap-3 text-white font-bold text-xl">
                   <BookOpen className="text-accent-primary" size={24} />
-                  <h3>Key Publication</h3>
+                  <h3>Key Publication & Hackathon</h3>
                 </div>
 
                 <motion.div
@@ -610,6 +622,30 @@ const Home = () => {
                     className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
                   >
                     View Publication <ExternalLink size={14} />
+                  </a>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="glass-card p-8 border-l-4 border-l-accent-secondary/50 relative group"
+                >
+                  <span className="text-accent-secondary text-[10px] font-bold uppercase tracking-widest block mb-3">Hackathon 2025</span>
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-secondary transition-colors">
+                    DistractCheck: Selective Attention in LLMs
+                  </h4>
+                  <p className="text-muted-slate text-sm leading-relaxed mb-6">
+                    A research-driven hackathon project measuring how LLMs handle distracting context in selective attention tasks.
+                  </p>
+                  <a 
+                    href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-accent-secondary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
+                  >
+                    View Project <ExternalLink size={14} />
                   </a>
                 </motion.div>
               </div>
