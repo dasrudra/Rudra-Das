@@ -202,15 +202,10 @@ const Home = () => {
             <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float">
               <div className="rounded-[32px] overflow-hidden aspect-square border border-white/10">
                 <img 
-                  src="https://i.ibb.co/20L338qF/original.jpg" 
+                  src="https://i.postimg.cc/zvC2QRYG/Rudra-Pic-Professional-2.png" 
                   alt="Rudra Das" 
-                  className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-700"
                   referrerPolicy="no-referrer"
-                  loading="eager"
-                  style={{ 
-                    imageRendering: 'auto',
-                    filter: 'contrast(1.05) brightness(1.02) saturate(1.02)' 
-                  }}
                 />
               </div>
               
