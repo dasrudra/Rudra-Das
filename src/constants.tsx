@@ -38,6 +38,13 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
+    title: 'FocusDeck: Chrome Extension',
+    description: 'A productivity-focused Chrome extension designed to help users manage their focus and tasks efficiently within the browser environment.',
+    tech: ['JavaScript', 'HTML', 'CSS', 'Chrome APIs'],
+    image: 'https://picsum.photos/seed/focusdeck/800/600',
+    link: 'https://github.com/dasrudra/FocusDeck---Chrome-Extension',
+  },
+  {
     title: 'DistractCheck: Selective Attention in LLMs',
     description: 'A hackathon project focused on measuring and evaluating the selective attention capabilities of Large Language Models when faced with distracting information.',
     tech: ['Python', 'NLP', 'LLMs', 'Hackathon'],
