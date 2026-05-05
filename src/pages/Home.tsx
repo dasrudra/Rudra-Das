@@ -200,11 +200,11 @@ const Home = () => {
             className="lg:col-span-5 relative"
           >
             <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float">
-              <div className="rounded-[32px] overflow-hidden aspect-square border border-white/10">
+              <div className="rounded-[32px] overflow-hidden aspect-[4/5] border border-white/10 bg-white/5">
                 <img 
                   src="https://i.postimg.cc/zvC2QRYG/Rudra-Pic-Professional-2.png" 
                   alt="Rudra Das" 
-                  className="w-full h-full object-cover transition-all duration-700"
+                  className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
               </div>
