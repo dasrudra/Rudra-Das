@@ -202,7 +202,7 @@ const Home = () => {
             <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float">
               <div className="rounded-[32px] overflow-hidden aspect-[4/5] border border-white/10 bg-white/5">
                 <img 
-                  src="https://i.postimg.cc/zvC2QRYG/Rudra-Pic-Professional-2.png" 
+                  src="https://i.postimg.cc/c4VLgDcV/Rudra-Pic-Professional-3.jpg" 
                   alt="Rudra Das" 
                   className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
