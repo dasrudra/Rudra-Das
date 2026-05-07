@@ -199,7 +199,7 @@ const Home = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float">
+            <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float max-w-[420px] mx-auto">
               <div className="rounded-[32px] overflow-hidden aspect-[4/5] border border-white/10 bg-white/5">
                 <img 
                   src="https://i.postimg.cc/c4VLgDcV/Rudra-Pic-Professional-3.jpg" 
