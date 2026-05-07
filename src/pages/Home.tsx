@@ -26,18 +26,6 @@ import {
 import { Link } from 'react-router-dom';
 import { services, projects, skills, timeline } from '../constants';
 
-const SectionHeading = ({ title, subtitle, align = 'center' }: { title: string; subtitle: string; align?: 'left' | 'center' }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className={`max-w-3xl mb-20 ${align === 'center' ? 'mx-auto text-center' : 'text-left'}`}
-  >
-    <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">{title}</h2>
-    <p className="text-muted-slate text-lg leading-relaxed">{subtitle}</p>
-  </motion.div>
-);
-
 const Home = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const containerRef = useRef(null);
@@ -199,7 +187,7 @@ const Home = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float max-w-[420px] mx-auto">
+            <div className="relative z-10 glass-card p-4 rounded-[40px] animate-float max-w-[360px] mx-auto">
               <div className="rounded-[32px] overflow-hidden aspect-[4/5] border border-white/10 bg-white/5">
                 <img 
                   src="https://i.postimg.cc/c4VLgDcV/Rudra-Pic-Professional-3.jpg" 
@@ -214,15 +202,15 @@ const Home = () => {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="absolute -right-8 top-10 glass-card p-5 accent-glow z-20"
+                className="absolute -right-8 top-10 glass-card p-2.5 px-3 accent-glow z-20"
               >
-                <div className="flex items-center gap-3">
-                  <div className="bg-accent-primary/20 p-2 rounded-xl">
-                    <Code2 className="text-accent-primary w-5 h-5" />
+                <div className="flex items-center gap-2">
+                  <div className="bg-accent-primary/20 p-1 rounded-lg">
+                    <Code2 className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Expertise</p>
-                    <p className="text-lg font-bold">SAP ABAP</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Expertise</p>
+                    <p className="text-sm font-bold leading-none">SAP ABAP</p>
                   </div>
                 </div>
               </motion.div>
@@ -231,15 +219,15 @@ const Home = () => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="absolute -left-12 top-1/2 glass-card p-5 accent-glow z-20"
+                className="absolute -left-12 top-1/2 glass-card p-2.5 px-3 accent-glow z-20"
               >
-                <div className="flex items-center gap-3">
-                  <div className="bg-accent-primary/20 p-2 rounded-xl">
-                    <Briefcase className="text-accent-primary w-5 h-5" />
+                <div className="flex items-center gap-2">
+                  <div className="bg-accent-primary/20 p-1 rounded-lg">
+                    <Briefcase className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Role</p>
-                    <p className="text-lg font-bold">ERP Specialist</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Role</p>
+                    <p className="text-sm font-bold leading-none">ERP Specialist</p>
                   </div>
                 </div>
               </motion.div>
@@ -248,15 +236,15 @@ const Home = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.9 }}
-                className="absolute -bottom-10 -left-10 glass-card p-5 accent-glow z-20"
+                className="absolute -bottom-10 -left-10 glass-card p-2.5 px-3 accent-glow z-20"
               >
-                <div className="flex items-center gap-3">
-                  <div className="bg-accent-primary/20 p-2 rounded-xl">
-                    <Globe className="text-accent-primary w-5 h-5" />
+                <div className="flex items-center gap-2">
+                  <div className="bg-accent-primary/20 p-1 rounded-lg">
+                    <Globe className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Web</p>
-                    <p className="text-lg font-bold">Python Dev</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Web</p>
+                    <p className="text-sm font-bold leading-none">Python Dev</p>
                   </div>
                 </div>
               </motion.div>
@@ -265,15 +253,15 @@ const Home = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1.1 }}
-                className="absolute -bottom-20 right-0 glass-card p-5 accent-glow z-20"
+                className="absolute -bottom-10 right-0 glass-card p-2.5 px-3 accent-glow z-20"
               >
-                <div className="flex items-center gap-3">
-                  <div className="bg-accent-primary/20 p-2 rounded-xl">
-                    <Layers className="text-accent-primary w-5 h-5" />
+                <div className="flex items-center gap-2">
+                  <div className="bg-accent-primary/20 p-1 rounded-lg">
+                    <Layers className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted-slate uppercase font-bold tracking-widest">Systems</p>
-                    <p className="text-lg font-bold">Odoo ERP</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Systems</p>
+                    <p className="text-sm font-bold leading-none">Odoo ERP</p>
                   </div>
                 </div>
               </motion.div>
@@ -340,7 +328,7 @@ const Home = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative lg:mt-56"
           >
             <div className="glass-card p-10 space-y-12">
               <div className="flex items-center gap-6">
@@ -494,10 +482,15 @@ const Home = () => {
       {/* Projects Preview */}
       <section id="projects" className="bg-navy-900/30">
         <div className="section-padding">
-          <SectionHeading 
-            title="Projects" 
-            subtitle="A selection of enterprise and software projects demonstrating technical depth and problem-solving."
-          />
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mb-20 mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">Projects</h2>
+            <p className="text-muted-slate text-lg leading-relaxed">A selection of enterprise and software projects demonstrating technical depth and problem-solving.</p>
+          </motion.div>
           <div className="grid md:grid-cols-2 gap-10">
             {projects.slice(0, 4).map((project, i) => (
               <motion.div
@@ -740,11 +733,15 @@ const Home = () => {
             
             <div className="grid lg:grid-cols-2 gap-20">
               <div className="space-y-10">
-                <SectionHeading 
-                  title="Get In Touch" 
-                  subtitle="Let's discuss how we can optimize your enterprise solutions together."
-                  align="left"
-                />
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="max-w-3xl mb-20 text-left"
+                >
+                  <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">Get In Touch</h2>
+                  <p className="text-muted-slate text-lg leading-relaxed">Let's discuss how we can optimize your enterprise solutions together.</p>
+                </motion.div>
                 <div className="space-y-8">
                   {[
                     { icon: <Mail />, label: 'Email', val: 'dasrudra738@gmail.com', href: 'mailto:dasrudra738@gmail.com' },
@@ -782,7 +779,7 @@ const Home = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="space-y-6 lg:mt-44"
+                className="space-y-6 lg:mt-64"
                 onSubmit={handleFormSubmit}
               >
                 <div className="grid md:grid-cols-2 gap-6">
