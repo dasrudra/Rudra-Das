@@ -117,15 +117,12 @@ const Home = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <a 
-                    href="/Rudra_Das_CV.pdf" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    download="Rudra_Das_CV.pdf"
+                  <Link 
+                    to="/cv" 
                     className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold transition-all flex items-center gap-3 group"
                   >
                     Download CV <Sparkles size={18} className="text-accent-primary" />
-                  </a>
+                  </Link>
                 </motion.div>
               </div>
 
