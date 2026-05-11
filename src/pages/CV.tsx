@@ -379,6 +379,17 @@ const CV = () => {
               </ul>
             </div>
 
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Meta Ads Library Scraper</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/meta-ads-library-scraper</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a specialized tool to scrape and aggregate data from the Meta Ads Library for competitive analysis.</li>
+                <li>Enabled efficient advertising trend research and data-driven insights for marketing strategies.</li>
+              </ul>
+            </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <h3 className="text-xs font-bold text-gray-900">Udemy Projects</h3>

@@ -93,6 +93,13 @@ export const projects: Project[] = [
     image: 'https://picsum.photos/seed/apple/800/600',
     link: 'https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw',
   },
+  {
+    title: 'Meta Ads Library Scraper',
+    description: 'A specialized tool designed to scrape and aggregate data from the Meta Ads Library for competitive analysis and advertising trend research.',
+    tech: ['Python', 'Web Scraping', 'Data Aggregation'],
+    image: 'https://picsum.photos/seed/meta-ads/800/600',
+    link: 'https://github.com/dasrudra/meta-ads-library-scraper',
+  },
 ];
 
 export const skills: Skill[] = [
