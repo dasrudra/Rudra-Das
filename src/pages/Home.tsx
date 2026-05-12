@@ -340,7 +340,7 @@ const Home = () => {
               
               <div className="space-y-8">
                 {[
-                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing, React.js, TypeScript, Tailwind CSS, Chrome Extension APIs, Chrome Storage API, LocalStorage, Lucide React, Open-Meteo API', icon: <Cpu size={20} /> },
+                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing, React.js, TypeScript, Tailwind CSS, Chrome Extension APIs, Chrome Storage API, LocalStorage, Lucide React, Open-Meteo API, REST APIs, Web Scraping, Data Engineering, CLI Development, Pytest', icon: <Cpu size={20} /> },
                   { title: 'Research Background', desc: 'Published researcher in predictive data modeling.', icon: <Globe size={20} /> },
                   { title: 'Problem Solving', desc: 'Analytical mindset focused on organizational efficiency.', icon: <Layers size={20} /> },
                   { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
@@ -387,7 +387,7 @@ const Home = () => {
             {[
               { title: 'Programming', tags: ['Python', 'TypeScript', 'React.js', 'Tailwind CSS', 'ABAP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'SQLite'] },
               { title: 'Data & ML', tags: ['Machine Learning', 'Data Analysis', 'Data Science', 'Natural Language Processing (NLP)', 'LLM Evaluation', 'Benchmark Design', 'Dataset Curation', 'Error Analysis', 'Image Processing', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Matplotlib', 'Google Colab', 'Kaggle Benchmarks'] },
-              { title: 'Tools & Platforms', tags: ['Git', 'GitHub', 'VS Code', 'PyCharm', 'Flask', 'FastAPI', 'Chrome Extension APIs', 'Chrome Storage API', 'Chrome Bookmarks API', 'Chrome History API', 'Chrome Downloads API', 'Open-Meteo API', 'Lucide React', 'Netlify', 'MS Office Suite', 'Windows OS'] },
+              { title: 'Tools & Platforms', tags: ['Git', 'GitHub', 'VS Code', 'PyCharm', 'Flask', 'FastAPI', 'REST APIs', 'Web Scraping', 'Data Engineering', 'CLI Development', 'Pytest', 'Chrome Extension APIs', 'Chrome Storage API', 'Chrome Bookmarks API', 'Chrome History API', 'Chrome Downloads API', 'Open-Meteo API', 'Lucide React', 'Netlify', 'MS Office Suite', 'Windows OS'] },
               { title: 'Enterprise & ERP', tags: ['SAP', 'SAP PP', 'ABAP', 'Odoo ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'ERP Customization', 'Process Automation', 'System Integration', 'Business Reporting'] },
             ].map((cat, i) => (
               <motion.div

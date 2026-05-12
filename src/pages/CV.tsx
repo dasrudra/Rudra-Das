@@ -413,8 +413,8 @@ const CV = () => {
           <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Skills & Interests</h2>
           <div className="space-y-3 text-xs leading-relaxed">
             <p><span className="font-bold uppercase w-32 inline-block">Programming:</span> ABAP, Python, React.js, TypeScript, Tailwind CSS, SQL, HTML, CSS, JavaScript</p>
-            <p><span className="font-bold uppercase w-32 inline-block">AI & Data Science:</span> Responsive Design, Glassmorphism UI, Dashboard Design, Machine Learning, Data Analysis, NLP, Image Processing, LLM Evaluation</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Frameworks/Tools:</span> Flask, FastAPI, REST API Integration, Git, GitHub, Kaggle Benchmarks, Chrome Extension Development</p>
+            <p><span className="font-bold uppercase w-32 inline-block">AI & Data Science:</span> Responsive Design, Glassmorphism UI, Dashboard Design, Machine Learning, Data Analysis, NLP, Image Processing, LLM Evaluation, Web Scraping, Data Engineering</p>
+            <p><span className="font-bold uppercase w-32 inline-block">Frameworks/Tools:</span> Flask, FastAPI, REST APIs, Pytest, CLI Development, Git, GitHub, Kaggle Benchmarks, Chrome Extension Development</p>
             <p><span className="font-bold uppercase w-32 inline-block">Enterprise Tools:</span> SAP, Odoo.sh, SAP BTP Generative AI</p>
             <p><span className="font-bold uppercase w-32 inline-block">Databases:</span> MySQL, SQLite</p>
             <p><span className="font-bold uppercase w-32 inline-block">Operating Systems:</span> Windows</p>
