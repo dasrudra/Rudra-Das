@@ -39,12 +39,11 @@ const Home = () => {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const response = await fetch('https://formspree.io/f/dasrudra738@gmail.com', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         }
       });
       
@@ -54,7 +53,7 @@ const Home = () => {
         setTimeout(() => setFormStatus('idle'), 5000);
       } else {
         const result = await response.json();
-        console.error('Formspree error:', result);
+        console.error('API error:', result);
         setFormStatus('error');
       }
     } catch (error) {
