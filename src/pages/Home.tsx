@@ -132,7 +132,7 @@ const Home = () => {
                   transition={{ delay: 0.4 }}
                   className="flex items-center gap-4"
                 >
-                  <div className="text-3xl font-bold text-accent-primary">1+</div>
+                  <div className="text-3xl font-bold text-accent-primary">2+</div>
                   <div className="text-[10px] text-muted-slate uppercase font-bold tracking-widest leading-tight">
                     Year <br /> Experience
                   </div>
