@@ -210,10 +210,10 @@ const CV = () => {
                 <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">December 2025 - Present</span>
               </div>
               <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations.</li>
-                <li>Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency, data accuracy and system performance.</li>
-                <li>Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues, troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.</li>
-                <li>Actively involved in ERP customization, system integration and process automation initiatives including participation in Odoo-based ERP evaluation and development activities.</li>
+                <li>Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations. Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency data accuracy and system performance.</li>
+                <li>Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.</li>
+                <li>Actively involved in ERP customization, system integration, and process automation initiatives, including serving as a core team member in the Odoo ERP implementation for APDL (Alpha Product Development Ltd.). Responsible for functional and technical coordination, collaborate with vendors, requirement analysis, configuration support, and User Acceptance Testing (UAT).</li>
+                <li>Supporting pricing strategy and implementation service costing for ERP deployment, including pricing models for implementation, training, customization, and post-go-live support services.</li>
                 <li>Contributing to software engineering initiatives including development of AI-based computer vision systems, web applications and data analytics tools to support operational efficiency and innovation within enterprise systems.</li>
               </ul>
             </div>
@@ -224,7 +224,7 @@ const CV = () => {
                   <h3 className="text-base font-bold text-gray-900">Officer - IT, MIS</h3>
                   <p className="text-sm italic text-gray-600">Padma Plastics Ltd. a sister concern of Padma Group Of Converters</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">January 2025 - November 2025</span>
+                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">May 2024 - November 2025</span>
               </div>
               <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
                 <li>Managed IT operations including data entry monitoring in SAP and data accuracy checking.</li>

@@ -339,7 +339,7 @@ const Home = () => {
               
               <div className="space-y-8">
                 {[
-                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing, React.js, TypeScript, Tailwind CSS, Chrome Extension APIs, Chrome Storage API, LocalStorage, Lucide React, Open-Meteo API, REST APIs, Web Scraping, Data Engineering, CLI Development, Pytest', icon: <Cpu size={20} /> },
+                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), LLM Applications, RAG Systems, n8n, LangChain, Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing, React.js, TypeScript, Tailwind CSS, Chrome Extension APIs, Chrome Storage API, LocalStorage, Lucide React, Open-Meteo API, REST APIs, Web Scraping, Data Engineering, CLI Development, Pytest', icon: <Cpu size={20} /> },
                   { title: 'Research Background', desc: 'Published researcher in predictive data modeling.', icon: <Globe size={20} /> },
                   { title: 'Problem Solving', desc: 'Analytical mindset focused on organizational efficiency.', icon: <Layers size={20} /> },
                   { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
@@ -385,8 +385,8 @@ const Home = () => {
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-24">
             {[
               { title: 'Programming', tags: ['Python', 'TypeScript', 'React.js', 'Tailwind CSS', 'ABAP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'SQLite'] },
-              { title: 'Data & ML', tags: ['Machine Learning', 'Data Analysis', 'Data Science', 'Natural Language Processing (NLP)', 'LLM Evaluation', 'Benchmark Design', 'Dataset Curation', 'Error Analysis', 'Image Processing', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Matplotlib', 'Google Colab', 'Kaggle Benchmarks'] },
-              { title: 'Tools & Platforms', tags: ['Git', 'GitHub', 'VS Code', 'PyCharm', 'Flask', 'FastAPI', 'REST APIs', 'Web Scraping', 'Data Engineering', 'CLI Development', 'Pytest', 'Chrome Extension APIs', 'Chrome Storage API', 'Chrome Bookmarks API', 'Chrome History API', 'Chrome Downloads API', 'Open-Meteo API', 'Lucide React', 'Netlify', 'MS Office Suite', 'Windows OS'] },
+              { title: 'Data & ML', tags: ['Machine Learning', 'Data Analysis', 'Data Science', 'Natural Language Processing (NLP)', 'LLM Applications', 'Prompt Engineering', 'RAG Systems', 'Workflow Automation', 'LLM Inference Optimization', 'LLM Evaluation', 'Benchmark Design', 'Dataset Curation', 'Error Analysis', 'Image Processing', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Matplotlib', 'Google Colab', 'Kaggle Benchmarks'] },
+              { title: 'Tools & Platforms', tags: ['Git', 'GitHub', 'VS Code', 'PyCharm', 'Flask', 'FastAPI', 'REST APIs', 'Web Scraping', 'Data Engineering', 'CLI Development', 'Pytest', 'n8n', 'LangChain', 'Groq API', 'Chrome Extension APIs', 'Chrome Storage API', 'Chrome Bookmarks API', 'Chrome History API', 'Chrome Downloads API', 'Open-Meteo API', 'Lucide React', 'Netlify', 'MS Office Suite', 'Windows OS'] },
               { title: 'Enterprise & ERP', tags: ['SAP', 'SAP PP', 'ABAP', 'Odoo ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'ERP Customization', 'Process Automation', 'System Integration', 'Business Reporting'] },
             ].map((cat, i) => (
               <motion.div
@@ -656,7 +656,8 @@ const Home = () => {
                     bullets: [
                       "Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations. Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency data accuracy and system performance.",
                       "Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.",
-                      "Actively involved in ERP customization system integration and process automation initiatives including participation in Odoo-based ERP evaluation and development activities",
+                      "Actively involved in ERP customization, system integration, and process automation initiatives, including serving as a core team member in the Odoo ERP implementation for APDL (Alpha Product Development Ltd.). Responsible for functional and technical coordination, collaborate with vendors, requirement analysis, configuration support, and User Acceptance Testing (UAT).",
+                      "Supporting pricing strategy and implementation service costing for ERP deployment, including pricing models for implementation, training, customization, and post-go-live support services.",
                       "Contributing to software engineering initiatives including development of AI-based computer vision systems, web applications and data analytics tools to support operational efficiency and innovation within enterprise systems."
                     ]
                   },
@@ -664,7 +665,7 @@ const Home = () => {
                     title: "Officer - IT, MIS",
                     company: "Padma Plastics Ltd. (Padma Group Of Converters)",
                     location: "Dhaka, Bangladesh",
-                    date: "January 2025 - November 2025",
+                    date: "May 2024 - November 2025",
                     bullets: [
                       "Managed IT operations including data entry monitoring in SAP and data accuracy checking.",
                       "Performed IT audits, system backup & recovery, and hardware/software maintenance.",
