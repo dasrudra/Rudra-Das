@@ -381,6 +381,17 @@ const CV = () => {
 
             <div>
               <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Accounting & Ledger Software</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Ledger-Software-frontend</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a high-performance, responsive frontend dashboard for ledger accounts and finance/transaction tracking.</li>
+                <li>Utilized React.js, TypeScript, and Tailwind CSS to design elegant corporate-grade user interfaces with real-time feedback.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
                 <h3 className="text-sm font-bold text-gray-900 uppercase">Meta Ads Library Scraper</h3>
               </div>
               <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/meta-ads-library-scraper</p>

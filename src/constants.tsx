@@ -38,6 +38,13 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Accounting & Ledger Software',
+    description: 'A modern, interactive frontend dashboard for transaction tracking and ledger accounts management with a highly polished enterprise UI.',
+    tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'Vite', 'State Management'],
+    image: 'https://picsum.photos/seed/accounting/800/600',
+    link: 'https://github.com/dasrudra/Ledger-Software-frontend',
+  },
+  {
     title: 'FocusDeck: Chrome Extension',
     description: 'A productivity-focused Chrome extension designed to help users manage their focus and tasks efficiently within the browser environment.',
     tech: ['JavaScript', 'HTML', 'CSS', 'Chrome APIs'],
