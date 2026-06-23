@@ -132,7 +132,14 @@ export const timeline: TimelineItem[] = [
     type: 'experience',
   },
   {
-    year: 'Jan 2025 - Nov 2025',
+    year: 'June 2026 – Present',
+    title: 'Web Developer (Volunteer)',
+    organization: 'FreeAppStore, New Zealand (Remote)',
+    description: 'Contributing to an open-source web application ecosystem through frontend development, responsive UI improvement, and PWA integration using React.js, TypeScript, and Tailwind CSS.',
+    type: 'experience',
+  },
+  {
+    year: 'May 2024 - Nov 2025',
     title: 'Officer – IT & MIS',
     organization: 'Padma Plastics Ltd.',
     description: 'Managed IT operations, SAP data monitoring, system audits, and hardware/software maintenance.',

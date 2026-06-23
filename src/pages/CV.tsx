@@ -221,6 +221,19 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
+                  <h3 className="text-base font-bold text-gray-900">Web Developer (Volunteer)</h3>
+                  <p className="text-sm italic text-gray-600">FreeAppStore, New Zealand (Remote)</p>
+                </div>
+                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>
+              </div>
+              <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
+                <li>Contributing to a free-forever web application ecosystem through frontend development, responsive UI improvement, and open-source collaboration. Working with React.js, TypeScript, Tailwind CSS, JavaScript, Git/GitHub, and PWA-focused development practices.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <div>
                   <h3 className="text-base font-bold text-gray-900">Officer - IT, MIS</h3>
                   <p className="text-sm italic text-gray-600">Padma Plastics Ltd. a sister concern of Padma Group Of Converters</p>
                 </div>

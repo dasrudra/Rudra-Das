@@ -662,6 +662,15 @@ const Home = () => {
                     ]
                   },
                   {
+                    title: "Web Developer (Volunteer)",
+                    company: "FreeAppStore, New Zealand",
+                    location: "Remote",
+                    date: "June 2026 – Present",
+                    bullets: [
+                      "Contributing to a free-forever web application ecosystem through frontend development, responsive UI improvement, and open-source collaboration. Working with React.js, TypeScript, Tailwind CSS, JavaScript, Git/GitHub, and PWA-focused development practices."
+                    ]
+                  },
+                  {
                     title: "Officer - IT, MIS",
                     company: "Padma Plastics Ltd. (Padma Group Of Converters)",
                     location: "Dhaka, Bangladesh",
