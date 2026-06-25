@@ -38,6 +38,13 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
+    title: 'NN Fund Management',
+    description: 'Developed a custom Odoo 19 ERP module for fund account management, incoming fund tracking, allocation workflow, requisition control, and bill processing.',
+    tech: ['Odoo 19', 'Python', 'XML', 'PostgreSQL', 'Docker', 'Git/GitHub', 'ERP Workflow Design'],
+    image: 'https://picsum.photos/seed/fundmanagement/800/600',
+    link: 'https://github.com/dasrudra/NN-Fund-Management',
+  },
+  {
     title: 'Accounting & Ledger Software',
     description: 'A modern, interactive frontend dashboard for transaction tracking and ledger accounts management with a highly polished enterprise UI.',
     tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'Vite', 'State Management'],

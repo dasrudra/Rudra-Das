@@ -394,6 +394,18 @@ const CV = () => {
 
             <div>
               <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">NN Fund Management</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/NN-Fund-Management</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a custom Odoo 19 ERP module for fund account management, incoming fund tracking, allocation workflow, requisition control, and bill processing.</li>
+                <li>Designed computed fund balances including total received, unassigned balance, held balance, and assigned balance to support controlled fund utilization.</li>
+                <li>Configured Odoo security groups, access-control rules, multi-company record rules, XML views, menu actions, sequences, chatter tracking, and Docker-based setup.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
                 <h3 className="text-sm font-bold text-gray-900 uppercase">Accounting & Ledger Software</h3>
               </div>
               <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Ledger-Software-frontend</p>
