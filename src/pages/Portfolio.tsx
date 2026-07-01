@@ -425,8 +425,8 @@ const PortfolioPage = () => {
 
       <div className="section-padding relative z-10 max-w-7xl mx-auto">
         <SectionHeading 
-          title="3D Project Stage" 
-          subtitle="Explore highly scalable modules, real-world systems, and custom Odoo ERP architecture in our futuristic 3D showcase."
+          title="My Projects" 
+          subtitle="Scalable systems. Real-world logic. Production-ready engineering."
         />
 
         {/* Dynamic Controls Hub */}
