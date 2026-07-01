@@ -192,7 +192,7 @@ const CV = () => {
         <section className="mb-10">
           <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Career Objective</h2>
           <p className="text-sm leading-relaxed text-gray-700">
-            Driven IT specialist, Software and ERP Developer dedicated to transforming business processes through technical innovation with a solid background in system administration, data analysis, and computer science. With hands-on experience, I am committed to use technical know-how, analytical aptitude, and problem-solving abilities to enhance organizational effectiveness and facilitate data-driven decision-making, looking for chances to develop in a fast-paced workplace and contribute to creative projects.
+            Driven IT specialist, Software and ERP Developer dedicated to transforming business processes through technical innovation with a solid background in system administration, data analysis, and computer science. With hands-on experience, I am committed to using technical knowledge, analytical aptitude, and problem-solving abilities to enhance organizational effectiveness and support data-driven decision-making in fast-paced and innovative environments.
           </p>
         </section>
 
@@ -204,46 +204,50 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Assistant Engineer - Functional Applications (EAS)</h3>
-                  <p className="text-sm italic text-gray-600">Tekvision (BD) Ltd. subsidiary of Youngone Holdings</p>
+                  <h3 className="text-base font-bold text-gray-900">Assistant Engineer – Functional Applications (EAS)</h3>
+                  <p className="text-sm italic text-gray-600">Tekvision (BD) Ltd., subsidiary of Youngone Holdings</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">December 2025 - Present</span>
+                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">December 2025 – Present</span>
               </div>
               <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations. Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency data accuracy and system performance.</li>
-                <li>Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.</li>
-                <li>Actively involved in ERP customization, system integration, and process automation initiatives, including serving as a core team member in the Odoo ERP implementation for APDL (Alpha Product Development Ltd.). Responsible for functional and technical coordination, collaborate with vendors, requirement analysis, configuration support, and User Acceptance Testing (UAT).</li>
-                <li>Supporting pricing strategy and implementation service costing for ERP deployment, including pricing models for implementation, training, customization, and post-go-live support services.</li>
-                <li>Contributing to software engineering initiatives including development of AI-based computer vision systems, web applications and data analytics tools to support operational efficiency and innovation within enterprise systems.</li>
+                <li>Serving as an ERP Developer within the Enterprise Application Services (EAS) team, developing, enhancing, and maintaining SAP-based business applications supporting commercial and production operations.</li>
+                <li>Designing and optimizing custom ABAP reports and enhancements to improve workflow efficiency, data accuracy, and system performance.</li>
+                <li>Providing technical and functional support to SAP Production Planning (PP) users by diagnosing system issues, troubleshooting operational challenges, and supporting smooth execution of production and commercial processes.</li>
+                <li>Involved in ERP customization, system integration, and process automation initiatives, including core-team participation in Odoo ERP implementation for APDL, requirement analysis, configuration support, vendor coordination, and UAT.</li>
+                <li>Supporting ERP deployment pricing and implementation-service costing, including implementation, training, customization, and post-go-live support models.</li>
+                <li>Contributing to AI-based computer vision systems, web applications, and data analytics tools to support operational efficiency and enterprise innovation.</li>
               </ul>
             </div>
 
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">WebApp Developer (Volunteer)</h3>
-                  <p className="text-sm italic text-gray-600">FreeAppStore, New Zealand (Remote)</p>
+                  <h3 className="text-base font-bold text-gray-900">Web Developer (Volunteer) – Remote</h3>
+                  <p className="text-sm italic text-gray-600">FreeAppStore, New Zealand</p>
                 </div>
                 <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>
               </div>
               <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Contributing to a free-forever web application ecosystem through frontend development, responsive UI improvement, and open-source collaboration. Working with React.js, TypeScript, Tailwind CSS, JavaScript, Git/GitHub, and PWA-focused development practices.</li>
+                <li>Contributing to a free-forever web application ecosystem through frontend development and platform support.</li>
+                <li>Supporting responsive, accessible, and user-friendly web applications using React.js, TypeScript, Tailwind CSS, HTML, CSS, and JavaScript.</li>
+                <li>Collaborating with the volunteer/community team through platform workflow, documentation, and issue-based contribution processes.</li>
+                <li>Gaining practical experience in open-source product development, PWA-based applications, Git/GitHub workflow, and remote technical collaboration.</li>
               </ul>
             </div>
 
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Officer - IT, MIS</h3>
-                  <p className="text-sm italic text-gray-600">Padma Plastics Ltd. a sister concern of Padma Group Of Converters</p>
+                  <h3 className="text-base font-bold text-gray-900">Officer – IT, MIS</h3>
+                  <p className="text-sm italic text-gray-600">Padma Plastics Ltd., a sister concern of Padma Group of Converters, Dhaka, Bangladesh</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">May 2024 - November 2025</span>
+                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">May 2024 – November 2025</span>
               </div>
               <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Managed IT operations including data entry monitoring in SAP and data accuracy checking.</li>
-                <li>Performed IT audits, system backup & recovery, and hardware/software maintenance.</li>
-                <li>Maintained IT asset registers and inventory of networking components.</li>
-                <li>Supported departmental KPI evaluation and 5S/TPM/ISO activities.</li>
+                <li>Managed IT operations including SAP data-entry monitoring, data-accuracy checking, and timely reporting, ensuring smooth workflow and compliance with organizational standards.</li>
+                <li>Performed IT audits, system backup and recovery, hardware/software maintenance, OS installation, and troubleshooting to ensure uninterrupted IT infrastructure.</li>
+                <li>Maintained IT asset registers, hardware/software/network inventory, and warranty/replacement documentation.</li>
+                <li>Supported departmental KPI evaluation, 5S/TPM/ISO activities, and management reporting through accurate and timely documentation.</li>
               </ul>
             </div>
           </div>
@@ -282,21 +286,21 @@ const CV = () => {
               <tr className="border-b border-gray-50 uppercase">
                 <td className="py-3 pr-4 font-bold">Bachelor of Science</td>
                 <td className="py-3 px-4">East Delta University, Chattogram</td>
-                <td className="py-3 px-4 italic">3.41 (Out of 4.00)</td>
+                <td className="py-3 px-4 italic">3.41 / 4.00</td>
                 <td className="py-3 px-4 text-center">2024</td>
-                <td className="py-3 pl-4">CS & Engineering</td>
+                <td className="py-3 pl-4">Computer Science and Engineering</td>
               </tr>
               <tr className="border-b border-gray-50 uppercase">
                 <td className="py-3 pr-4 font-bold">HSC</td>
                 <td className="py-3 px-4">Govt. Haji Muhammad Mohsin College</td>
-                <td className="py-3 px-4 italic">4.25 (Out of 5.00)</td>
+                <td className="py-3 px-4 italic">4.25 / 5.00</td>
                 <td className="py-3 px-4 text-center">2019</td>
                 <td className="py-3 pl-4">Science</td>
               </tr>
               <tr className="border-b border-gray-200 last:border-b-0 uppercase">
                 <td className="py-3 pr-4 font-bold">SSC</td>
                 <td className="py-3 px-4">Chattogram Collegiate School</td>
-                <td className="py-3 px-4 italic">5.00 (Out of 5.00)</td>
+                <td className="py-3 px-4 italic">5.00 / 5.00</td>
                 <td className="py-3 px-4 text-center">2017</td>
                 <td className="py-3 pl-4">Science</td>
               </tr>
@@ -310,7 +314,7 @@ const CV = () => {
           <table className="w-full text-xs text-left border-collapse">
             <thead>
               <tr className="border-b border-gray-200 text-gray-600">
-                <th className="py-2 pr-4 font-bold">Degree</th>
+                <th className="py-2 pr-4 font-bold">Course</th>
                 <th className="py-2 px-4 font-bold">Course Description</th>
                 <th className="py-2 px-4 font-bold">Institute</th>
                 <th className="py-2 pl-4 font-bold text-right whitespace-nowrap">Year</th>
@@ -319,26 +323,26 @@ const CV = () => {
             <tbody className="text-gray-700">
               <tr className="border-b border-gray-50">
                 <td className="py-3 pr-4 font-bold uppercase">ABAP and S/4 HANA</td>
-                <td className="py-3 px-4 italic">ABAP Fundamentals and Core Programming Concepts</td>
+                <td className="py-3 px-4 italic">ABAP fundamentals and core programming concepts</td>
                 <td className="py-3 px-4">Coursera</td>
                 <td className="py-3 pl-4 text-right whitespace-nowrap">February 2026</td>
               </tr>
               <tr className="border-b border-gray-50">
                 <td className="py-3 pr-4 font-bold uppercase">Python Web Course</td>
-                <td className="py-3 px-4 italic">Fundamentals of Python Web</td>
+                <td className="py-3 px-4 italic">Fundamentals of Python web development</td>
                 <td className="py-3 px-4">Ostad</td>
                 <td className="py-3 pl-4 text-right whitespace-nowrap">March 2024</td>
               </tr>
               <tr className="border-b border-gray-50">
                 <td className="py-3 pr-4 font-bold uppercase">Data Science Crash Course</td>
-                <td className="py-3 px-4 italic">Basic Statistics of Data Science and Fundamentals</td>
+                <td className="py-3 px-4 italic">Basic statistics and fundamentals of data science</td>
                 <td className="py-3 px-4">Ostad</td>
                 <td className="py-3 pl-4 text-right whitespace-nowrap">March 2024</td>
               </tr>
               <tr>
                 <td className="py-3 pr-4 font-bold uppercase">Database and MySQL</td>
-                <td className="py-3 px-4 italic">Database Management System and Advanced SQL</td>
-                <td className="py-3 px-4">Great Learnings</td>
+                <td className="py-3 px-4 italic">Database management system and advanced SQL</td>
+                <td className="py-3 px-4">Great Learning</td>
                 <td className="py-3 pl-4 text-right whitespace-nowrap">February 2024</td>
               </tr>
             </tbody>
@@ -351,50 +355,7 @@ const CV = () => {
           <div className="space-y-6">
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">FocusDeck – Chrome New Tab Productivity Dashboard</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/FocusDeck</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a custom Chrome New Tab productivity dashboard using React.js, TypeScript, Tailwind CSS, and Chrome Extension APIs.</li>
-                <li>Integrated real browser data including Chrome Bookmarks, History, and Downloads, with categorized bookmark folders and global search.</li>
-              </ul>
-            </div>
-            
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">Kaggle x Google DeepMind Hackathon, 2026</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Created and submitted a benchmark for the Attention track in the Kaggle hackathon Measuring Progress Toward AGI: Cognitive Abilities.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Smart AI Detection System</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Smart-Detection-Ai</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a real-time Smart Gate Detection Counting System using YOLOv8 and OpenCV to detect, track, and count people and vehicles.</li>
-                <li>Built a data logging and analytics pipeline with SQLite, CSV reporting, and a FastAPI web dashboard.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Hotel Management System</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://shorturl.at/XsTEw</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Hotel Management System web application using Python (Flask) and SQLite.</li>
-                <li>A modern, responsive UI with HTML, CSS, and Bootstrap, ensuring cross-device accessibility.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">NN Fund Management</h3>
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Odoo ERP Fund Management System</h3>
               </div>
               <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/NN-Fund-Management</p>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
@@ -406,40 +367,80 @@ const CV = () => {
 
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Accounting & Ledger Software</h3>
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Accounts & Ledger Management System</h3>
               </div>
               <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Ledger-Software-frontend</p>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a high-performance, responsive frontend dashboard for ledger accounts and finance/transaction tracking.</li>
-                <li>Utilized React.js, TypeScript, and Tailwind CSS to design elegant corporate-grade user interfaces with real-time feedback.</li>
+                <li>Designed and developed a role-based accounting and ledger application for digitizing daily customer-ledger operations and financial reporting.</li>
+                <li>Implemented party management, deterministic balance calculation, daily ledger closing, balance carry-forward, adjustment entries, personal-balance tracking, and historical reports.</li>
+                <li>Structured the frontend using reusable TypeScript components, centralized financial utilities, persistent application state, and an API-ready architecture for future FastAPI, MySQL, and LangChain integration.</li>
+              </ul>
+            </div>
+            
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">FocusDeck – Chrome New Tab Productivity Dashboard</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/FocusDeck---Chrome-Extension</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a custom Chrome New Tab productivity dashboard using React.js, TypeScript, Tailwind CSS, and Chrome Extension APIs.</li>
+                <li>Integrated Chrome Bookmarks, History, and Downloads with categorized bookmark folders, global search, and persistent local data storage using Chrome Storage API with localStorage fallback.</li>
+              </ul>
+            </div>
+            
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Kaggle x Google DeepMind Hackathon, 2026.</li>
+                <li>Created and submitted a benchmark for the Attention track in the Kaggle hackathon Measuring Progress Toward AGI: Cognitive Abilities.</li>
               </ul>
             </div>
 
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Meta Ads Library Scraper</h3>
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Smart AI Detection System</h3>
               </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/meta-ads-library-scraper</p>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Smart-Detection-Ai</p>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a specialized tool to scrape and aggregate data from the Meta Ads Library for competitive analysis.</li>
-                <li>Enabled efficient advertising trend research and data-driven insights for marketing strategies.</li>
+                <li>Developed a real-time Smart Gate Detection & Counting System using YOLOv8 and OpenCV to detect, track, and count people and vehicles crossing a virtual gate area with ROI-based line-crossing logic.</li>
+                <li>Built a data logging and analytics pipeline with SQLite, CSV reporting, and a FastAPI web dashboard, enabling real-time monitoring, event snapshots, and hourly traffic summaries.</li>
               </ul>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-xs font-bold text-gray-900">Udemy Projects</h3>
-                <p className="text-[10px] text-gray-500">HTML, CSS, JS based 10 Projects</p>
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Hotel Management System</h3>
               </div>
-              <div>
-                <h3 className="text-xs font-bold text-gray-900">Sentiment Analysis Model</h3>
-                <p className="text-[10px] text-gray-500 mb-1">IMDB movie review sentiment analysis using Python and ML.</p>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://shorturl.at/XsTEw</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a Hotel Management System web application using Python Flask and SQLite.</li>
+                <li>Built a modern, responsive UI with HTML, CSS, and Bootstrap, ensuring cross-device accessibility, clean workflow management, and scalable system architecture.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Sentiment Analysis Model for IMDB Movie Reviews</h3>
               </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/IMDB/blob/main/imdb.ipynb</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Built a sentiment-analysis model for IMDB movie reviews using Python and machine-learning techniques.</li>
+                <li>Implemented data preprocessing, NLP-based feature extraction, and model training.</li>
+              </ul>
             </div>
             
             <div>
-              <h3 className="text-xs font-bold text-gray-900">Emotion Recognition from Speech Using Hybrid Model</h3>
-              <p className="text-[10px] text-gray-500">Speech Emotion Recognition system using hybrid machine learning models to identify emotional states from audio recordings.</p>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-sm font-bold text-gray-900 uppercase">Emotion Recognition from Speech Using Hybrid Model</h3>
+              </div>
+              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Speech-Emotion-Recognition</p>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+                <li>Developed a speech-emotion-recognition system using hybrid machine-learning models to identify emotional states from audio recordings.</li>
+                <li>Extracted key audio features and trained classifiers for emotion classification.</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -447,14 +448,16 @@ const CV = () => {
         {/* Skills & Interests */}
         <section className="mb-10 break-before-page print:pt-10">
           <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Skills & Interests</h2>
-          <div className="space-y-3 text-xs leading-relaxed">
+          <div className="space-y-3 text-xs leading-relaxed text-gray-700">
             <p><span className="font-bold uppercase w-32 inline-block">Programming:</span> ABAP, Python, React.js, TypeScript, Tailwind CSS, SQL, HTML, CSS, JavaScript</p>
-            <p><span className="font-bold uppercase w-32 inline-block">AI & Data Science:</span> Responsive Design, Glassmorphism UI, Dashboard Design, Machine Learning, Data Analysis, NLP, Image Processing, LLM Evaluation, Web Scraping, Data Engineering</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Frameworks/Tools:</span> Flask, FastAPI, REST APIs, Pytest, CLI Development, Git, GitHub, Kaggle Benchmarks, Chrome Extension Development</p>
+            <p><span className="font-bold uppercase w-32 inline-block text-top">AI & Data Science:</span> Web Scraping, Data Engineering, CLI Development, Pytest, Responsive Design, Glassmorphism UI, Dashboard Design, Machine Learning, Data Analysis, Data Science, NLP, Image Processing, LLM Evaluation, Benchmark Design, Dataset Curation, LLM Applications, Prompt Engineering, RAG Systems, Workflow Automation, LLM Inference Optimization</p>
+            <p><span className="font-bold uppercase w-32 inline-block">Frameworks & Tools:</span> Flask, FastAPI, REST API Integration, n8n, LangChain, Groq API, Git, GitHub, Kaggle Benchmarks, Google Colab, Matplotlib, Scikit-Learn, TensorFlow, Chrome Extension Development</p>
             <p><span className="font-bold uppercase w-32 inline-block">Enterprise Tools:</span> SAP, Odoo.sh, SAP BTP Generative AI</p>
             <p><span className="font-bold uppercase w-32 inline-block">Databases:</span> MySQL, SQLite</p>
+            <p><span className="font-bold uppercase w-32 inline-block">Microsoft:</span> MS Word, Excel, PowerPoint, Outlook, Teams</p>
             <p><span className="font-bold uppercase w-32 inline-block">Operating Systems:</span> Windows</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Language:</span> Bangla, English, Hindi</p>
+            <p><span className="font-bold uppercase w-32 inline-block">Non-Technical:</span> Teaching Experience, Communication, Presentation, Consulting</p>
+            <p><span className="font-bold uppercase w-32 inline-block">Languages:</span> English (IELTS Academic 6.5), Bangla, Hindi</p>
           </div>
         </section>
 
@@ -464,11 +467,11 @@ const CV = () => {
           <div className="space-y-4 text-xs">
             <div>
               <p className="font-bold uppercase">Data Science Intern | Skill Genie</p>
-              <p className="text-gray-700">Worked on real-time data science projects including email spam filtering and IMDB movie review sentiment analysis. Developed NLP-based models for text classification and data pre-processing to enhance prediction accuracy.</p>
+              <p className="text-gray-700">Worked on real-time data-science projects including email spam filtering and IMDB movie review sentiment analysis. Developed NLP-based models for text classification and data preprocessing to enhance prediction accuracy.</p>
             </div>
             <div>
               <p className="font-bold uppercase">Machine Learning Intern | Cognifyz Technologies</p>
-              <p className="text-gray-700">Contributed to machine learning model development and optimization for scalable technology solutions. Collaborated with cross-functional teams on the development and testing of machine learning applications.</p>
+              <p className="text-gray-700">Contributed to machine-learning model development and optimization for scalable technology solutions. Collaborated with cross-functional teams on development and testing of machine-learning applications.</p>
             </div>
             <div>
               <p className="font-bold uppercase">Leadership in Academic Projects</p>
@@ -483,21 +486,6 @@ const CV = () => {
           </div>
         </section>
 
-        {/* Personal Details */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Personal Details</h2>
-          <div className="grid grid-cols-2 gap-x-10 gap-y-2 text-xs">
-            <p><span className="font-bold uppercase w-32 inline-block">Father's Name:</span> Babul Das</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Mother's Name:</span> Joba Das</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Date of Birth:</span> February 21, 2000</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Gender:</span> Male</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Marital Status:</span> Unmarried</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Nationality:</span> Bangladeshi</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Religion:</span> Hinduism</p>
-            <p className="col-span-2"><span className="font-bold uppercase w-32 inline-block">Permanent Address:</span> Kaliaish, Moulovir Dokan, Satkania, Chattogram</p>
-          </div>
-        </section>
-
         {/* References */}
         <section className="mb-10">
           <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-6">References</h2>
@@ -507,6 +495,7 @@ const CV = () => {
               <p><span className="font-bold">Name:</span> Dr. Mohammed Nazim Uddin</p>
               <p><span className="font-bold">Organization:</span> East Delta University</p>
               <p><span className="font-bold">Designation:</span> Vice-Chancellor</p>
+              <p><span className="font-bold">Address:</span> Abdullah Al Noman Road, Noman Society, Chattogram</p>
               <p><span className="font-bold">Mobile:</span> 01730794514</p>
               <p><span className="font-bold">E-mail:</span> nazim@eastdelta.edu.bd</p>
               <p><span className="font-bold text-accent-primary italic">Relation: Academic</span></p>
@@ -515,7 +504,8 @@ const CV = () => {
               <p className="font-bold text-sm text-gray-900 mb-2 underline">Reference 2:</p>
               <p><span className="font-bold">Name:</span> Linkon Chowdhury</p>
               <p><span className="font-bold">Organization:</span> East Delta University</p>
-              <p><span className="font-bold">Designation:</span> Assistant Professor, Dept. of CSE</p>
+              <p><span className="font-bold">Designation:</span> Assistant Professor, Department of CSE</p>
+              <p><span className="font-bold">Address:</span> Abdullah Al Noman Road, Noman Society, Chattogram</p>
               <p><span className="font-bold">Mobile:</span> 01818633071</p>
               <p><span className="font-bold">E-mail:</span> linkoncuetbd@gmail.com</p>
               <p><span className="font-bold text-accent-primary italic">Relation: Academic</span></p>
