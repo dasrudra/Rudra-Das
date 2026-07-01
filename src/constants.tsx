@@ -140,7 +140,7 @@ export const timeline: TimelineItem[] = [
   },
   {
     year: 'June 2026 – Present',
-    title: 'Web Developer (Volunteer)',
+    title: 'WebApp Developer (Volunteer)',
     organization: 'FreeAppStore, New Zealand (Remote)',
     description: 'Contributing to an open-source web application ecosystem through frontend development, responsive UI improvement, and PWA integration using React.js, TypeScript, and Tailwind CSS.',
     type: 'experience',

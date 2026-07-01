@@ -221,7 +221,7 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Web Developer (Volunteer)</h3>
+                  <h3 className="text-base font-bold text-gray-900">WebApp Developer (Volunteer)</h3>
                   <p className="text-sm italic text-gray-600">FreeAppStore, New Zealand (Remote)</p>
                 </div>
                 <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>

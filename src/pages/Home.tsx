@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Code2, 
@@ -25,6 +25,80 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { services, projects, skills, timeline } from '../constants';
+
+interface TiltContainerProps {
+  children: React.ReactNode;
+  className?: string;
+  maxTilt?: number;
+  glowColor?: string;
+  glareIntensity?: number;
+}
+
+const TiltContainer: React.FC<TiltContainerProps> = ({ 
+  children, 
+  className = "", 
+  maxTilt = 10, 
+  glowColor = "rgba(16, 185, 129, 0.15)", 
+  glareIntensity = 0.15 
+}) => {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [glare, setGlare] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const normX = x / rect.width - 0.5;
+    const normY = y / rect.height - 0.5;
+    
+    setTilt({
+      x: normY * -maxTilt,
+      y: normX * maxTilt
+    });
+    setGlare({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+    setGlare({ x: 50, y: 50 });
+    setIsHovered(false);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      className={`relative transition-all duration-500 ${className}`}
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: isHovered ? 'none' : 'transform 0.5s ease, box-shadow 0.5s ease',
+        boxShadow: isHovered ? `0 20px 40px ${glowColor}` : 'none',
+      }}
+    >
+      {/* Dynamic specular glare highlight overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300 rounded-[inherit]" 
+        style={{
+          background: isHovered 
+            ? `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glareIntensity}) 0%, transparent 60%)`
+            : 'none',
+          mixBlendMode: 'overlay',
+          opacity: isHovered ? 1 : 0
+        }}
+      />
+      {children}
+    </div>
+  );
+};
 
 const Home = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -302,10 +376,12 @@ const Home = () => {
                 { label: 'HSC (Science)', val: 'Govt. Haji Muhammad Mohsin College', sub: '2019 | CGPA: 4.25', icon: <Briefcase size={16} /> },
                 { label: 'SSC (Science)', val: 'Chattogram Collegiate School', sub: '2017 | CGPA: 5.00', icon: <Monitor size={16} /> },
               ].map((item, i) => (
-                <motion.div 
+                <TiltContainer
                   key={i}
-                  whileHover={{ scale: 1.01 }}
-                  className="glass-card p-5 flex items-center gap-5"
+                  maxTilt={8}
+                  glowColor="rgba(16, 185, 129, 0.15)"
+                  glareIntensity={0.12}
+                  className="glass-card p-5 flex items-center gap-5 rounded-2xl overflow-hidden cursor-default"
                 >
                   <div className="p-3 rounded-xl bg-accent-primary/10 text-accent-primary shrink-0">
                     {item.icon}
@@ -315,7 +391,7 @@ const Home = () => {
                     <p className="text-base font-bold text-white">{item.val}</p>
                     <p className="text-xs text-muted-slate">{item.sub}</p>
                   </div>
-                </motion.div>
+                </TiltContainer>
               ))}
             </div>
           </motion.div>
@@ -326,7 +402,12 @@ const Home = () => {
             viewport={{ once: true }}
             className="relative lg:mt-56"
           >
-            <div className="glass-card p-10 space-y-12">
+            <TiltContainer
+              maxTilt={6}
+              glowColor="rgba(16, 185, 129, 0.2)"
+              glareIntensity={0.18}
+              className="glass-card p-10 space-y-12 rounded-[32px] overflow-hidden"
+            >
               <div className="flex items-center gap-6">
                 <div className="w-20 h-20 rounded-3xl bg-accent-primary flex items-center justify-center text-white accent-glow">
                   <Terminal size={32} />
@@ -355,7 +436,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </TiltContainer>
           </motion.div>
         </div>
       </section>
@@ -395,19 +476,25 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-8 flex flex-col"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)]" />
-                  <h3 className="text-xl font-bold text-white">{cat.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {cat.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-accent-primary/30 hover:text-white transition-all">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <TiltContainer
+                  maxTilt={12}
+                  glowColor="rgba(16, 185, 129, 0.22)"
+                  glareIntensity={0.2}
+                  className="glass-card p-8 flex flex-col h-full rounded-[24px] overflow-hidden"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-2 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)]" />
+                    <h3 className="text-xl font-bold text-white">{cat.title}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cat.tags.map(tag => (
+                      <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-accent-primary/30 hover:text-white transition-all">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </TiltContainer>
               </motion.div>
             ))}
           </div>
@@ -488,57 +575,82 @@ const Home = () => {
             <p className="text-muted-slate text-lg leading-relaxed">A selection of enterprise and software projects demonstrating technical depth and problem-solving.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-10">
-            {projects.slice(0, 4).map((project, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 border border-white/5">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
-                    <div className="flex gap-4">
+            {projects.slice(0, 4).map((project, i) => {
+              const projectColor = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'][i % 4];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <TiltContainer
+                    maxTilt={10}
+                    glowColor={`${projectColor}20`}
+                    glareIntensity={0.2}
+                    className="glass-card p-6 rounded-[36px] overflow-hidden h-full flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="relative aspect-[16/10] rounded-[24px] overflow-hidden mb-6 border border-white/5 bg-navy-950/80">
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                          {project.link && (
+                            <a 
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-12 h-12 rounded-xl bg-accent-primary text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all accent-glow z-30"
+                            >
+                              <ExternalLink size={20} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.slice(0, 3).map(t => (
+                            <span key={t} className="text-[9px] font-bold uppercase tracking-widest text-accent-primary bg-accent-primary/10 px-2.5 py-1 rounded-full">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="text-2xl font-bold group-hover:text-accent-primary transition-colors flex items-center gap-2">
+                          {project.title}
+                          <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                        </h3>
+                        <p className="text-muted-slate text-sm leading-relaxed line-clamp-3">
+                          {project.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
+                      <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest font-mono">
+                        PREVIEW MODULE
+                      </span>
                       {project.link && (
-                        <motion.a 
+                        <a 
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="w-14 h-14 rounded-2xl bg-accent-primary text-white flex items-center justify-center accent-glow"
+                          className="text-xs font-bold text-accent-primary hover:underline flex items-center gap-1 z-30 relative"
                         >
-                          <ExternalLink size={24} />
-                        </motion.a>
+                          Codebase
+                          <ExternalLink size={12} />
+                        </a>
                       )}
                     </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-4 px-4">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map(t => (
-                      <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-accent-primary bg-accent-primary/10 px-3 py-1 rounded-full">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-2xl font-bold group-hover:text-accent-primary transition-colors flex items-center gap-2">
-                    {project.title}
-                    <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                  </h3>
-                  <p className="text-muted-slate text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                  </TiltContainer>
+                </motion.div>
+              );
+            })}
           </div>
           
           <div className="mt-20 text-center">
@@ -546,7 +658,7 @@ const Home = () => {
               to="/portfolio" 
               className="inline-flex items-center gap-3 text-accent-primary font-bold uppercase tracking-widest hover:gap-5 transition-all"
             >
-              View Full Portfolio <ArrowUpRight size={20} />
+              View All Projects <ArrowUpRight size={20} />
             </Link>
           </div>
         </div>
@@ -596,23 +708,30 @@ const Home = () => {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="glass-card p-8 border-l-4 border-l-accent-primary/50 relative group"
+                  className="group"
                 >
-                  <span className="text-accent-primary text-[10px] font-bold uppercase tracking-widest block mb-3">March 2024</span>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">
-                    Unveiling Predictive Factors in Apple Quality
-                  </h4>
-                  <p className="text-muted-slate text-sm leading-relaxed mb-6">
-                    2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
-                  </p>
-                  <a 
-                    href="https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
+                  <TiltContainer
+                    maxTilt={8}
+                    glowColor="rgba(16, 185, 129, 0.2)"
+                    glareIntensity={0.15}
+                    className="glass-card p-8 border-l-4 border-l-accent-primary/50 rounded-r-2xl overflow-hidden cursor-default"
                   >
-                    View Publication <ExternalLink size={14} />
-                  </a>
+                    <span className="text-accent-primary text-[10px] font-bold uppercase tracking-widest block mb-3 font-mono">March 2024</span>
+                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">
+                      Unveiling Predictive Factors in Apple Quality
+                    </h4>
+                    <p className="text-muted-slate text-sm leading-relaxed mb-6">
+                      2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
+                    </p>
+                    <a 
+                      href="https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative"
+                    >
+                      View Publication <ExternalLink size={14} />
+                    </a>
+                  </TiltContainer>
                 </motion.div>
 
                 <motion.div
@@ -620,23 +739,30 @@ const Home = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="glass-card p-8 border-l-4 border-l-accent-secondary/50 relative group"
+                  className="group"
                 >
-                  <span className="text-accent-secondary text-[10px] font-bold uppercase tracking-widest block mb-3">Hackathon 2025</span>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-secondary transition-colors">
-                    DistractCheck: Selective Attention in LLMs
-                  </h4>
-                  <p className="text-muted-slate text-sm leading-relaxed mb-6">
-                    A research-driven hackathon project measuring how LLMs handle distracting context in selective attention tasks.
-                  </p>
-                  <a 
-                    href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-accent-secondary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all"
+                  <TiltContainer
+                    maxTilt={8}
+                    glowColor="rgba(59, 130, 246, 0.2)"
+                    glareIntensity={0.15}
+                    className="glass-card p-8 border-l-4 border-l-accent-secondary/50 rounded-r-2xl overflow-hidden cursor-default"
                   >
-                    View Project <ExternalLink size={14} />
-                  </a>
+                    <span className="text-accent-secondary text-[10px] font-bold uppercase tracking-widest block mb-3 font-mono">Hackathon 2025</span>
+                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-secondary transition-colors">
+                      DistractCheck: Selective Attention in LLMs
+                    </h4>
+                    <p className="text-muted-slate text-sm leading-relaxed mb-6">
+                      A research-driven hackathon project measuring how LLMs handle distracting context in selective attention tasks.
+                    </p>
+                    <a 
+                      href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-accent-secondary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative"
+                    >
+                      View Project <ExternalLink size={14} />
+                    </a>
+                  </TiltContainer>
                 </motion.div>
               </div>
             </div>
@@ -662,7 +788,7 @@ const Home = () => {
                     ]
                   },
                   {
-                    title: "Web Developer (Volunteer)",
+                    title: "WebApp Developer (Volunteer)",
                     company: "FreeAppStore, New Zealand",
                     location: "Remote",
                     date: "June 2026 – Present",
@@ -694,7 +820,12 @@ const Home = () => {
                     {/* Dot */}
                     <div className="absolute -left-[81px] top-8 w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)] z-10 hidden lg:block" />
                     
-                    <div className="glass-card p-8 md:p-10 hover:border-accent-primary/30 transition-all duration-500">
+                    <TiltContainer
+                      maxTilt={5}
+                      glowColor="rgba(16, 185, 129, 0.15)"
+                      glareIntensity={0.1}
+                      className="glass-card p-8 md:p-10 hover:border-accent-primary/30 rounded-[32px] overflow-hidden cursor-default"
+                    >
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                         <h3 className="text-2xl font-bold text-white max-w-md">{job.title}</h3>
                         <div className="px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-[11px] font-bold flex items-center gap-2 shrink-0 self-start md:self-center">
@@ -722,7 +853,7 @@ const Home = () => {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </TiltContainer>
                   </motion.div>
                 ))}
               </div>
@@ -734,7 +865,12 @@ const Home = () => {
       {/* Contact Section */}
       <section id="contact" className="relative">
         <div className="section-padding">
-          <div className="glass-card p-12 md:p-20 relative overflow-hidden">
+          <TiltContainer
+            maxTilt={3}
+            glowColor="rgba(16, 185, 129, 0.12)"
+            glareIntensity={0.08}
+            className="glass-card p-12 md:p-20 relative overflow-hidden rounded-[40px]"
+          >
             <div className="absolute top-0 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[100px] -z-10" />
             
             <div className="grid lg:grid-cols-2 gap-20">
@@ -863,7 +999,7 @@ const Home = () => {
                 </div>
               </motion.form>
             </div>
-          </div>
+          </TiltContainer>
         </div>
       </section>
     </div>
