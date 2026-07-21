@@ -21,7 +21,10 @@ import {
   Sparkles,
   Building2,
   Calendar,
-  BookOpen
+  BookOpen,
+  Brain,
+  Trophy,
+  Award
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { services, projects, skills, timeline } from '../constants';
@@ -163,26 +166,28 @@ const Home = () => {
               <span>Available for Enterprise Projects</span>
             </motion.div>
             
-            <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] mb-8 text-gradient">
+            <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] mb-4 text-gradient">
               Rudra <br /> <span className="text-accent-primary">Das</span>
             </h1>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 leading-tight tracking-tight">
+              Engineering AI & Enterprise Systems at Scale
+            </h2>
             
-            <p className="text-xl md:text-2xl text-white/80 mb-10 font-medium max-w-xl leading-relaxed">
-              Python <span className="text-accent-primary">Web Developer</span>. 
-              Crafting robust enterprise solutions with technical precision and modern digital presence.
+            <p className="text-lg md:text-xl text-white/70 mb-10 font-medium max-w-xl leading-relaxed">
+              Architecting high-performance <span className="text-accent-primary">AI-powered enterprise software</span> and intelligent automation pipelines. Specializing in bridging complex machine learning workflows with robust ERP systems to streamline business processes, optimize operations, and deliver scalable web applications that solve real-world problems.
             </p>
 
-            <div className="flex flex-wrap gap-6 items-center">
-              <div className="flex flex-wrap gap-4 w-full md:w-auto">
+            <div className="space-y-8 mb-12">
+              <div className="flex flex-wrap gap-4 items-center">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link 
                     to="/portfolio" 
-                    className="bg-accent-primary hover:opacity-90 text-white px-8 py-5 rounded-2xl font-bold transition-all accent-glow flex items-center gap-3 group"
+                    className="bg-accent-primary hover:opacity-90 text-white px-8 py-5 rounded-2xl font-bold transition-all accent-glow flex items-center gap-3 group text-base"
                   >
-                    View Portfolio <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    Explore My Work <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>
                 </motion.div>
 
@@ -192,14 +197,70 @@ const Home = () => {
                 >
                   <Link 
                     to="/cv" 
-                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold transition-all flex items-center gap-3 group"
+                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold transition-all flex items-center gap-3 group text-base"
                   >
-                    Download CV <Sparkles size={18} className="text-accent-primary" />
+                    Download Resume <Sparkles size={18} className="text-accent-primary" />
                   </Link>
                 </motion.div>
+
+                {/* Elegant icon buttons for GitHub, LinkedIn, Kaggle */}
+                <div className="flex items-center gap-3 pl-2 sm:pl-4">
+                  <motion.a
+                    href="https://github.com/dasrudra"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/80 hover:text-accent-primary transition-all cursor-pointer shadow-lg"
+                    title="GitHub"
+                  >
+                    <Github size={20} />
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://www.linkedin.com/in/rudra-das-548bb42b2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/80 hover:text-accent-primary transition-all cursor-pointer shadow-lg"
+                    title="LinkedIn"
+                  >
+                    <Linkedin size={20} />
+                  </motion.a>
+
+                  <motion.a
+                    href="https://kaggle.com/rudradas2000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/80 hover:text-accent-primary transition-all cursor-pointer shadow-lg"
+                    title="Kaggle"
+                  >
+                    <Trophy size={20} />
+                  </motion.a>
+                </div>
               </div>
 
-              <div className="flex flex-wrap gap-8 mt-4 md:mt-0">
+              {/* Subtle Trust Indicators */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-slate border-t border-white/5 pt-6">
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 backdrop-blur-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
+                  <span className="font-medium text-white/80">Research Publication</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 backdrop-blur-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
+                  <span className="font-medium text-white/80">SAP Enterprise Experience</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 backdrop-blur-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
+                  <span className="font-medium text-white/80">Open Source Contributor</span>
+                </div>
+              </div>
+
+              {/* Preserved Statistics line */}
+              <div className="flex flex-wrap gap-8 pt-4 border-t border-white/5">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -272,16 +333,21 @@ const Home = () => {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="absolute -right-8 top-10 glass-card p-2.5 px-3 accent-glow z-20"
+                whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.2 } }}
+                className="absolute -right-8 top-10 glass-card p-2.5 px-4 accent-glow z-20 cursor-pointer group"
               >
-                <div className="flex items-center gap-2">
-                  <div className="bg-accent-primary/20 p-1 rounded-lg">
-                    <Code2 className="text-accent-primary w-4 h-4" />
+                <div className="flex items-center gap-2.5">
+                  <div className="bg-accent-primary/20 p-1.5 rounded-xl">
+                    <Sparkles className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Expertise</p>
-                    <p className="text-sm font-bold leading-none">SAP ABAP</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-1">Specialty</p>
+                    <p className="text-xs font-extrabold leading-none text-white">AI Engineer</p>
                   </div>
+                </div>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/95 border border-white/10 text-[10px] text-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-xl">
+                  Designing intelligent agentic workflows and custom automation systems
                 </div>
               </motion.div>
 
@@ -289,16 +355,21 @@ const Home = () => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="absolute -left-12 top-1/2 glass-card p-2.5 px-3 accent-glow z-20"
+                whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.2 } }}
+                className="absolute -left-12 top-1/2 -translate-y-1/2 glass-card p-2.5 px-4 accent-glow z-20 cursor-pointer group"
               >
-                <div className="flex items-center gap-2">
-                  <div className="bg-accent-primary/20 p-1 rounded-lg">
-                    <Briefcase className="text-accent-primary w-4 h-4" />
+                <div className="flex items-center gap-2.5">
+                  <div className="bg-accent-primary/20 p-1.5 rounded-xl">
+                    <Brain className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Role</p>
-                    <p className="text-sm font-bold leading-none">ERP Specialist</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-1">Core Tech</p>
+                    <p className="text-xs font-extrabold leading-none text-white">Machine Learning</p>
                   </div>
+                </div>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/95 border border-white/10 text-[10px] text-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-xl">
+                  Implementing predictive modeling, NLP, and computer vision pipelines
                 </div>
               </motion.div>
 
@@ -306,33 +377,43 @@ const Home = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.9 }}
-                className="absolute -bottom-10 -left-10 glass-card p-2.5 px-3 accent-glow z-20"
+                whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.2 } }}
+                className="absolute -bottom-10 -left-10 glass-card p-2.5 px-4 accent-glow z-20 cursor-pointer group"
               >
-                <div className="flex items-center gap-2">
-                  <div className="bg-accent-primary/20 p-1 rounded-lg">
-                    <Globe className="text-accent-primary w-4 h-4" />
+                <div className="flex items-center gap-2.5">
+                  <div className="bg-accent-primary/20 p-1.5 rounded-xl">
+                    <Layers className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Web</p>
-                    <p className="text-sm font-bold leading-none">Python Dev</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-1">Architecture</p>
+                    <p className="text-xs font-extrabold leading-none text-white">Enterprise ERP</p>
                   </div>
+                </div>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/95 border border-white/10 text-[10px] text-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-xl">
+                  Architecting enterprise integrations, SAP ABAP development, and Odoo workflows
                 </div>
               </motion.div>
 
               <motion.div 
                 initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.1 }}
-                className="absolute -bottom-10 right-0 glass-card p-2.5 px-3 accent-glow z-20"
+                whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.2 } }}
+                className="absolute -bottom-10 right-0 glass-card p-2.5 px-4 accent-glow z-20 cursor-pointer group"
               >
-                <div className="flex items-center gap-2">
-                  <div className="bg-accent-primary/20 p-1 rounded-lg">
-                    <Layers className="text-accent-primary w-4 h-4" />
+                <div className="flex items-center gap-2.5">
+                  <div className="bg-accent-primary/20 p-1.5 rounded-xl">
+                    <Code2 className="text-accent-primary w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-0.5">Systems</p>
-                    <p className="text-sm font-bold leading-none">Odoo ERP</p>
+                    <p className="text-[8px] text-muted-slate uppercase font-bold tracking-widest leading-none mb-1">Development</p>
+                    <p className="text-xs font-extrabold leading-none text-white">Full-Stack Apps</p>
                   </div>
+                </div>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/95 border border-white/10 text-[10px] text-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-xl">
+                  Building high-performance, secure, and responsive web platforms
                 </div>
               </motion.div>
             </div>
@@ -345,131 +426,185 @@ const Home = () => {
 
       {/* About Section */}
       <section id="about" className="relative">
-        <div className="section-padding grid lg:grid-cols-2 gap-24 items-center">
+        <div className="section-padding max-w-7xl mx-auto space-y-16">
+          
+          {/* Upper portion: Heading and Paragraphs */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-10"
+            className="space-y-8 max-w-5xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold uppercase tracking-widest">
               <Sparkles size={14} />
               <span>The Visionary Approach</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold leading-tight">
-              Bridging Complexity <br /> with <span className="text-gradient">Efficiency</span>
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight text-white tracking-tight">
+              Turning Complex Business Challenges into <span className="text-gradient">Intelligent Software Solutions</span>
             </h2>
-            <div className="space-y-6 text-muted-slate text-lg leading-relaxed">
+            <div className="space-y-6 text-muted-slate text-lg leading-relaxed max-w-4xl">
               <p>
-                I specialize in developing high-performance web applications and enterprise solutions that transform how businesses operate. 
-                My goal is to make complexity seamless and data-driven through modern technical innovation.
+                I specialize in solving high-impact operational inefficiencies by designing intelligent, data-driven systems. By targeting systemic bottlenecks, I build software that automates repetitive workflows, minimizes operational overhead, and empowers organizational leadership with real-time actionable insights.
               </p>
               <p>
-                With a background in Computer Science and hands-on experience in industrial IT and MIS roles, 
-                I bring a holistic understanding of how software serves business goals.
+                My professional experience lies at the intersection of advanced artificial intelligence frameworks, custom Odoo & SAP ERP solutions, and scalable full-stack web platforms. From customizing SAP Production Planning systems to deploying database-backed computational ledger applications, I engineer systems with enterprise-grade durability.
               </p>
-            </div>
-            
-            <div className="grid gap-4">
-              {[
-                { label: 'Bachelor of Science (CSE)', val: 'East Delta University', sub: '2024 | CGPA: 3.41', icon: <GraduationCap size={16} /> },
-                { label: 'HSC (Science)', val: 'Govt. Haji Muhammad Mohsin College', sub: '2019 | CGPA: 4.25', icon: <Briefcase size={16} /> },
-                { label: 'SSC (Science)', val: 'Chattogram Collegiate School', sub: '2017 | CGPA: 5.00', icon: <Monitor size={16} /> },
-              ].map((item, i) => (
-                <TiltContainer
-                  key={i}
-                  maxTilt={8}
-                  glowColor="rgba(16, 185, 129, 0.15)"
-                  glareIntensity={0.12}
-                  className="glass-card p-5 flex items-center gap-5 rounded-2xl overflow-hidden cursor-default"
-                >
-                  <div className="p-3 rounded-xl bg-accent-primary/10 text-accent-primary shrink-0">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-slate mb-1">{item.label}</p>
-                    <p className="text-base font-bold text-white">{item.val}</p>
-                    <p className="text-xs text-muted-slate">{item.sub}</p>
-                  </div>
-                </TiltContainer>
-              ))}
+              <p>
+                Driven by a deep passion for technological innovation, I actively engage in machine learning research and open-source contributions. I am committed to continuous learning, validating theoretical breakthroughs in public benchmarks, and translating complex logic into production-ready software solutions.
+              </p>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative lg:mt-56"
-          >
-            <TiltContainer
-              maxTilt={6}
-              glowColor="rgba(16, 185, 129, 0.2)"
-              glareIntensity={0.18}
-              className="glass-card p-10 space-y-12 rounded-[32px] overflow-hidden"
+          {/* Lower portion: Grid of Capability Cards & Technical Profile */}
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left: Capabilities and academic background */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-7 space-y-8"
             >
-              <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-3xl bg-accent-primary flex items-center justify-center text-white accent-glow">
-                  <Terminal size={32} />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold">Technical Profile</h3>
-                  <p className="text-muted-slate">Expertise & Background</p>
-                </div>
-              </div>
-              
-              <div className="space-y-8">
+              <div className="grid gap-4">
                 {[
-                  { title: 'Technical Expertise', desc: 'Python, ML, ABAP, MySQL, SQLite, ERP, Odoo.sh, SAP BTP Generative AI, Natural Language Processing (NLP), LLM Applications, RAG Systems, n8n, LangChain, Pandas, NumPy, TensorFlow, Scikit-Learn, Flask, FastAPI, GitHub, Git, Data Science, Data Analysis, Machine Learning, Image Processing, React.js, TypeScript, Tailwind CSS, Chrome Extension APIs, Chrome Storage API, LocalStorage, Lucide React, Open-Meteo API, REST APIs, Web Scraping, Data Engineering, CLI Development, Pytest', icon: <Cpu size={20} /> },
-                  { title: 'Research Background', desc: 'Published researcher in predictive data modeling.', icon: <Globe size={20} /> },
-                  { title: 'Problem Solving', desc: 'Analytical mindset focused on organizational efficiency.', icon: <Layers size={20} /> },
-                  { title: 'Location', desc: 'Chattogram, Bangladesh', icon: <MapPin size={20} /> },
-                ].map((point, i) => (
-                  <div key={i} className="flex gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-primary shrink-0">
-                      {point.icon}
+                  { label: 'Enterprise Experience', val: 'ERP Customization & Automation', sub: 'Designing ABAP reports, customizing Odoo.sh workflows, and optimizing industrial business processes.', icon: <Building2 size={18} /> },
+                  { label: 'AI & Research', val: 'Predictive Models & Intelligent Workflows', sub: 'Published researcher in data modeling, speech emotion classifiers, and Kaggle benchmark design.', icon: <Brain size={18} /> },
+                  { label: 'Software Engineering', val: 'High-Performance Full-Stack Systems', sub: 'Architecting secure web apps and robust APIs using React, TypeScript, Python, and SQL databases.', icon: <Code2 size={18} /> },
+                ].map((item, i) => (
+                  <TiltContainer
+                    key={i}
+                    maxTilt={6}
+                    glowColor="rgba(16, 185, 129, 0.15)"
+                    glareIntensity={0.12}
+                    className="glass-card p-5 flex items-start gap-5 rounded-2xl overflow-hidden cursor-default"
+                  >
+                    <div className="p-3 rounded-xl bg-accent-primary/10 text-accent-primary shrink-0 mt-1">
+                      {item.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold mb-1 text-white">{point.title}</h4>
-                      <p className="text-sm text-muted-slate leading-relaxed">{point.desc}</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-accent-primary mb-1">{item.label}</p>
+                      <p className="text-base font-bold text-white mb-1 leading-tight">{item.val}</p>
+                      <p className="text-xs text-muted-slate leading-relaxed">{item.sub}</p>
                     </div>
-                  </div>
+                  </TiltContainer>
                 ))}
               </div>
-            </TiltContainer>
-          </motion.div>
+
+              {/* Smaller Academic Summary */}
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 text-xs text-muted-slate">
+                <GraduationCap size={16} className="text-accent-primary shrink-0" />
+                <div>
+                  <p className="text-[10px] uppercase font-bold tracking-wider text-muted-slate/60">Academic Foundation</p>
+                  <p className="text-white font-medium">BSc in Computer Science and Engineering</p>
+                  <p className="text-[11px] text-muted-slate/80">East Delta University, Class of 2024 · CGPA 3.41 / 4.00</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right: Technical Profile Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5 relative"
+            >
+              <TiltContainer
+                maxTilt={6}
+                glowColor="rgba(16, 185, 129, 0.2)"
+                glareIntensity={0.18}
+                className="glass-card p-10 space-y-12 rounded-[32px] overflow-hidden"
+              >
+                <div className="flex items-center gap-6">
+                  <div className="w-20 h-20 rounded-3xl bg-accent-primary flex items-center justify-center text-white accent-glow">
+                    <Terminal size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Technical Profile</h3>
+                    <p className="text-muted-slate">Expertise & Background</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-8">
+                  {[
+                    { title: 'Artificial Intelligence', desc: 'Machine Learning, NLP, LLM Applications, Computer Vision, RAG Systems', icon: <Brain size={20} /> },
+                    { title: 'Enterprise Technologies', desc: 'SAP ABAP, Odoo ERP, SAP BTP Generative AI, Process Automation', icon: <Building2 size={20} /> },
+                    { title: 'Backend & APIs', desc: 'Python, FastAPI, Flask, SQL Databases, REST API Integration', icon: <Cpu size={20} /> },
+                    { title: 'Frontend & Cloud', desc: 'React.js, TypeScript, Tailwind CSS, Git, GitHub Ecosystem', icon: <Globe size={20} /> },
+                  ].map((point, i) => (
+                    <div key={i} className="flex gap-6 items-start group/item">
+                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-primary shrink-0 group-hover/item:border-accent-primary/40 group-hover/item:bg-accent-primary/5 transition-all">
+                        {point.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold mb-1 text-white group-hover/item:text-accent-primary transition-colors">{point.title}</h4>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {point.desc.split(', ').map((tech) => (
+                            <span key={tech} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] text-muted-slate font-medium">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </TiltContainer>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
       {/* Expertise Section */}
       <section id="services" className="bg-navy-900/30">
-        <div className="section-padding">
-          <div className="text-center mb-20">
+        <div className="section-padding max-w-7xl mx-auto space-y-16">
+          <div className="text-center">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-accent-primary text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
             >
-              Expertise
+              Capabilities
             </motion.span>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-6xl font-bold text-white"
+              className="text-4xl md:text-6xl font-bold text-white tracking-tight"
             >
-              Technical Skills & Professional Tools
+              Professional Capability & Technical Spectrum
             </motion.h2>
           </div>
-          
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-24">
+
+          {/* Section 1: Four Capability Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Programming', tags: ['Python', 'TypeScript', 'React.js', 'Tailwind CSS', 'ABAP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'SQLite'] },
-              { title: 'Data & ML', tags: ['Machine Learning', 'Data Analysis', 'Data Science', 'Natural Language Processing (NLP)', 'LLM Applications', 'Prompt Engineering', 'RAG Systems', 'Workflow Automation', 'LLM Inference Optimization', 'LLM Evaluation', 'Benchmark Design', 'Dataset Curation', 'Error Analysis', 'Image Processing', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Matplotlib', 'Google Colab', 'Kaggle Benchmarks'] },
-              { title: 'Tools & Platforms', tags: ['Git', 'GitHub', 'VS Code', 'PyCharm', 'Flask', 'FastAPI', 'REST APIs', 'Web Scraping', 'Data Engineering', 'CLI Development', 'Pytest', 'n8n', 'LangChain', 'Groq API', 'Chrome Extension APIs', 'Chrome Storage API', 'Chrome Bookmarks API', 'Chrome History API', 'Chrome Downloads API', 'Open-Meteo API', 'Lucide React', 'Netlify', 'MS Office Suite', 'Windows OS'] },
-              { title: 'Enterprise & ERP', tags: ['SAP', 'SAP PP', 'ABAP', 'Odoo ERP', 'Odoo.sh', 'SAP BTP Generative AI', 'ERP Customization', 'Process Automation', 'System Integration', 'Business Reporting'] },
-            ].map((cat, i) => (
+              {
+                title: "Artificial Intelligence",
+                icon: <Brain size={24} className="text-accent-primary" />,
+                focus: "Designing intelligent agentic workflows, LLM applications, NLP pipelines, and advanced RAG architectures to automate reasoning and complex decision-making.",
+                highlights: ["Agentic Workflows", "RAG & LLM Apps", "Predictive Modeling", "Dataset Curation"]
+              },
+              {
+                title: "Enterprise Systems",
+                icon: <Building2 size={24} className="text-accent-primary" />,
+                focus: "Customizing robust Odoo ERP environments, designing SAP ABAP business logic, automating workflows, and building stable industrial data bridges.",
+                highlights: ["Odoo.sh & Workflows", "SAP PP & ABAP Development", "Process Automation", "System Integrations"]
+              },
+              {
+                title: "Full-Stack Engineering",
+                icon: <Code2 size={24} className="text-accent-primary" />,
+                focus: "Developing highly performant, type-safe frontends paired with resilient, clean backends and secure REST APIs designed to solve concrete business problems.",
+                highlights: ["React.js & TypeScript", "Python (FastAPI & Flask)", "Tailwind CSS Layouts", "Secure REST APIs"]
+              },
+              {
+                title: "Data Engineering",
+                icon: <Database size={24} className="text-accent-primary" />,
+                focus: "Structuring relational database schemas, orchestrating secure ETL data pipelines, conducting error analysis, and curating benchmarking datasets.",
+                highlights: ["Relational Schemas", "ETL Pipelines", "Data Modeling & Viz", "Benchmark Design"]
+              }
+            ].map((cap, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -478,18 +613,21 @@ const Home = () => {
                 transition={{ delay: i * 0.1 }}
               >
                 <TiltContainer
-                  maxTilt={12}
-                  glowColor="rgba(16, 185, 129, 0.22)"
-                  glareIntensity={0.2}
-                  className="glass-card p-8 flex flex-col h-full rounded-[24px] overflow-hidden"
+                  maxTilt={8}
+                  glowColor="rgba(16, 185, 129, 0.15)"
+                  glareIntensity={0.15}
+                  className="glass-card p-6 flex flex-col justify-between h-full rounded-[24px] overflow-hidden"
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-2 h-2 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)]" />
-                    <h3 className="text-xl font-bold text-white">{cat.title}</h3>
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-xl bg-accent-primary/10 flex items-center justify-center text-accent-primary shrink-0">
+                      {cap.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-white">{cap.title}</h3>
+                    <p className="text-xs text-muted-slate leading-relaxed">{cap.focus}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {cat.tags.map(tag => (
-                      <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-muted-slate hover:border-accent-primary/30 hover:text-white transition-all">
+                  <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-white/5">
+                    {cap.highlights.map(tag => (
+                      <span key={tag} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-medium text-muted-slate">
                         {tag}
                       </span>
                     ))}
@@ -499,37 +637,155 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
-            {[
-              { name: 'Python Development', level: 90 },
-              { name: 'React & TypeScript Frontend', level: 85 },
-              { name: 'SQL & Databases', level: 85 },
-              { name: 'ERP, SAP & ABAP', level: 80 },
-              { name: 'Data Analysis & Machine Learning', level: 85 },
-              { name: 'Web Development', level: 80 },
-            ].map((skill, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="group"
+          {/* Section 2: Four Proficiency Level Categories */}
+          <div>
+            <div className="text-left mb-8">
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                <Sparkles size={16} className="text-accent-primary" />
+                Engineering Proficiency & Technologies
+              </h3>
+              <p className="text-xs text-muted-slate">Structured classification of expertise and operational proficiency.</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  level: "Core Expertise",
+                  desc: "Primary technologies and architectures leveraged daily for core professional engineering deliverables.",
+                  color: "rgba(16, 185, 129, 0.2)",
+                  skills: ["Python", "Machine Learning", "SAP ABAP", "Odoo ERP", "React.js", "TypeScript", "SQL Databases", "Data Analysis", "FastAPI"]
+                },
+                {
+                  level: "Strong Experience",
+                  desc: "Robust frameworks, APIs, and design methodologies integrated regularly into production-ready platforms.",
+                  color: "rgba(59, 130, 246, 0.15)",
+                  skills: ["Flask", "RAG Systems", "NLP / LLMs", "REST APIs", "Git & GitHub", "Tailwind CSS", "Process Automation", "Dataset Curation", "Error Analysis"]
+                },
+                {
+                  level: "Working Knowledge",
+                  desc: "Functional toolsets, libraries, and automation utilities applied in supporting roles and testing.",
+                  color: "rgba(245, 158, 11, 0.15)",
+                  skills: ["Deep Learning", "TensorFlow", "Pandas & NumPy", "Pytest", "Web Scraping", "n8n", "LangChain", "Chrome Extension APIs"]
+                },
+                {
+                  level: "Currently Exploring",
+                  desc: "Cutting-edge paradigms, cognitive agents, and automation frameworks actively researched.",
+                  color: "rgba(168, 85, 247, 0.15)",
+                  skills: ["Agentic AI", "Multi-Agent Systems", "Model Context Protocol (MCP)", "AI Automation", "SAP Joule", "SAP BTP Generative AI"]
+                }
+              ].map((level, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <TiltContainer
+                    maxTilt={6}
+                    glowColor={level.color}
+                    glareIntensity={0.12}
+                    className="glass-card p-6 flex flex-col h-full rounded-[20px] overflow-hidden"
+                  >
+                    <div className="mb-4">
+                      <h4 className="text-base font-bold text-white flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
+                        {level.level}
+                      </h4>
+                      <p className="text-[11px] text-muted-slate mt-1 leading-relaxed">{level.desc}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-white/5">
+                      {level.skills.map(skill => (
+                        <span key={skill} className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-white/80 hover:border-accent-primary/30 hover:text-white transition-all cursor-default">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </TiltContainer>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 3: Dual Column - Currently Exploring & Professional Development */}
+          <div className="grid md:grid-cols-2 gap-8 pt-4">
+            {/* Column 1: Currently Exploring Highlight */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <TiltContainer
+                maxTilt={4}
+                glowColor="rgba(168, 85, 247, 0.15)"
+                glareIntensity={0.1}
+                className="glass-card p-8 rounded-[28px] overflow-hidden h-full space-y-6"
               >
-                <div className="flex justify-between mb-3">
-                  <span className="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">{skill.name}</span>
-                  <span className="text-xs text-accent-primary font-bold">{skill.level}%</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                    <Cpu size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Currently Exploring</h3>
+                    <p className="text-xs text-muted-slate">Next-generation cognitive & automation technology stack</p>
+                  </div>
                 </div>
-                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: "circOut" }}
-                    className="h-full bg-accent-primary accent-glow rounded-full"
-                  />
+
+                <div className="space-y-4">
+                  {[
+                    { tech: "Agentic AI & Multi-Agent Systems", desc: "Orchestrating autonomous networks of specialized, goal-oriented LLM agents to resolve multi-step reasoning workflows." },
+                    { tech: "Model Context Protocol (MCP)", desc: "Integrating secure API specifications and schema layers to safely connect models with real-world server context." },
+                    { tech: "SAP Joule & AI Automation", desc: "Pioneering context-aware enterprise digital assistants that translate business process execution into intelligent system actions." }
+                  ].map((item, i) => (
+                    <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/20 transition-all group">
+                      <h4 className="text-xs font-bold text-purple-300 group-hover:text-purple-200 transition-colors">{item.tech}</h4>
+                      <p className="text-[11px] text-muted-slate mt-1 leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+              </TiltContainer>
+            </motion.div>
+
+            {/* Column 2: Professional Development */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <TiltContainer
+                maxTilt={4}
+                glowColor="rgba(16, 185, 129, 0.15)"
+                glareIntensity={0.1}
+                className="glass-card p-8 rounded-[28px] overflow-hidden h-full space-y-6"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-accent-primary/10 text-accent-primary flex items-center justify-center">
+                    <Award size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Professional Development</h3>
+                    <p className="text-xs text-muted-slate">Continuous educational programs & target specializations</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    { organization: "SAP Learning", subject: "ABAP Cloud, SAP BTP Extension Suites & SAP PP Optimization" },
+                    { organization: "DeepLearning.AI", subject: "AI Agentic Workflows, LLM Operations (LLMOps) & Fine-Tuning" },
+                    { organization: "Coursera & Kaggle", subject: "Advanced Machine Learning Algorithms & High-Performance Data pipelines" },
+                    { organization: "Google & Microsoft", subject: "Cloud Engineering, DevOps Architectures & Cognitive Services API" }
+                  ].map((item, i) => (
+                    <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-accent-primary/20 transition-all group flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent-primary mt-1.5 shrink-0" />
+                      <div>
+                        <h4 className="text-xs font-bold text-white group-hover:text-accent-primary transition-colors">{item.organization}</h4>
+                        <p className="text-[11px] text-muted-slate mt-0.5 leading-relaxed">{item.subject}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </TiltContainer>
+            </motion.div>
           </div>
         </div>
       </section>
