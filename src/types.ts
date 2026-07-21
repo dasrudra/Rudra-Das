@@ -18,6 +18,9 @@ export interface Project {
   tech: string[];
   link?: string;
   image: string;
+  domain?: string;
+  liveLink?: string;
+  caseStudyLink?: string;
 }
 
 export interface Skill {

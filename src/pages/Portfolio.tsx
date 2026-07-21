@@ -12,7 +12,10 @@ import {
   Sparkles,
   Info,
   Layers,
-  Activity
+  Activity,
+  Github,
+  Globe,
+  BookOpen
 } from 'lucide-react';
 import { projects } from '../constants';
 
@@ -159,8 +162,8 @@ const GridTiltCard: React.FC<{ project: any; skin: ProjectSkin; index: number }>
     
     // Apply limited tilt physics (max 12 degrees)
     setTilt({
-      x: normY * -12,
-      y: normX * 12
+      x: normY * -10,
+      y: normX * 10
     });
   };
 
@@ -179,7 +182,7 @@ const GridTiltCard: React.FC<{ project: any; skin: ProjectSkin; index: number }>
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="group flex flex-col justify-between bg-navy-900/10 border border-white/5 hover:border-white/10 rounded-[32px] overflow-hidden p-6 hover:bg-navy-900/20 transition-all duration-500 relative"
+      className={`group flex flex-col justify-between bg-navy-900/10 border ${skin.borderColor} rounded-[28px] overflow-hidden p-6 hover:bg-navy-900/20 transition-all duration-500 relative`}
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transition: isHovered ? 'none' : 'transform 0.5s ease, box-shadow 0.5s ease',
@@ -187,65 +190,83 @@ const GridTiltCard: React.FC<{ project: any; skin: ProjectSkin; index: number }>
       }}
     >
       <div className="space-y-5">
+        {/* Top Header: Domain Badge and Glow Indicator */}
+        <div className="flex items-center justify-between">
+          <span className={`px-3 py-1 rounded-full bg-white/5 border border-white/10 ${skin.accentText} text-[10px] font-mono font-semibold tracking-wider uppercase`}>
+            {project.domain || "SaaS"}
+          </span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: skin.themeColor }} />
+            <span className="text-[10px] text-white/40 font-mono uppercase">{skin.labelText.split(' ')[0]}</span>
+          </div>
+        </div>
+
         {/* Thumbnail frame with hover zoom */}
         <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/5 bg-navy-950/80">
           <img 
             src={project.image} 
             alt={project.title} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
           {/* Specular glare gradient shifting on hover */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
-          <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-            {project.link && (
-              <a 
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-xl bg-accent-primary text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all accent-glow"
-              >
-                <ExternalLink size={20} />
-              </a>
-            )}
-          </div>
         </div>
 
         {/* Info & Tech */}
         <div className="space-y-3">
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.slice(0, 3).map(t => (
-              <span key={t} className="text-[9px] font-bold uppercase tracking-wider text-accent-primary bg-accent-primary/10 px-2.5 py-1 rounded-full">
+          <h3 className="text-xl font-bold text-white group-hover:text-accent-primary transition-colors flex items-center gap-1.5">
+            {project.title}
+          </h3>
+          <p className="text-muted-slate text-sm leading-relaxed min-h-[3rem]">
+            {project.description}
+          </p>
+
+          {/* Technology Badges (5-7 core technologies) */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {project.tech.map(t => (
+              <span key={t} className="text-[9px] font-medium tracking-wide text-white/70 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md hover:bg-white/10 transition-colors">
                 {t}
               </span>
             ))}
           </div>
-          <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors flex items-center gap-1.5">
-            {project.title}
-            <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
-          </h3>
-          <p className="text-muted-slate text-sm leading-relaxed line-clamp-3">
-            {project.description}
-          </p>
         </div>
       </div>
 
-      <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
-        <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest font-mono">
-          SKIN: {skin.labelText.split(' ')[0]}
-        </span>
-        {project.link && (
-          <a 
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-bold text-accent-primary hover:underline flex items-center gap-1"
-          >
-            Codebase
-            <ExternalLink size={12} />
-          </a>
-        )}
+      {/* Elegant Three-Button Footer */}
+      <div className="grid grid-cols-3 gap-2.5 pt-6 mt-6 border-t border-white/5">
+        {/* Live Demo Button */}
+        <a 
+          href={project.liveLink || project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest text-white bg-accent-primary/10 border border-accent-primary/30 hover:bg-accent-primary hover:text-navy-950 transition-all duration-300 transform active:scale-95 shadow-[0_0_0_rgba(16,185,129,0)] hover:shadow-[0_4px_12px_rgba(16,185,129,0.25)]"
+        >
+          <Globe size={13} className="shrink-0" />
+          <span className="truncate">Demo</span>
+        </a>
+
+        {/* GitHub Button */}
+        <a 
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform active:scale-95"
+        >
+          <Github size={13} className="shrink-0" />
+          <span className="truncate">GitHub</span>
+        </a>
+
+        {/* Case Study Button */}
+        <a 
+          href={project.caseStudyLink || project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform active:scale-95"
+        >
+          <BookOpen size={13} className="shrink-0" />
+          <span className="truncate">Case</span>
+        </a>
       </div>
     </motion.div>
   );
