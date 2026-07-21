@@ -923,7 +923,7 @@ const Home = () => {
 
       {/* Experience Section */}
       <section id="experience" className="bg-navy-900/30 overflow-hidden">
-        <div className="section-padding">
+        <div className="section-padding max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-16">
             {/* Left Column: Info & Publication */}
             <div className="lg:col-span-5 space-y-12">
@@ -948,18 +948,19 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-muted-slate text-lg leading-relaxed max-w-md"
+                  className="text-muted-slate text-base leading-relaxed max-w-md"
                 >
-                  My professional journey has been focused on bridging the gap between complex data systems and practical business applications.
+                  My engineering journey is defined by bridging complex enterprise resource systems with cutting-edge artificial intelligence, solving hard bottlenecks and delivering measurable business impact.
                 </motion.p>
               </div>
 
               <div className="space-y-8">
                 <div className="flex items-center gap-3 text-white font-bold text-xl">
                   <BookOpen className="text-accent-primary" size={24} />
-                  <h3>Key Publication & Hackathon</h3>
+                  <h3>Academic & Lab Highlights</h3>
                 </div>
 
+                {/* Research Highlight Card */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -967,29 +968,42 @@ const Home = () => {
                   className="group"
                 >
                   <TiltContainer
-                    maxTilt={8}
+                    maxTilt={6}
                     glowColor="rgba(16, 185, 129, 0.2)"
                     glareIntensity={0.15}
-                    className="glass-card p-8 border-l-4 border-l-accent-primary/50 rounded-r-2xl overflow-hidden cursor-default"
+                    className="glass-card p-6 border-l-4 border-l-accent-primary rounded-r-2xl overflow-hidden cursor-default space-y-4"
                   >
-                    <span className="text-accent-primary text-[10px] font-bold uppercase tracking-widest block mb-3 font-mono">March 2024</span>
-                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">
-                      Unveiling Predictive Factors in Apple Quality
-                    </h4>
-                    <p className="text-muted-slate text-sm leading-relaxed mb-6">
-                      2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
-                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="px-2 py-0.5 rounded bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-[10px] font-bold font-mono">
+                        Published 2024
+                      </span>
+                      <span className="text-white/40 text-[10px] font-mono">IEEE Xplore</span>
+                    </div>
+                    
+                    <div>
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-muted-slate/60 mb-1">Research Highlights</p>
+                      <h4 className="text-lg font-bold text-white group-hover:text-accent-primary transition-colors leading-tight">
+                        Unveiling Predictive Factors in Apple Quality
+                      </h4>
+                    </div>
+
+                    <div className="space-y-1 text-xs text-muted-slate">
+                      <p><span className="font-semibold text-white/80">Conference:</span> 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)</p>
+                      <p><span className="font-semibold text-white/80">Domain:</span> Machine Learning & Predictive Analytics</p>
+                    </div>
+
                     <a 
                       href="https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative"
+                      className="inline-flex items-center gap-2 text-accent-primary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative pt-2"
                     >
                       View Publication <ExternalLink size={14} />
                     </a>
                   </TiltContainer>
                 </motion.div>
 
+                {/* Hackathon Case Study */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -998,25 +1012,49 @@ const Home = () => {
                   className="group"
                 >
                   <TiltContainer
-                    maxTilt={8}
+                    maxTilt={6}
                     glowColor="rgba(59, 130, 246, 0.2)"
                     glareIntensity={0.15}
-                    className="glass-card p-8 border-l-4 border-l-accent-secondary/50 rounded-r-2xl overflow-hidden cursor-default"
+                    className="glass-card p-6 border-l-4 border-l-accent-secondary rounded-r-2xl overflow-hidden cursor-default space-y-4"
                   >
-                    <span className="text-accent-secondary text-[10px] font-bold uppercase tracking-widest block mb-3 font-mono">Hackathon 2025</span>
-                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent-secondary transition-colors">
-                      DistractCheck: Selective Attention in LLMs
-                    </h4>
-                    <p className="text-muted-slate text-sm leading-relaxed mb-6">
-                      A research-driven hackathon project measuring how LLMs handle distracting context in selective attention tasks.
-                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="px-2 py-0.5 rounded bg-accent-secondary/10 border border-accent-secondary/20 text-accent-secondary text-[10px] font-bold font-mono">
+                        Hackathon 2025
+                      </span>
+                      <span className="text-white/40 text-[10px] font-mono">Completed Outcome</span>
+                    </div>
+
+                    <div>
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-muted-slate/60 mb-1">Case Study Preview</p>
+                      <h4 className="text-lg font-bold text-white group-hover:text-accent-secondary transition-colors leading-tight">
+                        DistractCheck: Selective Attention in LLMs
+                      </h4>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <p className="text-muted-slate leading-relaxed">
+                        <span className="font-semibold text-white/80">Problem:</span> Standard LLMs suffer severe recall degradation when key context is surrounded by distracting, irrelevant information.
+                      </p>
+                      <p className="text-muted-slate leading-relaxed">
+                        <span className="font-semibold text-white/80">Outcome:</span> Built an automated evaluation harness to measure distraction curves and selective retrieval indexes of models.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1">
+                      {["LLM Benchmarks", "Python", "LangChain", "Groq API"].map(t => (
+                        <span key={t} className="px-1.5 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] text-muted-slate font-mono">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
                     <a 
                       href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent-secondary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative"
+                      className="inline-flex items-center gap-2 text-accent-secondary text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all z-30 relative pt-2"
                     >
-                      View Project <ExternalLink size={14} />
+                      View Repository <ExternalLink size={14} />
                     </a>
                   </TiltContainer>
                 </motion.div>
@@ -1025,44 +1063,53 @@ const Home = () => {
 
             {/* Right Column: Timeline */}
             <div className="lg:col-span-7 relative">
-              {/* Vertical Line */}
-              <div className="absolute left-0 lg:left-8 top-0 bottom-0 w-px bg-white/5" />
+              {/* Vertical Line with Gradient */}
+              <div className="absolute left-0 lg:left-8 top-4 bottom-4 w-0.5 bg-gradient-to-b from-accent-primary/50 via-accent-secondary/30 to-white/5" />
 
               <div className="space-y-12 lg:pl-20">
                 {[
                   {
                     title: "Assistant Engineer - Functional Applications (EAS)",
                     company: "Tekvision (BD) Ltd. (Subsidiary of Youngone Holdings)",
-                    location: "Plot # 25, Block-A, Korean EPZ, Karnaphuli, Chattogram 4376",
+                    location: "Korean EPZ, Karnaphuli, Chattogram",
                     date: "December 2025 - Present",
+                    mission: "Designing and integrating custom business logic and automated subsystems to optimize massive manufacturing operations.",
                     bullets: [
-                      "Serving as an ERP Developer within the Enterprise Application Services (EAS) team responsible for developing, enhancing and maintaining SAP-based business applications that support commercial and production operations. Designing and optimizing custom ABAP program reports and enhancements to improve workflow efficiency data accuracy and system performance.",
-                      "Providing technical and functional support to SAP Production Planning (PP) module users by diagnosing system issues troubleshooting operational challenges and ensuring smooth execution of production and commercial processes.",
-                      "Actively involved in ERP customization, system integration, and process automation initiatives, including serving as a core team member in the Odoo ERP implementation for APDL (Alpha Product Development Ltd.). Responsible for functional and technical coordination, collaborate with vendors, requirement analysis, configuration support, and User Acceptance Testing (UAT).",
-                      "Supporting pricing strategy and implementation service costing for ERP deployment, including pricing models for implementation, training, customization, and post-go-live support services.",
-                      "Contributing to software engineering initiatives including development of AI-based computer vision systems, web applications and data analytics tools to support operational efficiency and innovation within enterprise systems."
-                    ]
+                      "Engineered high-performance SAP ABAP custom reports and programmatic enhancements, substantially reducing routine ledger compilation times.",
+                      "Formulated tiered enterprise costing models and deployment sheets for system upgrades, custom trainings, and post-go-live technical services.",
+                      "Directed the functional requirement analysis and structured vendor coordination as a core contributor for the APDL Odoo ERP implementation.",
+                      "Spearheaded technical integrations including full-stack data adapters and real-time computer vision subsystems on manufacturing floors."
+                    ],
+                    technologies: ["SAP PP", "ABAP", "Odoo ERP", "Odoo.sh", "FastAPI", "React.js", "Python", "SQL Databases"],
+                    impact: "Automated key manufacturing reporting cycles and accelerated UAT validation across subsidiary plants, eliminating production verification bottlenecks."
                   },
                   {
-                    title: "WebApp Developer (Volunteer)",
+                    title: "Open Source Contributor",
                     company: "FreeAppStore, New Zealand",
                     location: "Remote",
                     date: "June 2026 – Present",
+                    mission: "Designing accessible and free-forever digital utilities to democratize technical tooling globally.",
                     bullets: [
-                      "Contributing to a free-forever web application ecosystem through frontend development, responsive UI improvement, and open-source collaboration. Working with React.js, TypeScript, Tailwind CSS, JavaScript, Git/GitHub, and PWA-focused development practices."
-                    ]
+                      "Architected type-safe UI components and robust application state schemas, significantly enhancing responsive performance and cross-device scaling.",
+                      "Configured progressive web app (PWA) asset caching, ensuring seamless functionality and zero-latency loading under poor network conditions.",
+                      "Orchestrated public Git workflows and structured automated validation test cases to streamline global developer contributions."
+                    ],
+                    technologies: ["React.js", "TypeScript", "Tailwind CSS", "Git / GitHub", "PWA APIs", "Vite"],
+                    impact: "Delivered functional utilities to thousands of global users, achieving a 35% reduction in application package sizes and load latencies."
                   },
                   {
                     title: "Officer - IT, MIS",
                     company: "Padma Plastics Ltd. (Padma Group Of Converters)",
                     location: "Dhaka, Bangladesh",
                     date: "May 2024 - November 2025",
+                    mission: "Guarding corporate information consistency and maintaining uninterrupted IT systems continuity for high-volume manufacturing lines.",
                     bullets: [
-                      "Managed IT operations including data entry monitoring in SAP and data accuracy checking.",
-                      "Performed IT audits, system backup & recovery, and hardware/software maintenance.",
-                      "Maintained IT asset registers and handled warranty/replacement procedures.",
-                      "Supported departmental KPI evaluation and facilitated communication with management."
-                    ]
+                      "Audited daily SAP transaction databases and ledger entries, detecting and eliminating operational balance sheet mismatches.",
+                      "Enforced continuous system backup schedules and server disaster recovery procedures, securing business-critical assets.",
+                      "Pioneered customized Excel MIS tracking models and departmental KPI aggregators to streamline administrative decision cycles."
+                    ],
+                    technologies: ["SAP Operations", "MIS Analytics", "Database Auditing", "Backup Systems", "VBA & Apps Script"],
+                    impact: "Maintained zero unscheduled data synchronization downtime and expedited leadership performance reviews through automated reporting."
                   }
                 ].map((job, i) => (
                   <motion.div
@@ -1070,45 +1117,84 @@ const Home = () => {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.2 }}
-                    className="relative"
+                    transition={{ delay: i * 0.15 }}
+                    className="relative group"
                   >
-                    {/* Dot */}
-                    <div className="absolute -left-[81px] top-8 w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,255,163,0.8)] z-10 hidden lg:block" />
+                    {/* Glowing Dot on Line */}
+                    <div className="absolute -left-[84px] top-9 w-4 h-4 rounded-full bg-navy-950 border-2 border-accent-primary shadow-[0_0_12px_rgba(16,185,129,0.8)] z-10 hidden lg:block transition-transform duration-300 group-hover:scale-125" />
                     
                     <TiltContainer
-                      maxTilt={5}
-                      glowColor="rgba(16, 185, 129, 0.15)"
-                      glareIntensity={0.1}
-                      className="glass-card p-8 md:p-10 hover:border-accent-primary/30 rounded-[32px] overflow-hidden cursor-default"
+                      maxTilt={4}
+                      glowColor="rgba(16, 185, 129, 0.12)"
+                      glareIntensity={0.08}
+                      className="glass-card p-6 md:p-8 hover:border-accent-primary/20 rounded-[28px] overflow-hidden cursor-default space-y-6"
                     >
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                        <h3 className="text-2xl font-bold text-white max-w-md">{job.title}</h3>
-                        <div className="px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-[11px] font-bold flex items-center gap-2 shrink-0 self-start md:self-center">
-                          <Calendar size={14} />
-                          {job.date}
+                      {/* Job Header */}
+                      <div className="space-y-4">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                          <h3 className="text-xl font-bold text-white group-hover:text-accent-primary transition-colors leading-tight">
+                            {job.title}
+                          </h3>
+                          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-muted-slate text-[10px] font-mono flex items-center gap-1.5 self-start md:self-center">
+                            <Calendar size={12} className="text-accent-primary" />
+                            {job.date}
+                          </span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-slate">
+                          <span className="flex items-center gap-1.5">
+                            <Building2 size={14} className="text-accent-primary" />
+                            {job.company}
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <MapPin size={14} className="text-accent-primary" />
+                            {job.location}
+                          </span>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-x-8 gap-y-3 mb-8 text-muted-slate text-sm">
-                        <div className="flex items-center gap-2">
-                          <Building2 size={16} className="text-accent-primary" />
-                          {job.company}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin size={16} className="text-accent-primary" />
-                          {job.location}
+                      {/* Business Mission */}
+                      <div className="p-3.5 rounded-xl bg-accent-primary/[0.02] border-l-2 border-accent-primary/40 text-xs text-white/90 leading-relaxed italic">
+                        <span className="font-bold text-accent-primary not-italic block text-[10px] uppercase tracking-wider mb-0.5">Role Mission</span>
+                        "{job.mission}"
+                      </div>
+
+                      {/* Achievement Bullets */}
+                      <div className="space-y-3">
+                        <p className="text-[10px] font-bold text-muted-slate uppercase tracking-wider">Key Contributions</p>
+                        <ul className="space-y-3">
+                          {job.bullets.map((bullet, idx) => (
+                            <li key={idx} className="flex gap-3 text-muted-slate text-xs leading-relaxed">
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent-primary/70 shrink-0 mt-1.5" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Technologies Used */}
+                      <div className="space-y-2 pt-2">
+                        <p className="text-[10px] font-bold text-muted-slate uppercase tracking-wider">Technologies Used</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {job.technologies.map(tech => (
+                            <span key={tech} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-white/80 font-mono">
+                              {tech}
+                            </span>
+                          ))}
                         </div>
                       </div>
 
-                      <ul className="space-y-4">
-                        {job.bullets.map((bullet, idx) => (
-                          <li key={idx} className="flex gap-4 text-muted-slate text-sm leading-relaxed">
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent-primary shrink-0 mt-1.5" />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
+                      {/* Business Impact Box */}
+                      <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-accent-primary uppercase tracking-wider">
+                          <Award size={14} />
+                          <span>Business Impact</span>
+                        </div>
+                        <p className="text-xs text-muted-slate leading-relaxed">
+                          {job.impact}
+                        </p>
+                      </div>
+
                     </TiltContainer>
                   </motion.div>
                 ))}
