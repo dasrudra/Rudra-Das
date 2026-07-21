@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronLeft, 
@@ -733,15 +734,14 @@ const PortfolioPage = () => {
                       </a>
 
                       {/* View Case Study Button */}
-                      <a 
-                        href={activeProject.caseStudyLink || activeProject.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-center text-[11px] font-bold uppercase tracking-widest text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform active:scale-95 hover:scale-[1.02] cursor-pointer"
+                      <Link 
+                        to={`/portfolio/case-study?id=${projects.indexOf(activeProject)}`}
+                        className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-center text-[11px] font-bold uppercase tracking-widest text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform active:scale-95 hover:scale-[1.02] cursor-pointer animate-pulse"
+                        style={{ animationDuration: '3s' }}
                       >
                         <BookOpen size={14} className="shrink-0" />
                         <span>Case Study</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
