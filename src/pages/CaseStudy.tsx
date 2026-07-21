@@ -46,11 +46,314 @@ export default function CaseStudyPage() {
   // Resolve specific case study data
   const studyData = caseStudiesData[project.title] || caseStudiesData['Generic'];
 
-  // Expandable Challenges State
-  const [expandedChallenge, setExpandedChallenge] = useState<number | null>(null);
+  // New Video & Lightbox states
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ url: string; caption: string } | null>(null);
 
-  // Active Viewport Tab State (Screenshot Gallery mock)
-  const [galleryTab, setGalleryTab] = useState<'desktop' | 'mobile' | 'api'>('desktop');
+  const hasVideo = [
+    'NN Fund Management',
+    'Accounting & Ledger Software',
+    'Smart AI Detection System',
+    'Meta Ads Library Scraper',
+    'FocusDeck: Chrome Extension',
+    'Hotel Management System'
+  ].includes(project.title);
+
+  const getProjectDescription = () => {
+    const parts = [
+      project.description,
+      studyData.businessSummary,
+      studyData.problemBody?.[0],
+      studyData.solutionBody?.[0]
+    ].filter(Boolean);
+    
+    const combined = parts.join(' ');
+    const words = combined.split(/\s+/);
+    if (words.length > 150) {
+      return words.slice(0, 140).join(' ') + '...';
+    }
+    return combined;
+  };
+
+  const getTechIcon = (name: string) => {
+    const normalized = name.toLowerCase().trim();
+    const iconMap: Record<string, string> = {
+      'python': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
+      'react.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+      'react': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+      'typescript': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
+      'tailwind css': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
+      'postgresql': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
+      'docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg',
+      'git': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
+      'github': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg',
+      'fastapi': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg',
+      'odoo': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/odoo.svg',
+      'odoo 19': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/odoo.svg',
+      'sqlite': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg',
+      'javascript': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+      'html5': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+      'css3': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
+      'flask': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg',
+      'bootstrap 5': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg',
+      'opencv': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg',
+      'tensorflow': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg',
+      'redux state': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg',
+      'vite': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg',
+    };
+
+    if (iconMap[normalized]) return iconMap[normalized];
+    for (const key of Object.keys(iconMap)) {
+      if (normalized.includes(key)) {
+        return iconMap[key];
+      }
+    }
+    return null;
+  };
+
+  const TechIcon = ({ name }: { name: string }) => {
+    const iconUrl = getTechIcon(name);
+    if (iconUrl) {
+      return (
+        <img 
+          src={iconUrl} 
+          alt={name} 
+          className="w-7 h-7 object-contain group-hover:scale-110 transition-transform duration-300"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      );
+    }
+    return (
+      <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-bold font-mono text-white/70 group-hover:bg-white/10 group-hover:text-white transition-all duration-300">
+        {name.substring(0, 2).toUpperCase()}
+      </div>
+    );
+  };
+
+  const getSystemArchitectureWorkflow = (title: string) => {
+    const workflows: Record<string, {
+      input: { title: string; desc: string; icon: string };
+      processing: { title: string; desc: string; icon: string };
+      coreModule: { title: string; desc: string; icon: string };
+      businessLogic: { title: string; desc: string; icon: string };
+      output: { title: string; desc: string; icon: string };
+    }> = {
+      'NN Fund Management': {
+        input: { title: 'Wire Ingestion / API', desc: 'Ingestion of bank wire transactions and API event webhooks.', icon: 'database' },
+        processing: { title: 'Signature Auth Validation', desc: 'Validates API hashes, request signatures, and formats metadata.', icon: 'shield' },
+        coreModule: { title: 'NN Allocation Engine', desc: 'Custom allocation service (NN_ALLOC_ENG) calculates distribution matrices.', icon: 'layers' },
+        businessLogic: { title: 'Investor Ratios Checking', desc: 'Splits funds based on contractual ratios and verifies budget boundaries.', icon: 'zap' },
+        output: { title: 'Signed General Ledgers', desc: 'Issues digitally signed transaction receipts and locks general ledger entries.', icon: 'activity' }
+      },
+      'Accounting & Ledger Software': {
+        input: { title: 'Financial Records Ingest', desc: 'Captures accounting logs, party invoices, and cashbook data.', icon: 'book' },
+        processing: { title: 'Double-Entry Verification', desc: 'Applies double-entry verification rules to ensure zero balance drifts.', icon: 'cpu' },
+        coreModule: { title: 'Real-Time Ledger Engine', desc: 'Propagates adjustments, balances, and cashbooks asynchronously.', icon: 'layers' },
+        businessLogic: { title: 'Auditing & Tax Rules', desc: 'Enforces strict tax codes, fiscal controls, and anti-leak rules.', icon: 'shield' },
+        output: { title: 'Unified Liquidity Board', desc: 'Renders dynamic cashflows, ledger statements, and CSV exports.', icon: 'activity' }
+      },
+      'FocusDeck: Chrome Extension': {
+        input: { title: 'Active Browser Listeners', desc: 'Listens to browser tabs, active page requests, and task list inputs.', icon: 'globe' },
+        processing: { title: 'Manifest v3 Background Task', desc: 'Intercepts navigation requests against selective blocklists.', icon: 'cpu' },
+        coreModule: { title: 'Chrome Storage Sync', desc: 'Maintains low-latency state between user UI and active blocker.', icon: 'database' },
+        businessLogic: { title: 'Focus Activity Scoring', desc: 'Computes deep productivity focus scores based on active vs idle times.', icon: 'zap' },
+        output: { title: 'Active Extension Overlay', desc: 'Blocks distracting sites instantly and updates dashboard metrics.', icon: 'activity' }
+      },
+      'DistractCheck: Selective Attention in LLMs': {
+        input: { title: 'High-Noise Datasets', desc: 'Feeds unstructured customer support query context with heavy noise.', icon: 'database' },
+        processing: { title: 'Prompt Routing Pipe', desc: 'Tokenizes and structures context, preparing benchmark parameters.', icon: 'layers' },
+        coreModule: { title: 'Groq LLM Inference', desc: 'Executes highly parallel, low-latency LLM context evaluations.', icon: 'cpu' },
+        businessLogic: { title: 'Attention Audit Bench', desc: 'Scores how accurately key details are retrieved among noise.', icon: 'shield' },
+        output: { title: 'Decision Telemetry Panel', desc: 'Logs model error rates, noise vulnerabilities, and analytics.', icon: 'activity' }
+      },
+      'Smart AI Detection System': {
+        input: { title: 'Live CCTV Camera Ingestion', desc: 'Ingests RTSP video stream from plant gates frame-by-frame.', icon: 'globe' },
+        processing: { title: 'YOLOv8 Model Inference', desc: 'Runs real-time model inference for vehicles and personnel.', icon: 'cpu' },
+        coreModule: { title: 'Boundary Crossing Tracker', desc: 'Tracks bounding box trajectories across digital line fences via OpenCV.', icon: 'layers' },
+        businessLogic: { title: 'Directional Traffic Counter', desc: 'Differentiates IN vs OUT movements and compiles traffic flow.', icon: 'zap' },
+        output: { title: 'Gate Counter Dashboard', desc: 'Populates gate counters, snapshots, and triggers local logs.', icon: 'activity' }
+      },
+      'Hotel Management System': {
+        input: { title: 'Guest Booking Requests', desc: 'Processes check-in sheets, room selections, and billing requests.', icon: 'book' },
+        processing: { title: 'Flask MVC Controller Parsers', desc: 'Parses forms, validates payloads, and resolves active user sessions.', icon: 'cpu' },
+        coreModule: { title: 'SQLAlchemy Schema Sync', desc: 'Synchronizes guest reservations with the relational SQLite schema.', icon: 'database' },
+        businessLogic: { title: 'Room Allocation Checks', desc: 'Prevents double-booking and automates tax and discount rates.', icon: 'shield' },
+        output: { title: 'Interactive Guest Calendar', desc: 'Renders guest occupancy calendar, checkout lists, and PDF invoices.', icon: 'activity' }
+      },
+      'Sentiment Analysis Model': {
+        input: { title: 'Raw Review Text Feeds', desc: 'Ingests massive datasets of unstructured product or IMDB text reviews.', icon: 'database' },
+        processing: { title: 'NLP Processing Pipeline', desc: 'Preprocesses text via tokenization, lemmatization, and stopword filters.', icon: 'layers' },
+        coreModule: { title: 'TF-IDF Grid Matrix', desc: 'Vectorizes text blocks into high-dimensional numerical arrays.', icon: 'cpu' },
+        businessLogic: { title: 'Scikit-Learn Classifier', desc: 'Trains and evaluates models to predict positive or negative sentiment.', icon: 'zap' },
+        output: { title: 'Market Sentiment Intel', desc: 'Displays model accuracy metrics, sentiment distribution, and trends.', icon: 'activity' }
+      },
+      'Speech Emotion Recognition': {
+        input: { title: 'Live Sound Clip Stream', desc: 'Ingests customer microphone audio clips under active support calls.', icon: 'globe' },
+        processing: { title: 'MFCC Waveform Extractor', desc: 'Applies Librosa and signal tools to extract deep acoustic wave metrics.', icon: 'cpu' },
+        coreModule: { title: 'Acoustic Model Classifier', desc: 'Processes signal features through pre-trained ML models.', icon: 'layers' },
+        businessLogic: { title: 'Vocal Emotion Triggers', desc: 'Identifies high frustration, anxiety, or calm vocal triggers.', icon: 'shield' },
+        output: { title: 'Agent Warning Console', desc: 'Sends live alerts and telemetry of caller mood states instantly.', icon: 'activity' }
+      },
+      'Udemy Projects': {
+        input: { title: 'Layout Interaction Capture', desc: 'Captures user clicks, touch inputs, and viewport resize events.', icon: 'book' },
+        processing: { title: 'DOM Event Processing Handlers', desc: 'Processes events synchronously using modern JavaScript triggers.', icon: 'cpu' },
+        coreModule: { title: 'Responsive Flex Grid UI', desc: 'Renders adaptive layout components dynamically based on media size.', icon: 'layers' },
+        businessLogic: { title: 'Client-Side Sandbox Scope', desc: 'Processes logical operations within standard sandbox scopes.', icon: 'zap' },
+        output: { title: 'Cross-Device Utility collection', desc: 'Delivers a responsive, lightweight portfolio showcase in the browser.', icon: 'activity' }
+      },
+      'Apple Quality Prediction': {
+        input: { title: 'Physical Measurement Specs', desc: 'Ingests physical dimensions, weight, acidity, and density indices.', icon: 'database' },
+        processing: { title: 'Pandas Data Correlation', desc: 'Cleans null features, normalizes scales, and correlates metrics.', icon: 'layers' },
+        coreModule: { title: 'Regression Model Benchmarks', desc: 'Runs advanced regression and correlation algorithms across variables.', icon: 'cpu' },
+        businessLogic: { title: 'Freshness Prediction System', desc: 'Classifies premium vs low-grade crops using classification models.', icon: 'shield' },
+        output: { title: 'Classification Reports Panel', desc: 'Renders predictive tables, confusion matrices, and quality score distributions.', icon: 'activity' }
+      },
+      'Meta Ads Library Scraper': {
+        input: { title: 'Competitor Identifiers', desc: 'Ingests targeted page identifiers or keyword configurations.', icon: 'globe' },
+        processing: { title: 'BeautifulSoup Extraction', desc: 'Parses DOM structures, extracting active meta advertising lists.', icon: 'layers' },
+        coreModule: { title: 'Registry Data Extractor', desc: 'Pulls campaign images, copy, active timelines, and spending estimates.', icon: 'cpu' },
+        businessLogic: { title: 'Scraping Cleansing Pipelines', desc: 'Deduplicates records based on campaign hashes and structures datasets.', icon: 'shield' },
+        output: { title: 'Exported Campaign Tables', desc: 'Generates structured JSON/CSV files of active ad listings.', icon: 'activity' }
+      }
+    };
+
+    const cleanTitle = title.replace(': Chrome Extension', '').replace(': Selective Attention in LLMs', '').replace('SEL ', '').trim();
+    let match = workflows[title] || workflows[cleanTitle];
+    if (!match) {
+      for (const key of Object.keys(workflows)) {
+        if (title.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(title.toLowerCase())) {
+          match = workflows[key];
+          break;
+        }
+      }
+    }
+    return match || workflows['NN Fund Management'];
+  };
+
+  const getProjectGalleryImages = (title: string, mainImage: string) => {
+    const galleries: Record<string, { url: string; caption: string }[]> = {
+      'NN Fund Management': [
+        { url: mainImage, caption: 'Primary Fund Allocation Dashboard' },
+        { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', caption: 'Real-Time Double-Entry Ledger' },
+        { url: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80', caption: 'Automated Capital Allocation Metrics' }
+      ],
+      'Accounting & Ledger Software': [
+        { url: mainImage, caption: 'Unified Ledger Control Center' },
+        { url: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80', caption: 'Multi-Party Reconciliation Sheet' },
+        { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', caption: 'Secure Transaction Auditor Interface' }
+      ],
+      'FocusDeck: Chrome Extension': [
+        { url: mainImage, caption: 'Chrome Browser Focus overlay' },
+        { url: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80', caption: 'Interactive Daily Task Planner' },
+        { url: 'https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=80', caption: 'Distraction Analytics Insights' }
+      ],
+      'DistractCheck: Selective Attention in LLMs': [
+        { url: mainImage, caption: 'Attention Benchmark Testing Panel' },
+        { url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80', caption: 'LLM Response Accuracy Audit' },
+        { url: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80', caption: 'Context Distraction Metrics Matrix' }
+      ],
+      'Smart AI Detection System': [
+        { url: mainImage, caption: 'Computer Vision Live Ingestion Gate' },
+        { url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', caption: 'CCTV Neural Network Monitor' },
+        { url: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=800&q=80', caption: 'Vehicle Tracking and Counting Analytics' }
+      ],
+      'Hotel Management System': [
+        { url: mainImage, caption: 'Relational SQLite Reservation Calendar' },
+        { url: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', caption: 'Dynamic Occupancy & Guest Logger' },
+        { url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80', caption: 'Billing & POS Invoices Dispatcher' }
+      ],
+      'Sentiment Analysis Model': [
+        { url: mainImage, caption: 'TF-IDF Preprocessing Engine' },
+        { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', caption: 'IMDB Sentiment Class Distribution' },
+        { url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80', caption: 'Model Validation Curve Matrix' }
+      ],
+      'Speech Emotion Recognition': [
+        { url: mainImage, caption: 'Deep Acoustic Waveform Ingestion' },
+        { url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=800&q=80', caption: 'MFCC Vocal Signal Analyzer' },
+        { url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=800&q=80', caption: 'Vocal Frustration Detection Matrix' }
+      ],
+      'Udemy Projects': [
+        { url: mainImage, caption: 'Interactive DOM Project Showcase' },
+        { url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80', caption: 'Clean JavaScript Core Utilities' },
+        { url: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80', caption: 'Fully Responsive Multi-Grid CSS Layouts' }
+      ],
+      'Apple Quality Prediction': [
+        { url: mainImage, caption: 'Acidity & Texture Feature Heatmap' },
+        { url: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=800&q=80', caption: 'Model Freshness Correlation Matrix' },
+        { url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80', caption: 'Class Balance Accuracy Benchmarks' }
+      ],
+      'Meta Ads Library Scraper': [
+        { url: mainImage, caption: 'Competitor Ads Scraper Controller' },
+        { url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80', caption: 'Scraped Campaign Ad Data Formatter' },
+        { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', caption: 'Exported Competitor Ads Registry Table' }
+      ]
+    };
+
+    const cleanTitle = title.replace(': Chrome Extension', '').replace(': Selective Attention in LLMs', '').replace('SEL ', '').trim();
+    let match = galleries[title] || galleries[cleanTitle];
+    if (!match) {
+      for (const key of Object.keys(galleries)) {
+        if (title.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(title.toLowerCase())) {
+          match = galleries[key];
+          break;
+        }
+      }
+    }
+    return match || [
+      { url: mainImage, caption: 'Primary System View' },
+      { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', caption: 'Analytics and Logging Interface' },
+      { url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80', caption: 'Core Process Monitor' }
+    ];
+  };
+
+  const getProjectVideoSources = (title: string): string[] => {
+    switch (title) {
+      case 'NN Fund Management':
+        return [
+          '/videos/nn-fund-management.mp4',
+          '/nn-fund-management.mp4',
+          '/videos/NN-FUND-MANAGEMENT.mp4',
+          '/NN-FUND-MANAGEMENT.mp4'
+        ];
+      case 'Accounting & Ledger Software':
+        return [
+          '/videos/accounts-and-ledger-system.mp4',
+          '/accounts-and-ledger-system.mp4',
+          '/videos/ACCOUNTS-AND-LEDGER-SYSTEM.mp4',
+          '/ACCOUNTS-AND-LEDGER-SYSTEM.mp4'
+        ];
+      case 'Smart AI Detection System':
+        return [
+          '/videos/smart-detection-and-counting-system.mp4',
+          '/smart-detection-and-counting-system.mp4',
+          '/videos/SMART-DETECTION-AND-COUNTING-SYSTEM.mp4',
+          '/SMART-DETECTION-AND-COUNTING-SYSTEM.mp4'
+        ];
+      case 'Meta Ads Library Scraper':
+        return [
+          '/videos/meta-ads-library-scraper.mp4',
+          '/meta-ads-library-scraper.mp4',
+          '/videos/META-ADS-LIBRARY-SCRAPER.mp4',
+          '/META-ADS-LIBRARY-SCRAPER.mp4'
+        ];
+      case 'FocusDeck: Chrome Extension':
+        return [
+          '/videos/focusdeck.mp4',
+          '/focusdeck.mp4'
+        ];
+      case 'Hotel Management System':
+        return [
+          '/videos/hotel-management-gui-and-normal-program-python-tkinter.mp4',
+          '/hotel-management-gui-and-normal-program-python-tkinter.mp4',
+          '/videos/hotel-management-system.mp4',
+          '/hotel-management-system.mp4'
+        ];
+      default:
+        return [];
+    }
+  };
 
   // Helper to render dynamic lucide icons safely
   const renderIcon = (name: string, size = 18, className = '') => {
@@ -64,6 +367,7 @@ export default function CaseStudyPage() {
       case 'layers': return <Layers size={size} className={className} />;
       case 'wrench': return <Wrench size={size} className={className} />;
       case 'cpu': return <Cpu size={size} className={className} />;
+      case 'globe': return <Globe size={size} className={className} />;
       default: return <Cpu size={size} className={className} />;
     }
   };
@@ -79,10 +383,6 @@ export default function CaseStudyPage() {
     const nextIdx = (safeIndex + 1) % projects.length;
     setSearchParams({ id: nextIdx.toString() });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const toggleChallenge = (idx: number) => {
-    setExpandedChallenge(expandedChallenge === idx ? null : idx);
   };
 
   // Aesthetic color accent based on active project's domain/index
@@ -185,16 +485,27 @@ export default function CaseStudyPage() {
 
               {/* Hero CTA buttons */}
               <div className="flex flex-wrap gap-3 pt-4">
-                <a 
-                  href={project.liveLink || project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-center text-[11px] font-mono font-bold uppercase tracking-widest text-navy-950 transition-all duration-300 transform active:scale-95 hover:scale-[1.02] shadow-lg cursor-pointer"
-                  style={{ backgroundColor: color.raw }}
-                >
-                  <Globe size={14} className="shrink-0" />
-                  <span>Live Demo</span>
-                </a>
+                {hasVideo ? (
+                  <button 
+                    onClick={() => setIsVideoModalOpen(true)}
+                    className="flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-center text-[11px] font-mono font-bold uppercase tracking-widest text-navy-950 transition-all duration-300 transform active:scale-95 hover:scale-[1.02] shadow-lg cursor-pointer border-none"
+                    style={{ backgroundColor: color.raw }}
+                  >
+                    <Globe size={14} className="shrink-0" />
+                    <span>Live Demo</span>
+                  </button>
+                ) : (
+                  <a 
+                    href={project.liveLink || project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-center text-[11px] font-mono font-bold uppercase tracking-widest text-navy-950 transition-all duration-300 transform active:scale-95 hover:scale-[1.02] shadow-lg cursor-pointer"
+                    style={{ backgroundColor: color.raw }}
+                  >
+                    <Globe size={14} className="shrink-0" />
+                    <span>Live Demo</span>
+                  </a>
+                )}
 
                 <a 
                   href={project.link}
@@ -318,620 +629,157 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* ==================== 3. BUSINESS PROBLEM ==================== */}
-        <section id="problem" className="mb-20">
+        {/* ==================== 3. PROJECT DESCRIPTION ==================== */}
+        <section id="description" className="mb-20">
           <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
-            {/* Labeled Side Heading */}
-            <div className="md:col-span-4 space-y-2">
-              <span className="px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase bg-red-500/10 border border-red-500/20 text-red-400">
-                STAGE 01: PROBLEM ROOT
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Business Problem
-              </h2>
-              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                ANALYSIS OF CRITICAL ENGINEERING CHALLENGES & OPERATIONAL INEFFICIENCIES.
-              </p>
-            </div>
-
-            {/* Blueprint Detailed Box */}
-            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 flex flex-col justify-between space-y-6">
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/20">
-                <ShieldAlert className="text-red-400 shrink-0 mt-0.5" size={20} />
-                <div className="space-y-1">
-                  <p className="text-xs font-mono font-bold text-red-400 uppercase tracking-wide">
-                    {studyData.problemAlertTitle}
-                  </p>
-                  <p className="text-xs text-muted-slate leading-relaxed">
-                    {studyData.problemAlertDesc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-4 font-sans text-sm text-muted-slate leading-relaxed">
-                {studyData.problemBody.map((p, idx) => (
-                  <p key={idx}>{p}</p>
-                ))}
-              </div>
-
-              {/* Labeled Placeholder Metrics Badge */}
-              <div className="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] text-[10px] font-mono text-white/40">
-                <span className="uppercase">{studyData.problemMetric.label}</span>
-                <span className="text-red-400 font-bold uppercase tracking-wider">{studyData.problemMetric.value}</span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== 4. SOLUTION ==================== */}
-        <section id="solution" className="mb-20">
-          <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
             {/* Labeled Side Heading */}
             <div className="md:col-span-4 space-y-2">
               <span className={`px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase ${color.bg} border ${color.border} ${color.primary}`}>
-                STAGE 02: THE SPECIFICATION
+                STAGE 01: OVERVIEW
               </span>
               <h2 className="text-2xl md:text-3xl font-black text-white">
-                Proposed Solution
+                Project Description
               </h2>
               <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                DECOUPLED PIPELINES, SECURE AUTHENTICATION, AND DATA INTEGRITY BLUEPRINTS.
+                DEEP DIVE INTO BUSINESS OBJECTIVES, TARGET VALUE, AND FUNCTIONAL METRICS.
               </p>
             </div>
 
-            {/* Blueprint Detailed Box */}
-            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 flex flex-col justify-between space-y-6">
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                <CheckCircle2 className="text-emerald-400 shrink-0 mt-0.5" size={20} />
-                <div className="space-y-1">
-                  <p className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wide">
-                    {studyData.solutionSuccessTitle}
-                  </p>
-                  <p className="text-xs text-muted-slate leading-relaxed">
-                    {studyData.solutionSuccessDesc}
-                  </p>
-                </div>
-              </div>
+            {/* Detailed Box */}
+            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 flex flex-col justify-center">
+              <p className="text-sm md:text-base text-muted-slate leading-relaxed font-sans">
+                {getProjectDescription()}
+              </p>
+            </div>
+          </div>
+        </section>
 
-              <div className="space-y-4 font-sans text-sm text-muted-slate leading-relaxed">
-                {studyData.solutionBody.map((p, idx) => (
-                  <p key={idx}>{p}</p>
+        {/* ==================== 4. TECHNOLOGY STACK ==================== */}
+        <section id="tech-stack" className="mb-20">
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <span className={`px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase ${color.bg} border ${color.border} ${color.primary}`}>
+                STAGE 02: STACK SPECS
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black text-white">
+                Technology Stack
+              </h2>
+              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
+                ENGINEERED WITH MODERN LANGUAGES, ECOSYSTEM FRAMEWORKS, AND UTILITY TOOLS.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {project.tech.map((t, idx) => (
+                <motion.div
+                  key={t}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  whileHover={{ y: -4, borderColor: 'rgba(255,255,255,0.15)', backgroundColor: 'rgba(255,255,255,0.03)' }}
+                  className="group flex items-center gap-3 p-3.5 rounded-2xl bg-navy-950/20 border border-white/5 backdrop-blur-sm transition-all duration-300"
+                >
+                  <TechIcon name={t} />
+                  <span className="text-xs font-mono font-bold text-white/80 group-hover:text-white transition-colors">
+                    {t}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== 5. SYSTEM ARCHITECTURE ==================== */}
+        <section id="architecture" className="mb-20">
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <span className={`px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase ${color.bg} border ${color.border} ${color.primary}`}>
+                STAGE 03: TECHNICAL FLUID TOPOLOGY
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black text-white">
+                System Architecture
+              </h2>
+              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
+                TECHNICAL PIPELINE TRACING DATA PATHWAYS FROM DATA INGESTION TO SECURE PRODUCTION STATE COMMITS.
+              </p>
+            </div>
+
+            <div className="relative p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 space-y-8 overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10">
+                {[
+                  { label: 'INGEST', title: getSystemArchitectureWorkflow(project.title).input.title, desc: getSystemArchitectureWorkflow(project.title).input.desc, icon: getSystemArchitectureWorkflow(project.title).input.icon, color: color.primary, bg: color.bg, border: color.border },
+                  { label: 'VALIDATE', title: getSystemArchitectureWorkflow(project.title).processing.title, desc: getSystemArchitectureWorkflow(project.title).processing.desc, icon: getSystemArchitectureWorkflow(project.title).processing.icon, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/25' },
+                  { label: 'PROCESS', title: getSystemArchitectureWorkflow(project.title).coreModule.title, desc: getSystemArchitectureWorkflow(project.title).coreModule.desc, icon: getSystemArchitectureWorkflow(project.title).coreModule.icon, color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/25' },
+                  { label: 'RULES', title: getSystemArchitectureWorkflow(project.title).businessLogic.title, desc: getSystemArchitectureWorkflow(project.title).businessLogic.desc, icon: getSystemArchitectureWorkflow(project.title).businessLogic.icon, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/25' },
+                  { label: 'COMMIT', title: getSystemArchitectureWorkflow(project.title).output.title, desc: getSystemArchitectureWorkflow(project.title).output.desc, icon: getSystemArchitectureWorkflow(project.title).output.icon, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/25' },
+                ].map((step, idx) => (
+                  <div key={idx} className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 relative flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono font-bold text-white/30 uppercase">{step.label}</span>
+                        <div className={`w-7 h-7 rounded-lg ${step.bg} border ${step.border} flex items-center justify-center`}>
+                          {renderIcon(step.icon, 14, step.color)}
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-white font-mono">{step.title}</h4>
+                        <p className="text-[10px] text-muted-slate leading-relaxed mt-1.5">{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
-
-              {/* Labeled Placeholder Metrics Badge */}
-              <div className="flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-white/[0.01] text-[10px] font-mono text-white/40">
-                <span className="uppercase">{studyData.solutionMetric.label}</span>
-                <span className="text-emerald-400 font-bold uppercase tracking-wider">{studyData.solutionMetric.value}</span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== 5. KEY FEATURES ==================== */}
-        <section id="features" className="mb-20">
-          <div className="space-y-6">
-            <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.25em]">
-                FUNCTIONAL MODULES
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Core System Features
-              </h2>
-            </div>
-
-            {/* Feature Cards Grid (2x2 / 3x1 responsive layout) */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {studyData.features.map((feature, idx) => (
-                <div 
-                  key={idx} 
-                  className="p-6 rounded-[22px] bg-navy-950/20 border border-white/5 hover:border-white/10 hover:bg-navy-900/10 transition-all duration-300 space-y-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    {renderIcon(feature.icon, 18, "text-white/60")}
-                  </div>
-                  <div className="space-y-1.5">
-                    <h3 className="text-base font-bold text-white">{feature.title}</h3>
-                    <p className="text-xs text-muted-slate leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                  <div className="text-[9px] font-mono text-white/30 uppercase">{feature.moduleRef}</div>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        {/* ==================== 6. SCREENSHOT GALLERY ==================== */}
+        {/* ==================== 6. PROJECT GALLERY ==================== */}
         <section id="gallery" className="mb-20">
           <div className="space-y-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.25em]">
-                  VISUAL INTERFACES
-                </span>
-                <h2 className="text-2xl md:text-3xl font-black text-white">
-                  System Screenshot Gallery
-                </h2>
-              </div>
-              
-              {/* Tabs selector */}
-              <div className="flex rounded-lg bg-navy-950/60 p-1 border border-white/5 text-[10px] font-mono font-bold uppercase tracking-wider">
-                <button
-                  onClick={() => setGalleryTab('desktop')}
-                  className={`px-3 py-1.5 rounded transition-colors ${galleryTab === 'desktop' ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white/85'}`}
-                >
-                  Desktop view
-                </button>
-                <button
-                  onClick={() => setGalleryTab('mobile')}
-                  className={`px-3 py-1.5 rounded transition-colors ${galleryTab === 'mobile' ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white/85'}`}
-                >
-                  Mobile View
-                </button>
-                <button
-                  onClick={() => setGalleryTab('api')}
-                  className={`px-3 py-1.5 rounded transition-colors ${galleryTab === 'api' ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white/85'}`}
-                >
-                  API Payload
-                </button>
-              </div>
-            </div>
-
-            {/* Interactive Browser Frame representation */}
-            <div className="rounded-3xl border border-white/5 bg-navy-950/30 overflow-hidden relative min-h-[340px] md:min-h-[460px] flex flex-col justify-between">
-              
-              {/* Browser Header Bar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-navy-950/80 border-b border-white/5 text-[10px] font-mono text-white/40">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/30" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/30" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/30" />
-                </div>
-                <div className="px-4 py-1 rounded bg-white/5 border border-white/5 w-60 md:w-96 text-center truncate">
-                  {galleryTab === 'desktop' && 'https://core-platform.io/dashboard/projects/active'}
-                  {galleryTab === 'mobile' && 'https://m.core-platform.io/active'}
-                  {galleryTab === 'api' && 'https://api.core-platform.io/v1/telemetry'}
-                </div>
-                <span className="text-[8px] opacity-40">SSL SECURE</span>
-              </div>
-
-              {/* Gallery Content switcher */}
-              <div className="p-8 flex-grow flex items-center justify-center relative overflow-hidden bg-navy-950/10">
-                <AnimatePresence mode="wait">
-                  {galleryTab === 'desktop' && (
-                    <motion.div 
-                      key="desktop"
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-full max-w-4xl border border-white/5 bg-navy-950/80 rounded-2xl p-6 space-y-6 shadow-inner"
-                    >
-                      <div className="flex justify-between items-center border-b border-white/5 pb-4">
-                        <div className="space-y-1">
-                          <p className="text-[10px] font-mono text-white/40 uppercase">{studyData.gallery.desktop.subtitle}</p>
-                          <h3 className="text-lg font-black text-white">{studyData.gallery.desktop.title}</h3>
-                        </div>
-                        <span className="px-2 py-0.5 rounded text-[8px] font-mono bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">{studyData.gallery.desktop.badge}</span>
-                      </div>
-                      
-                      {/* Grid representation */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {studyData.gallery.desktop.items.map((item, idx) => (
-                          <div key={idx} className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-1">
-                            <p className="text-[8px] font-mono text-white/30">{item.label}</p>
-                            <p className="text-sm font-bold text-white">{item.title}</p>
-                            <p className="text-[10px] text-muted-slate leading-relaxed">{item.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {galleryTab === 'mobile' && (
-                    <motion.div 
-                      key="mobile"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-64 border border-white/10 bg-navy-950 rounded-[32px] p-4 aspect-[9/16] relative overflow-hidden"
-                    >
-                      {/* Camera Notch placeholder */}
-                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 rounded-full bg-navy-900 border border-white/5" />
-                      <div className="mt-6 space-y-6 text-center">
-                        <p className="text-[8px] font-mono text-white/30 uppercase tracking-widest">{studyData.gallery.mobile.subtitle}</p>
-                        <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 mx-auto flex items-center justify-center">
-                          {renderIcon(studyData.gallery.mobile.icon, 24, "text-emerald-400")}
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm font-black text-white">{studyData.gallery.mobile.title}</p>
-                          <p className="text-[10px] text-muted-slate px-2 leading-relaxed">Responsive screen optimized for administrative monitoring on the move.</p>
-                        </div>
-                        <div className="p-3 rounded-xl bg-white/[0.01] border border-white/5 text-[9px] font-mono text-left space-y-1">
-                          {studyData.gallery.mobile.items.map((mItem, idx) => (
-                            <div key={idx} className="flex justify-between">
-                              <span className="text-white/30">{mItem.label}</span>
-                              <span className="text-white/80">{mItem.val}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {galleryTab === 'api' && (
-                    <motion.div 
-                      key="api"
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-full max-w-2xl border border-white/5 bg-[#010204]/90 rounded-2xl p-6 font-mono text-xs text-white/70 space-y-4"
-                    >
-                      <div className="flex items-center justify-between border-b border-white/5 pb-2 text-[10px] text-white/30">
-                        <span>{studyData.gallery.api.headers}</span>
-                        <span>HTTP/2 200 OK</span>
-                      </div>
-                      <pre className="overflow-x-auto text-[10px] md:text-xs text-emerald-400/90 leading-relaxed whitespace-pre p-2">
-                        {studyData.gallery.api.code}
-                      </pre>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Caption placeholder */}
-              <div className="p-4 bg-navy-950/80 border-t border-white/5 text-[10px] font-mono text-white/30 text-center">
-                {studyData.gallery.caption}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 7. SYSTEM ARCHITECTURE ==================== */}
-        <section id="architecture" className="mb-20">
-          <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
-            {/* Labeled Side Heading */}
-            <div className="md:col-span-4 space-y-2">
-              <span className="px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase bg-white/5 border border-white/10 text-white/40">
-                SYSTEM DESIGN
+            <div className="space-y-1">
+              <span className={`px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase ${color.bg} border ${color.border} ${color.primary}`}>
+                STAGE 04: INTERFACE VERIFICATION
               </span>
               <h2 className="text-2xl md:text-3xl font-black text-white">
-                Core System Architecture
+                Project Gallery
               </h2>
               <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                TECHNICAL FLUID PROCESS CHANNELS, API ROUTING SEGMENTS, AND DATABASE INTEGRITY GATEWAYS.
+                VISUAL SHOWCASE OF THE LIVE INTERFACES, DASHBOARDS, AND TRANSACTION LOGGERS.
               </p>
             </div>
 
-            {/* Interactive Vector/Architecture flow area */}
-            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 space-y-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-3 text-[8px] font-mono text-white/20 uppercase tracking-wider">
-                {studyData.architecture.diagramRef}
-              </div>
-
-              {/* Dynamic topology connector line canvas flow */}
-              <div className="grid grid-cols-3 gap-4 text-center relative z-10">
-                
-                {/* Stage 1: Ingress */}
-                <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 relative">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                    {renderIcon(studyData.architecture.stage1.icon, 15, "text-white/50")}
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white font-mono">{studyData.architecture.stage1.title}</h4>
-                    <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">{studyData.architecture.stage1.subtitle}</p>
-                  </div>
-                  <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 text-white/20 font-bold hidden md:block">→</div>
-                </div>
-
-                {/* Stage 2: Processing */}
-                <div className="p-4 rounded-xl bg-white/[0.01] border border-white/10 space-y-3 relative">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center animate-pulse" style={{ backgroundColor: `${color.raw}15` }}>
-                    {renderIcon(studyData.architecture.stage2.icon, 15, color.primary)}
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white font-mono">{studyData.architecture.stage2.title}</h4>
-                    <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">{studyData.architecture.stage2.subtitle}</p>
-                  </div>
-                  <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 text-white/20 font-bold hidden md:block">→</div>
-                </div>
-
-                {/* Stage 3: Persistence */}
-                <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 relative">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                    {renderIcon(studyData.architecture.stage3.icon, 15, "text-white/50")}
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white font-mono">{studyData.architecture.stage3.title}</h4>
-                    <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">{studyData.architecture.stage3.subtitle}</p>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Core Description of design */}
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 text-xs text-muted-slate leading-relaxed font-sans space-y-2">
-                <p>
-                  Our architecture guarantees strict <strong>separation of concerns</strong>:
-                </p>
-                <ul className="list-disc pl-4 space-y-1 text-white/75">
-                  {studyData.architecture.bullets.map((b, idx) => (
-                    <li key={idx}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== 8. TECHNOLOGIES USED ==================== */}
-        <section id="technologies" className="mb-20">
-          <div className="space-y-6">
-            <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.25em]">
-                STACK SPECS
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Technologies Grouped
-              </h2>
-            </div>
-
-            {/* Grid of Grouped tech */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Layout size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">Frontend</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.frontend.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Server size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">Backend</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.backend.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Database size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">Database</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.database.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Cpu size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">AI Engine</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.ai.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Globe size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">Deployment</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.deployment.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.01] border border-white/5 space-y-3 text-center">
-                <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto flex items-center justify-center">
-                  <Wrench size={15} className="text-white/60" />
-                </div>
-                <h4 className="text-xs font-bold font-mono text-white">Tools</h4>
-                <div className="flex flex-col gap-1 text-[10px] font-mono text-white/50">
-                  {studyData.technologies.tools.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 9. CHALLENGES & SOLUTIONS ==================== */}
-        <section id="challenges" className="mb-20">
-          <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
-            {/* Labeled Side Heading */}
-            <div className="md:col-span-4 space-y-2">
-              <span className="px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase bg-yellow-500/10 border border-yellow-500/20 text-yellow-400">
-                ENGINEERING DEBATES
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Challenges & Solutions
-              </h2>
-              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                HOW TECHNICAL BLOCKS, COMPILATION RISKS, AND TRAFFIC SPIKES WERE RESOLVED.
-              </p>
-            </div>
-
-            {/* Expandable Engineering Cards (Accordion layout with transitions) */}
-            <div className="md:col-span-8 space-y-4">
-              {studyData.challenges.map((challenge, idx) => (
-                <div key={idx} className="rounded-2xl border border-white/5 bg-navy-950/20 overflow-hidden">
-                  <button
-                    onClick={() => toggleChallenge(idx)}
-                    className="w-full text-left p-5 flex items-center justify-between font-bold text-white/95 focus:outline-none cursor-pointer"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-mono text-white/30">{String(idx + 1).padStart(2, '0')} /</span>
-                      <h3 className="text-sm md:text-base">{challenge.title}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {getProjectGalleryImages(project.title, project.image).map((img, idx) => (
+                <motion.div
+                  key={idx}
+                  onClick={() => setSelectedImage(img)}
+                  className="group cursor-zoom-in rounded-2xl overflow-hidden border border-white/5 bg-navy-950/20 p-2 hover:border-white/20 transition-all duration-300"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="aspect-[16/10] overflow-hidden rounded-xl relative bg-[#070a13]">
+                    <img
+                      src={img.url}
+                      alt={img.caption}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-xs font-mono font-bold text-white tracking-wide truncate w-full">
+                        {img.caption}
+                      </p>
                     </div>
-                    <span className="text-white/45 text-xs font-mono">{expandedChallenge === idx ? 'COLLAPSE ▲' : 'EXPAND ▼'}</span>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {expandedChallenge === idx && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: 'auto' }}
-                        exit={{ height: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <div className="p-5 border-t border-white/5 bg-white/[0.01] space-y-4 text-xs md:text-sm text-muted-slate leading-relaxed font-sans">
-                          <div className="p-3.5 rounded-xl bg-red-500/5 border border-red-500/15">
-                            <p className="font-mono font-bold text-red-400 uppercase text-[10px] mb-1">THE TECHNICAL HAZARD:</p>
-                            <p className="text-xs">{challenge.hazard}</p>
-                          </div>
-                          <div className="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                            <p className="font-mono font-bold text-emerald-400 uppercase text-[10px] mb-1">THE ENGINEERING RESOLUTION:</p>
-                            <p className="text-xs">{challenge.resolution}</p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== 10. RESULTS & IMPACT ==================== */}
-        <section id="results" className="mb-20">
-          <div className="space-y-6">
-            <div className="text-center max-w-xl mx-auto space-y-1">
-              <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.25em]">
-                AUDITED STATISTICS
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Results & Business Impact
-              </h2>
-            </div>
-
-            {/* High-impact metric card layouts */}
-            <div className="grid sm:grid-cols-3 gap-6">
-              {studyData.results.map((metric, idx) => (
-                <div key={idx} className="p-6 rounded-[24px] bg-navy-950/30 border border-white/5 text-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-3 text-[7px] font-mono text-white/10">{metric.ref}</div>
-                  <div className="space-y-1.5 relative z-10">
-                    <p className="text-4xl md:text-5xl font-black font-mono tracking-tight" style={{ color: color.raw }}>
-                      {metric.value}
-                    </p>
-                    <h4 className="text-sm font-bold text-white">{metric.title}</h4>
-                    <p className="text-xs text-muted-slate leading-relaxed">{metric.description}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 11. LESSONS LEARNED ==================== */}
-        <section id="lessons" className="mb-20">
-          <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
-            {/* Labeled Side Heading */}
-            <div className="md:col-span-4 space-y-2">
-              <span className="px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase bg-white/5 border border-white/10 text-white/40">
-                RETROSPECTIVES
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Lessons Learned
-              </h2>
-              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                ENGINEERING PRACTICES, SCALABILITY BLUEPRINTS, AND ROBUST CODE STANDARDS DISCOVERED.
-              </p>
-            </div>
-
-            {/* List block */}
-            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 space-y-6">
-              {studyData.lessons.map((lesson, idx) => (
-                <div key={idx} className="space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color.raw }} />
-                    <h4 className="text-sm font-bold font-mono text-white uppercase tracking-wider">{lesson.title}</h4>
-                  </div>
-                  <p className="text-xs text-muted-slate leading-relaxed">
-                    {lesson.description}
+                  <p className="text-[10px] font-mono font-bold text-white/50 px-2 pt-2 pb-1 uppercase tracking-wider group-hover:text-white/80 transition-colors">
+                    {img.caption}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
-
           </div>
         </section>
 
-        {/* ==================== 12. FUTURE IMPROVEMENTS ==================== */}
-        <section id="improvements" className="mb-20">
-          <div className="grid md:grid-cols-12 gap-8 items-stretch">
-            
-            {/* Labeled Side Heading */}
-            <div className="md:col-span-4 space-y-2">
-              <span className="px-2.5 py-1 rounded text-[9px] font-mono font-bold tracking-widest uppercase bg-white/5 border border-white/10 text-white/40">
-                ROADMAP SPEC
-              </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white">
-                Future Improvements
-              </h2>
-              <p className="text-xs font-mono text-white/30 uppercase tracking-widest leading-relaxed">
-                NEXT-GEN UPGRADES, SECONDARY MACHINE LEARNING TRIGGERS, AND ENTERPRISE ENHANCEMENTS.
-              </p>
-            </div>
-
-            {/* List block */}
-            <div className="md:col-span-8 p-6 md:p-8 rounded-[24px] bg-navy-950/20 border border-white/5 space-y-6">
-              {studyData.improvements.map((imp, idx) => (
-                <div key={idx} className="space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-white/30 font-mono text-[10px] font-bold">{imp.letter}.</span>
-                    <h4 className="text-sm font-bold font-mono text-white uppercase tracking-wider">{imp.title}</h4>
-                    {imp.badge && (
-                      <span className="px-1.5 py-0.5 rounded text-[8px] font-mono bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                        {imp.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-muted-slate leading-relaxed">
-                    {imp.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== 13. PREVIOUS, NEXT & BACK NAVIGATION ==================== */}
+        {/* ==================== 7. PREVIOUS, NEXT & BACK NAVIGATION ==================== */}
         <section id="navigation" className="pt-8 border-t border-white/5">
           <div className="grid sm:grid-cols-3 gap-4 items-center">
             
@@ -974,6 +822,99 @@ export default function CaseStudyPage() {
 
           </div>
         </section>
+
+        {/* ==================== 8. MODALS ==================== */}
+        {/* Video Player Modal */}
+        <AnimatePresence>
+          {isVideoModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+              onClick={() => setIsVideoModalOpen(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 250 }}
+                className="relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[#070a13] p-3 shadow-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Top Bar */}
+                <div className="flex items-center justify-between px-3 pb-3 border-b border-white/5 text-xs font-mono text-white/50 mb-2">
+                  <div className="flex items-center gap-2">
+                    <Globe size={12} className={color.primary} />
+                    <span className="font-bold text-white/90 uppercase tracking-wider">{project.title} Demo Video</span>
+                  </div>
+                  <button
+                    onClick={() => setIsVideoModalOpen(false)}
+                    className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-white/70 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+                  >
+                    CLOSE ×
+                  </button>
+                </div>
+
+                {/* Video Container */}
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-black/95 border border-white/5">
+                  <video
+                    controls
+                    className="w-full h-full object-contain"
+                    poster={project.image}
+                    preload="metadata"
+                    playsInline
+                  >
+                    {getProjectVideoSources(project.title).map((src, idx) => (
+                      <source key={idx} src={src} type="video/mp4" />
+                    ))}
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Screenshot Lightbox Modal */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+              onClick={() => setSelectedImage(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative max-w-5xl w-full rounded-2xl border border-white/10 bg-[#070a13] p-2 shadow-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 border border-white/10 text-white/80 hover:bg-black/80 hover:text-white transition-colors cursor-pointer"
+                >
+                  <span className="text-sm font-bold block px-1">×</span>
+                </button>
+
+                <div className="rounded-xl overflow-hidden aspect-[16/10] bg-[#070a13]">
+                  <img
+                    src={selectedImage.url}
+                    alt={selectedImage.caption}
+                    className="w-full h-full object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="p-4 text-center font-mono text-xs text-white/70">
+                  {selectedImage.caption}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>
