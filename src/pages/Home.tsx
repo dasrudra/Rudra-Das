@@ -170,7 +170,7 @@ const Home = () => {
               Rudra <br /> <span className="text-accent-primary">Das</span>
             </h1>
             <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Engineering AI & Enterprise Systems at Scale
+              Software Engineer | AI & ML | SAP & Odoo ERP
             </h2>
             
             <p className="text-lg md:text-xl text-white/70 mb-10 font-medium max-w-xl leading-relaxed">
