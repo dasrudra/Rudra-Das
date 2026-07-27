@@ -103,6 +103,77 @@ const TiltContainer: React.FC<TiltContainerProps> = ({
   );
 };
 
+// Helper component for rendering skill/technology badges with official brand logos or fallback icons
+const getSkillIconDetails = (skill: string) => {
+  const s = skill.toLowerCase();
+  
+  if (s.includes('python')) return { logo: 'https://cdn.simpleicons.org/python/3776AB' };
+  if (s.includes('react')) return { logo: 'https://cdn.simpleicons.org/react/61DAFB' };
+  if (s.includes('typescript')) return { logo: 'https://cdn.simpleicons.org/typescript/3178C6' };
+  if (s.includes('sap')) return { logo: 'https://cdn.simpleicons.org/sap/008FD3' };
+  if (s.includes('odoo')) return { logo: 'https://cdn.simpleicons.org/odoo/714B67' };
+  if (s.includes('tailwind')) return { logo: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' };
+  if (s.includes('fastapi')) return { logo: 'https://cdn.simpleicons.org/fastapi/009688' };
+  if (s.includes('flask')) return { logo: 'https://cdn.simpleicons.org/flask/FFFFFF' };
+  if (s.includes('tensorflow')) return { logo: 'https://cdn.simpleicons.org/tensorflow/FF6F00' };
+  if (s.includes('pytorch') || s.includes('deep learning')) return { logo: 'https://cdn.simpleicons.org/pytorch/EE4C2C' };
+  if (s.includes('pandas') || s.includes('numpy')) return { logo: 'https://cdn.simpleicons.org/pandas/150458' };
+  if (s.includes('pytest')) return { logo: 'https://cdn.simpleicons.org/pytest/0A9EDC' };
+  if (s.includes('git')) return { logo: 'https://cdn.simpleicons.org/github/FFFFFF' };
+  if (s.includes('n8n')) return { logo: 'https://cdn.simpleicons.org/n8n/FF6584' };
+  if (s.includes('langchain')) return { logo: 'https://cdn.simpleicons.org/langchain/1C3C3C' };
+  if (s.includes('chrome')) return { logo: 'https://cdn.simpleicons.org/googlechrome/4285F4' };
+  if (s.includes('sql') || s.includes('relational') || s.includes('schema')) return { logo: 'https://cdn.simpleicons.org/postgresql/4169E1' };
+  if (s.includes('nlp') || s.includes('llm') || s.includes('openai')) return { logo: 'https://cdn.simpleicons.org/openai/FFFFFF' };
+  if (s.includes('dataset') || s.includes('benchmark')) return { logo: 'https://cdn.simpleicons.org/huggingface/FFD21E' };
+  if (s.includes('machine learning') || s.includes('predictive')) return { logo: 'https://cdn.simpleicons.org/scikitlearn/F7931E' };
+  if (s.includes('rest api') || s.includes('api')) return { logo: 'https://cdn.simpleicons.org/postman/FF6C37' };
+  if (s.includes('agentic') || s.includes('agent')) return { fallbackIcon: Brain };
+  if (s.includes('mcp') || s.includes('model context')) return { fallbackIcon: Cpu };
+  if (s.includes('automation') || s.includes('workflow')) return { fallbackIcon: Sparkles };
+  if (s.includes('etl') || s.includes('pipeline')) return { fallbackIcon: Layers };
+  if (s.includes('scraping')) return { fallbackIcon: Globe };
+  if (s.includes('error analysis')) return { fallbackIcon: Terminal };
+  if (s.includes('integration')) return { fallbackIcon: Building2 };
+  
+  return { fallbackIcon: Sparkles };
+};
+
+const SkillLogoBadge: React.FC<{ skill: string; size?: 'xs' | 'sm' | 'md' }> = ({ skill, size = 'sm' }) => {
+  const details = getSkillIconDetails(skill);
+  const [imgError, setImgError] = useState(false);
+  const FallbackIcon = details.fallbackIcon || Sparkles;
+
+  const sizeClasses = {
+    xs: 'px-2 py-0.5 text-[9px] gap-1',
+    sm: 'px-2.5 py-1 text-[10px] gap-1.5',
+    md: 'px-3 py-1.5 text-xs gap-2'
+  }[size];
+
+  const imgSize = {
+    xs: 'w-3 h-3',
+    sm: 'w-3.5 h-3.5',
+    md: 'w-4 h-4'
+  }[size];
+
+  return (
+    <span className={`inline-flex items-center rounded-lg bg-white/5 border border-white/10 ${sizeClasses} text-white/90 hover:border-accent-primary/50 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-default group shadow-sm`}>
+      {details.logo && !imgError ? (
+        <img 
+          src={details.logo} 
+          alt={skill} 
+          className={`${imgSize} object-contain shrink-0 filter brightness-110 group-hover:scale-110 transition-transform`} 
+          onError={() => setImgError(true)}
+          loading="lazy"
+        />
+      ) : (
+        <FallbackIcon className={`${imgSize} text-accent-primary shrink-0 group-hover:scale-110 transition-transform`} />
+      )}
+      <span className="font-medium tracking-tight whitespace-nowrap">{skill}</span>
+    </span>
+  );
+};
+
 const Home = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const containerRef = useRef(null);
@@ -627,9 +698,7 @@ const Home = () => {
                   </div>
                   <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-white/5">
                     {cap.highlights.map(tag => (
-                      <span key={tag} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-medium text-muted-slate">
-                        {tag}
-                      </span>
+                      <SkillLogoBadge key={tag} skill={tag} size="xs" />
                     ))}
                   </div>
                 </TiltContainer>
@@ -668,7 +737,7 @@ const Home = () => {
                   skills: ["Deep Learning", "TensorFlow", "Pandas & NumPy", "Pytest", "Web Scraping", "n8n", "LangChain", "Chrome Extension APIs"]
                 },
                 {
-                  level: "Currently Exploring",
+                  level: "Emerging Tech & Automation",
                   desc: "Cutting-edge paradigms, cognitive agents, and automation frameworks actively researched.",
                   color: "rgba(168, 85, 247, 0.15)",
                   skills: ["Agentic AI", "Multi-Agent Systems", "Model Context Protocol (MCP)", "AI Automation", "SAP Joule", "SAP BTP Generative AI"]
@@ -696,96 +765,13 @@ const Home = () => {
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-white/5">
                       {level.skills.map(skill => (
-                        <span key={skill} className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-white/80 hover:border-accent-primary/30 hover:text-white transition-all cursor-default">
-                          {skill}
-                        </span>
+                        <SkillLogoBadge key={skill} skill={skill} size="sm" />
                       ))}
                     </div>
                   </TiltContainer>
                 </motion.div>
               ))}
             </div>
-          </div>
-
-          {/* Section 3: Dual Column - Currently Exploring & Professional Development */}
-          <div className="grid md:grid-cols-2 gap-8 pt-4">
-            {/* Column 1: Currently Exploring Highlight */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TiltContainer
-                maxTilt={4}
-                glowColor="rgba(168, 85, 247, 0.15)"
-                glareIntensity={0.1}
-                className="glass-card p-8 rounded-[28px] overflow-hidden h-full space-y-6"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
-                    <Cpu size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">Currently Exploring</h3>
-                    <p className="text-xs text-muted-slate">Next-generation cognitive & automation technology stack</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    { tech: "Agentic AI & Multi-Agent Systems", desc: "Orchestrating autonomous networks of specialized, goal-oriented LLM agents to resolve multi-step reasoning workflows." },
-                    { tech: "Model Context Protocol (MCP)", desc: "Integrating secure API specifications and schema layers to safely connect models with real-world server context." },
-                    { tech: "SAP Joule & AI Automation", desc: "Pioneering context-aware enterprise digital assistants that translate business process execution into intelligent system actions." }
-                  ].map((item, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/20 transition-all group">
-                      <h4 className="text-xs font-bold text-purple-300 group-hover:text-purple-200 transition-colors">{item.tech}</h4>
-                      <p className="text-[11px] text-muted-slate mt-1 leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </TiltContainer>
-            </motion.div>
-
-            {/* Column 2: Professional Development */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TiltContainer
-                maxTilt={4}
-                glowColor="rgba(16, 185, 129, 0.15)"
-                glareIntensity={0.1}
-                className="glass-card p-8 rounded-[28px] overflow-hidden h-full space-y-6"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent-primary/10 text-accent-primary flex items-center justify-center">
-                    <Award size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">Professional Development</h3>
-                    <p className="text-xs text-muted-slate">Continuous educational programs & target specializations</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    { organization: "SAP Learning", subject: "ABAP Cloud, SAP BTP Extension Suites & SAP PP Optimization" },
-                    { organization: "DeepLearning.AI", subject: "AI Agentic Workflows, LLM Operations (LLMOps) & Fine-Tuning" },
-                    { organization: "Coursera & Kaggle", subject: "Advanced Machine Learning Algorithms & High-Performance Data pipelines" },
-                    { organization: "Google & Microsoft", subject: "Cloud Engineering, DevOps Architectures & Cognitive Services API" }
-                  ].map((item, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-accent-primary/20 transition-all group flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent-primary mt-1.5 shrink-0" />
-                      <div>
-                        <h4 className="text-xs font-bold text-white group-hover:text-accent-primary transition-colors">{item.organization}</h4>
-                        <p className="text-[11px] text-muted-slate mt-0.5 leading-relaxed">{item.subject}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </TiltContainer>
-            </motion.div>
           </div>
         </div>
       </section>
