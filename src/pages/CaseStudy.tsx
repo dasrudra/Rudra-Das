@@ -23,6 +23,7 @@ import {
   Minimize2,
   ExternalLink,
   ChevronDown,
+  Check,
   Sparkles,
   Info,
   Server,
@@ -46,9 +47,10 @@ export default function CaseStudyPage() {
   // Resolve specific case study data
   const studyData = caseStudiesData[project.title] || caseStudiesData['Generic'];
 
-  // New Video & Lightbox states
+  // New Video, Lightbox & Dropdown states
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{ url: string; caption: string } | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const hasVideo = [
     'NN Fund Management',
@@ -425,19 +427,58 @@ export default function CaseStudyPage() {
             <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest hidden md:inline">
               Template Demo Selector:
             </span>
-            <div className="relative w-full sm:w-64">
-              <select
-                value={safeIndex}
-                onChange={(e) => setSearchParams({ id: e.target.value })}
-                className="w-full bg-navy-900/60 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold font-mono text-white/90 focus:outline-none focus:border-white/20 cursor-pointer appearance-none"
+            <div className="relative w-full sm:w-72">
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full flex items-center justify-between bg-navy-900/90 border border-white/15 hover:border-white/25 rounded-xl px-4 py-2 text-xs font-bold font-mono text-white focus:outline-none focus:border-accent-primary/60 transition-all cursor-pointer shadow-sm"
               >
-                {projects.map((p, idx) => (
-                  <option key={idx} value={idx}>
-                    {idx + 1}. {p.title}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none" />
+                <span className="truncate">
+                  {safeIndex + 1}. {project.title}
+                </span>
+                <ChevronDown size={14} className={`text-white/60 transition-transform duration-200 shrink-0 ml-2 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <>
+                    {/* Backdrop overlay to close on outside click */}
+                    <div className="fixed inset-0 z-30" onClick={() => setIsDropdownOpen(false)} />
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-full mt-2 w-full sm:w-80 bg-navy-950/95 border border-white/15 rounded-xl shadow-2xl backdrop-blur-xl z-40 overflow-hidden py-1 max-h-64 overflow-y-auto"
+                    >
+                      {projects.map((p, idx) => {
+                        const isCurrent = idx === safeIndex;
+                        return (
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => {
+                              setSearchParams({ id: String(idx) });
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-xs font-mono transition-colors flex items-center justify-between cursor-pointer ${
+                              isCurrent
+                                ? 'bg-navy-900/90 text-white font-bold border-l-2 border-accent-primary'
+                                : 'text-white/70 hover:bg-navy-900/50 hover:text-white'
+                            }`}
+                          >
+                            <span className="truncate">
+                              {idx + 1}. {p.title}
+                            </span>
+                            {isCurrent && <Check size={12} className="text-accent-primary shrink-0 ml-2" />}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
