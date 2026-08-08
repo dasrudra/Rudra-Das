@@ -309,34 +309,32 @@ export const ProjectsStageCarousel: React.FC<ProjectsStageCarouselProps> = ({
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
         
         {/* Title Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="px-3.5 py-1 rounded-full bg-[#141D30] border border-[#2A3348] text-[10px] font-mono font-bold tracking-[0.2em] text-[#E0995A] uppercase mb-2 inline-block">
-              SYSTEMS ARCHITECTURE & REPOSITORIES
-            </span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-display font-bold tracking-tight text-[#EDEAE3] mb-2"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-2xl mx-auto mb-8"
+        >
+          <span className="px-3.5 py-1 rounded-full bg-[#141D30] border border-[#2A3348] text-[10px] font-mono font-bold tracking-[0.2em] text-[#E0995A] uppercase mb-2 inline-block">
+            SYSTEMS ARCHITECTURE & REPOSITORIES
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight text-[#EDEAE3] mb-2">
             {title}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-[#8B93A6] text-sm md:text-base leading-relaxed font-sans"
-          >
+          </h2>
+          <p className="text-[#8B93A6] text-sm md:text-base leading-relaxed font-sans">
             {subtitle}
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
 
         {/* Category Filter Pills - Monospace per typography spec */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-2 mb-8"
+        >
           {categories.map((category) => {
             const isSelected = selectedCategory === category;
             return (
@@ -360,7 +358,7 @@ export const ProjectsStageCarousel: React.FC<ProjectsStageCarouselProps> = ({
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Interactive 3D Stage Carousel */}
         <div 

@@ -32,6 +32,25 @@ const CARD_COLORS = [
   '#5FB3B3', '#E0995A', '#E0995A', '#5FB3B3', '#E0995A', '#5FB3B3'
 ];
 
+const staggerContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const staggerItemVariants = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function PortfolioPage() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -98,7 +117,13 @@ export default function PortfolioPage() {
         </div>
 
         {/* Title Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-3"
+        >
           <span className="px-3.5 py-1 rounded-full bg-[#141D30] border border-[#2A3348] text-xs font-mono font-bold tracking-[0.2em] text-[#E0995A] uppercase inline-block">
             FULL ENGINEERING CATALOGUE
           </span>
@@ -108,10 +133,16 @@ export default function PortfolioPage() {
           <p className="text-[#8B93A6] text-base md:text-lg leading-relaxed font-sans">
             A comprehensive gallery of machine learning benchmarks, enterprise modules, and software tools — browse all systems with detailed case study deep dives.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-2"
+        >
           {categories.map((category) => {
             const isSelected = selectedCategory === category;
             return (
@@ -135,13 +166,17 @@ export default function PortfolioPage() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Gallery Wall Grid */}
         <div className="perspective-[1400px] pt-4">
           <AnimatePresence mode="popLayout">
             <motion.div 
               layout
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainerVariants}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
             >
               {filteredProjects.map((project, index) => {
@@ -153,10 +188,7 @@ export default function PortfolioPage() {
                   <motion.div
                     key={project.title}
                     layout
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    variants={staggerItemVariants}
                     style={{
                       transformStyle: 'preserve-3d',
                     }}

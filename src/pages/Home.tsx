@@ -105,6 +105,25 @@ const TiltContainer: React.FC<TiltContainerProps> = ({
 
 // Helper component for skill badges is imported from ../components/SkillLogoBadge
 
+const staggerContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const staggerItemVariants = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 const Home = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const containerRef = useRef(null);
@@ -330,9 +349,10 @@ const Home = () => {
         <div className="section-padding max-w-7xl mx-auto space-y-16">
           
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6 max-w-5xl"
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141D30] border border-[#2A3348] text-[#E0995A] font-mono text-xs font-bold uppercase tracking-wider">
@@ -354,14 +374,21 @@ const Home = () => {
 
           {/* Grid of Capability Cards */}
           <div className="grid lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-7 space-y-4">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainerVariants}
+              className="lg:col-span-7 space-y-4"
+            >
               {[
                 { label: 'Enterprise Experience', val: 'ERP Customization & Automation', sub: 'Designing ABAP reports, customizing Odoo.sh workflows, and optimizing industrial business processes.', icon: <Building2 size={18} /> },
                 { label: 'AI & Research', val: 'Predictive Models & Intelligent Workflows', sub: 'Published researcher in data modeling, speech emotion classifiers, and Kaggle benchmark design.', icon: <Brain size={18} /> },
                 { label: 'Software Engineering', val: 'High-Performance Full-Stack Systems', sub: 'Architecting secure web apps and robust APIs using React, TypeScript, Python, and SQL databases.', icon: <Code2 size={18} /> },
               ].map((item, i) => (
-                <div
+                <motion.div
                   key={i}
+                  variants={staggerItemVariants}
                   className="glass-card p-5 flex items-start gap-4 rounded-xl border border-[#2A3348] bg-[#141D30]"
                 >
                   <div className="p-2.5 rounded-lg bg-[#0B1220] border border-[#2A3348] text-[#E0995A] shrink-0 mt-0.5">
@@ -372,21 +399,27 @@ const Home = () => {
                     <p className="text-base font-display font-bold text-[#EDEAE3] mb-1">{item.val}</p>
                     <p className="text-xs text-[#8B93A6] leading-relaxed font-sans">{item.sub}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
 
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-[#141D30] border border-[#2A3348] text-xs text-[#8B93A6]">
+              <motion.div variants={staggerItemVariants} className="flex items-center gap-4 p-4 rounded-xl bg-[#141D30] border border-[#2A3348] text-xs text-[#8B93A6]">
                 <GraduationCap size={18} className="text-[#E0995A] shrink-0" />
                 <div>
                   <p className="text-[10px] font-mono uppercase tracking-wider text-[#8B93A6]/80">Academic Foundation</p>
                   <p className="text-[#EDEAE3] font-medium font-sans">BSc in Computer Science and Engineering</p>
                   <p className="text-[11px] text-[#8B93A6] font-mono">East Delta University, Chattogram · CGPA 3.41 / 4.00</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Technical Profile Box */}
-            <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5"
+            >
               <div className="glass-card p-8 space-y-8 rounded-2xl border border-[#2A3348] bg-[#141D30]">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-xl bg-[#E0995A] flex items-center justify-center text-[#0B1220]">
@@ -421,7 +454,7 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -429,16 +462,28 @@ const Home = () => {
       {/* Expertise Section */}
       <section id="services" className="py-16 bg-[#0B1220]">
         <div className="section-padding max-w-7xl mx-auto space-y-12">
-          <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center"
+          >
             <span className="text-[#E0995A] font-mono text-xs font-bold uppercase tracking-[0.3em] mb-2 block">
               Capabilities
             </span>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-[#EDEAE3]">
               Professional Capability & Technical Spectrum
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainerVariants}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {[
               {
                 title: "Artificial Intelligence",
@@ -470,8 +515,9 @@ const Home = () => {
                 highlights: ["Relational Schemas", "ETL Pipelines", "Data Modeling & Viz", "Benchmark Design"]
               }
             ].map((cap, i) => (
-              <div
+              <motion.div
                 key={i}
+                variants={staggerItemVariants}
                 className={`glass-card p-6 flex flex-col justify-between h-full rounded-2xl border ${cap.isAI ? 'border-[#5FB3B3]/40 bg-[#141D30]' : 'border-[#2A3348] bg-[#141D30]'}`}
               >
                 <div className="space-y-3">
@@ -486,20 +532,32 @@ const Home = () => {
                     <SkillLogoBadge key={tag} skill={tag} size="xs" />
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Proficiency Categories */}
           <div className="pt-8">
-            <div className="text-left mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-left mb-6"
+            >
               <h3 className="text-xl font-display font-bold text-[#EDEAE3] flex items-center gap-2">
                 <Sparkles size={16} className="text-[#E0995A]" />
                 Engineering Proficiency & Toolsets
               </h3>
-            </div>
+            </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainerVariants}
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {[
                 {
                   level: "Core Expertise",
@@ -522,8 +580,9 @@ const Home = () => {
                   skills: ["Agentic AI", "Multi-Agent Systems", "Model Context Protocol (MCP)", "AI Automation", "SAP Joule", "SAP BTP Generative AI"]
                 }
               ].map((level, i) => (
-                <div
+                <motion.div
                   key={i}
+                  variants={staggerItemVariants}
                   className="glass-card p-6 flex flex-col h-full rounded-2xl border border-[#2A3348] bg-[#141D30]"
                 >
                   <div className="mb-4">
@@ -538,9 +597,9 @@ const Home = () => {
                       <SkillLogoBadge key={skill} skill={skill} size="sm" />
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -590,7 +649,13 @@ const Home = () => {
             
             {/* Left Column: Research & Case Studies */}
             <div className="lg:col-span-5 space-y-10">
-              <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-4"
+              >
                 <span className="text-[#E0995A] font-mono text-xs font-bold uppercase tracking-[0.3em] block">
                   Career Path
                 </span>
@@ -600,16 +665,22 @@ const Home = () => {
                 <p className="text-[#8B93A6] text-sm leading-relaxed max-w-md font-sans">
                   My engineering journey is defined by bridging complex enterprise resource systems with cutting-edge artificial intelligence, solving hard bottlenecks and delivering measurable business impact.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 text-[#EDEAE3] font-display font-bold text-lg">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainerVariants}
+                className="space-y-6"
+              >
+                <motion.div variants={staggerItemVariants} className="flex items-center gap-3 text-[#EDEAE3] font-display font-bold text-lg">
                   <BookOpen className="text-[#E0995A]" size={20} />
                   <h3>Academic & Lab Highlights</h3>
-                </div>
+                </motion.div>
 
                 {/* Research Highlight Card - Muted Teal AI Accent */}
-                <div className="glass-card p-6 border-l-4 border-l-[#5FB3B3] rounded-r-xl border-t border-r border-b border-[#2A3348] bg-[#141D30] space-y-3">
+                <motion.div variants={staggerItemVariants} className="glass-card p-6 border-l-4 border-l-[#5FB3B3] rounded-r-xl border-t border-r border-b border-[#2A3348] bg-[#141D30] space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="px-2 py-0.5 rounded bg-[#5FB3B3]/10 border border-[#5FB3B3]/30 text-[#5FB3B3] text-[10px] font-mono font-bold">
                       Published 2024
@@ -637,10 +708,10 @@ const Home = () => {
                   >
                     View Publication <ExternalLink size={13} />
                   </a>
-                </div>
+                </motion.div>
 
                 {/* Hackathon Case Study Card - Muted Teal AI Accent */}
-                <div className="glass-card p-6 border-l-4 border-l-[#5FB3B3] rounded-r-xl border-t border-r border-b border-[#2A3348] bg-[#141D30] space-y-3">
+                <motion.div variants={staggerItemVariants} className="glass-card p-6 border-l-4 border-l-[#5FB3B3] rounded-r-xl border-t border-r border-b border-[#2A3348] bg-[#141D30] space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="px-2 py-0.5 rounded bg-[#5FB3B3]/10 border border-[#5FB3B3]/30 text-[#5FB3B3] text-[10px] font-mono font-bold">
                       Kaggle Hackathon 2026
@@ -675,15 +746,21 @@ const Home = () => {
                   >
                     View Repository <ExternalLink size={13} />
                   </a>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
 
             {/* Right Column: Timeline */}
             <div className="lg:col-span-7 relative">
               <div className="absolute left-0 lg:left-6 top-4 bottom-4 w-[1px] bg-[#2A3348]" />
 
-              <div className="space-y-8 lg:pl-16">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainerVariants}
+                className="space-y-8 lg:pl-16"
+              >
                 {[
                   {
                     title: "Assistant Engineer – Functional Applications (EAS)",
@@ -722,7 +799,7 @@ const Home = () => {
                     technologies: ["SAP", "IT Infrastructure", "MIS Reporting"]
                   }
                 ].map((job, i) => (
-                  <div key={i} className="relative">
+                  <motion.div key={i} variants={staggerItemVariants} className="relative">
                     {/* Hairline dot */}
                     <div className="absolute -left-[71px] top-7 w-3 h-3 rounded-full bg-[#0B1220] border-2 border-[#E0995A] z-10 hidden lg:block" />
                     
@@ -765,9 +842,9 @@ const Home = () => {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -778,8 +855,14 @@ const Home = () => {
         <div className="section-padding max-w-7xl mx-auto">
           <div className="glass-card p-8 md:p-14 relative overflow-hidden rounded-3xl border border-[#2A3348] bg-[#141D30]">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="space-y-8">
-                <div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainerVariants}
+                className="space-y-8"
+              >
+                <motion.div variants={staggerItemVariants}>
                   <span className="text-[#E0995A] font-mono text-xs font-bold uppercase tracking-wider mb-2 block">
                     Get In Touch
                   </span>
@@ -787,7 +870,7 @@ const Home = () => {
                   <p className="text-[#8B93A6] text-sm leading-relaxed font-sans">
                     Interested in collaborating or discussing enterprise automation, machine learning projects, or custom ERP development? Reach out directly below.
                   </p>
-                </div>
+                </motion.div>
 
                 <div className="space-y-4">
                   {[
@@ -798,7 +881,7 @@ const Home = () => {
                     { icon: <Github size={18} />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
                     { icon: <Database size={18} />, label: 'Kaggle', val: 'kaggle.com/rudradas2000', href: 'https://www.kaggle.com/rudradas2000' },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-4">
+                    <motion.div key={i} variants={staggerItemVariants} className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-xl bg-[#0B1220] border border-[#2A3348] flex items-center justify-center text-[#E0995A] shrink-0">
                         {item.icon}
                       </div>
@@ -817,13 +900,20 @@ const Home = () => {
                           <p className="text-sm font-bold text-[#EDEAE3]">{item.val}</p>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Contact Form */}
-              <form onSubmit={handleFormSubmit} className="space-y-4">
+              <motion.form
+                initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                onSubmit={handleFormSubmit}
+                className="space-y-4"
+              >
                 <input type="text" name="_gotcha" style={{ display: 'none' }} />
                 <div className="grid md:grid-cols-2 gap-4">
                   <input 
@@ -888,7 +978,7 @@ const Home = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </form>
+              </motion.form>
             </div>
           </div>
         </div>
