@@ -20,6 +20,7 @@ export interface Project {
   github?: string;
   image: string;
   domain?: string;
+  categories?: string[];
   status?: string;
   featured?: boolean;
   liveLink?: string;

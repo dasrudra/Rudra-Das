@@ -51,6 +51,7 @@ export const projects: Project[] = [
     image: distractCheckCover,
     link: 'https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l',
     domain: 'AI Research',
+    categories: ['AI', 'Research'],
     status: 'Hackathon Submission',
     featured: true,
     liveLink: 'https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l',
@@ -63,6 +64,7 @@ export const projects: Project[] = [
     image: smartDetectionCover,
     link: 'https://github.com/dasrudra/Smart-Detection-Ai',
     domain: 'Computer Vision',
+    categories: ['AI', 'Automation'],
     status: 'Personal Project',
     featured: true,
     liveLink: 'https://github.com/dasrudra/Smart-Detection-Ai',
@@ -75,6 +77,7 @@ export const projects: Project[] = [
     image: nnFundCover,
     link: 'https://github.com/dasrudra/NN-Fund-Management',
     domain: 'ERP Systems',
+    categories: ['ERP', 'Automation', 'Full Stack'],
     status: 'Technical Assessment',
     featured: true,
     liveLink: 'https://github.com/dasrudra/NN-Fund-Management',
@@ -87,6 +90,7 @@ export const projects: Project[] = [
     image: accountingLedgerCover,
     link: 'https://github.com/dasrudra/Ledger-Software-frontend',
     domain: 'Fintech',
+    categories: ['ERP', 'Full Stack'],
     status: 'Frontend Complete · Backend Planned',
     featured: false,
     liveLink: 'https://github.com/dasrudra/Ledger-Software-frontend',
@@ -99,6 +103,7 @@ export const projects: Project[] = [
     image: metaAdsCover,
     link: 'https://github.com/dasrudra/meta-ads-library-scraper',
     domain: 'Automation',
+    categories: ['Automation', 'Productivity'],
     status: 'Personal Project',
     featured: false,
     liveLink: 'https://github.com/dasrudra/meta-ads-library-scraper',
@@ -111,6 +116,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80',
     link: 'https://github.com/dasrudra/Speech-Emotion-Recognition',
     domain: 'Audio AI',
+    categories: ['AI', 'Research'],
     status: 'Personal Project',
     featured: false,
     liveLink: 'https://github.com/dasrudra/Speech-Emotion-Recognition',
@@ -123,6 +129,7 @@ export const projects: Project[] = [
     image: focusDeckCover,
     link: 'https://github.com/dasrudra/FocusDeck---Chrome-Extension',
     domain: 'Productivity',
+    categories: ['Productivity', 'Full Stack'],
     status: 'In Development',
     featured: false,
     liveLink: 'https://github.com/dasrudra/FocusDeck---Chrome-Extension',
@@ -135,6 +142,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
     link: 'https://github.com/dasrudra/Hotel-Management-System',
     domain: 'Web Application',
+    categories: ['ERP', 'Full Stack'],
     status: 'Personal Project',
     featured: false,
     liveLink: 'https://github.com/dasrudra/Hotel-Management-System',
@@ -147,6 +155,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80',
     link: 'https://github.com/dasrudra/IMDB/blob/main/imdb.ipynb',
     domain: 'NLP',
+    categories: ['AI', 'Research'],
     status: 'Personal Project',
     featured: false,
     liveLink: 'https://github.com/dasrudra/IMDB/blob/main/imdb.ipynb',
@@ -159,6 +168,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
     link: 'https://github.com/dasrudra/Udemy-Projects',
     domain: 'Frontend',
+    categories: ['Full Stack'],
     status: 'Coursework / Practice',
     featured: false,
     liveLink: 'https://github.com/dasrudra/Udemy-Projects',
@@ -171,12 +181,102 @@ export const projects: Project[] = [
     image: appleQualityCover,
     link: 'https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw',
     domain: 'Data Science',
+    categories: ['AI', 'Research'],
     status: 'Academic Research',
     featured: false,
     liveLink: 'https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw',
     caseStudyLink: 'https://ieeexplore.ieee.org/document/10534426?fbclid=IwZXh0bgNhZW0CMTAAAR1lt3eMmyzSVR3y0ghub0XjKbsXFH1wRFXiGlf3FSmI9NujTAS6lmYp3is_aem_ZmFrZWR1bW15MTZieXRlcw'
   },
 ];
+
+export function matchesCategory(project: Project, category: string): boolean {
+  if (!category || category.toLowerCase() === 'all') return true;
+
+  const selectedNorm = category.trim().toLowerCase().replace(/\s+/g, '');
+
+  if (project.categories && Array.isArray(project.categories)) {
+    if (project.categories.some(c => c.trim().toLowerCase().replace(/\s+/g, '') === selectedNorm)) {
+      return true;
+    }
+  }
+
+  const domainLower = (project.domain || '').toLowerCase();
+  const titleLower = (project.title || '').toLowerCase();
+  const descLower = (project.description || '').toLowerCase();
+  const statusLower = (project.status || '').toLowerCase();
+  const techLower = (project.tech || []).map(t => t.toLowerCase());
+
+  if (selectedNorm === 'ai') {
+    return (
+      domainLower.includes('ai') ||
+      domainLower.includes('vision') ||
+      domainLower.includes('nlp') ||
+      titleLower.includes('ai') ||
+      descLower.includes('llm') ||
+      descLower.includes('machine learning') ||
+      techLower.some(t => t.includes('ai') || t.includes('nlp') || t.includes('llm') || t.includes('yolo') || t.includes('opencv') || t.includes('machine learning'))
+    );
+  }
+
+  if (selectedNorm === 'erp') {
+    return (
+      domainLower.includes('erp') ||
+      titleLower.includes('erp') ||
+      titleLower.includes('odoo') ||
+      titleLower.includes('hotel') ||
+      titleLower.includes('ledger') ||
+      descLower.includes('erp') ||
+      techLower.some(t => t.includes('erp') || t.includes('odoo') || t.includes('abap') || t.includes('sap'))
+    );
+  }
+
+  if (selectedNorm === 'fullstack') {
+    return (
+      domainLower.includes('fintech') ||
+      domainLower.includes('web') ||
+      domainLower.includes('frontend') ||
+      domainLower.includes('full stack') ||
+      titleLower.includes('ledger') ||
+      titleLower.includes('udemy') ||
+      titleLower.includes('hotel') ||
+      techLower.some(t => t.includes('react') || t.includes('flask') || t.includes('fastapi') || t.includes('html5'))
+    );
+  }
+
+  if (selectedNorm === 'research') {
+    return (
+      domainLower.includes('research') ||
+      domainLower.includes('science') ||
+      statusLower.includes('research') ||
+      titleLower.includes('distract') ||
+      titleLower.includes('apple') ||
+      descLower.includes('benchmark') ||
+      descLower.includes('kaggle')
+    );
+  }
+
+  if (selectedNorm === 'productivity') {
+    return (
+      domainLower.includes('productivity') ||
+      titleLower.includes('focus') ||
+      titleLower.includes('extension') ||
+      titleLower.includes('scraper') ||
+      descLower.includes('chrome')
+    );
+  }
+
+  if (selectedNorm === 'automation') {
+    return (
+      domainLower.includes('automation') ||
+      titleLower.includes('scraper') ||
+      titleLower.includes('detection') ||
+      descLower.includes('scrape') ||
+      descLower.includes('automation')
+    );
+  }
+
+  return false;
+}
 
 export const skills: Skill[] = [
   { name: 'Python', level: 95, category: 'Programming' },

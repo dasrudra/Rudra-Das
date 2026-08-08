@@ -8,7 +8,7 @@ import {
   ArrowUpRight, 
   Layers
 } from 'lucide-react';
-import { projects } from '../constants';
+import { projects, matchesCategory } from '../constants';
 import { ProjectVisualMockup } from '../components/ProjectVisualMockup';
 import { SkillLogoBadge } from '../components/SkillLogoBadge';
 
@@ -63,34 +63,7 @@ export default function PortfolioPage() {
     }
   };
 
-  const filteredProjects = projects.filter(project => {
-    if (selectedCategory === 'All') return true;
-    
-    const domainLower = (project.domain || '').toLowerCase();
-    const titleLower = project.title.toLowerCase();
-    const descLower = project.description.toLowerCase();
-    
-    if (selectedCategory === 'AI') {
-      return domainLower.includes('ai') || domainLower.includes('vision') || descLower.includes('llm') || descLower.includes('machine learning');
-    }
-    if (selectedCategory === 'ERP') {
-      return domainLower.includes('erp') || titleLower.includes('odoo') || titleLower.includes('hotel') || descLower.includes('erp');
-    }
-    if (selectedCategory === 'Full Stack') {
-      return domainLower.includes('fintech') || domainLower.includes('web') || titleLower.includes('ledger') || titleLower.includes('udemy');
-    }
-    if (selectedCategory === 'Research') {
-      return domainLower.includes('research') || domainLower.includes('science') || titleLower.includes('prediction') || titleLower.includes('distract');
-    }
-    if (selectedCategory === 'Productivity') {
-      return domainLower.includes('productivity') || titleLower.includes('focusdeck') || titleLower.includes('extension');
-    }
-    if (selectedCategory === 'Automation') {
-      return domainLower.includes('automation') || titleLower.includes('scraper') || descLower.includes('scrape');
-    }
-    
-    return false;
-  });
+  const filteredProjects = projects.filter(project => matchesCategory(project, selectedCategory));
 
   return (
     <div className="min-h-screen pt-28 pb-24 relative overflow-hidden bg-[#0B1220] text-[#EDEAE3]">
@@ -172,10 +145,10 @@ export default function PortfolioPage() {
         <div className="perspective-[1400px] pt-4">
           <AnimatePresence mode="popLayout">
             <motion.div 
+              key={selectedCategory}
               layout
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
+              animate="visible"
               variants={staggerContainerVariants}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
             >

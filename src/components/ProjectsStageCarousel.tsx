@@ -11,7 +11,7 @@ import {
   Layers,
   ArrowUpRight
 } from 'lucide-react';
-import { projects } from '../constants';
+import { projects, matchesCategory } from '../constants';
 import { ProjectVisualMockup } from './ProjectVisualMockup';
 import { SkillLogoBadge } from './SkillLogoBadge';
 
@@ -144,34 +144,7 @@ export const ProjectsStageCarousel: React.FC<ProjectsStageCarouselProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const filteredProjects = projects.filter(project => {
-    if (selectedCategory === 'All') return true;
-    
-    const domainLower = (project.domain || '').toLowerCase();
-    const titleLower = project.title.toLowerCase();
-    const descLower = project.description.toLowerCase();
-    
-    if (selectedCategory === 'AI') {
-      return domainLower.includes('ai') || domainLower.includes('vision') || descLower.includes('llm') || descLower.includes('machine learning');
-    }
-    if (selectedCategory === 'ERP') {
-      return domainLower.includes('erp') || titleLower.includes('odoo') || titleLower.includes('hotel') || descLower.includes('erp');
-    }
-    if (selectedCategory === 'Full Stack') {
-      return domainLower.includes('fintech') || domainLower.includes('web') || titleLower.includes('ledger') || titleLower.includes('udemy');
-    }
-    if (selectedCategory === 'Research') {
-      return domainLower.includes('research') || domainLower.includes('science') || titleLower.includes('prediction') || titleLower.includes('distract');
-    }
-    if (selectedCategory === 'Productivity') {
-      return domainLower.includes('productivity') || titleLower.includes('focusdeck') || titleLower.includes('extension');
-    }
-    if (selectedCategory === 'Automation') {
-      return domainLower.includes('automation') || titleLower.includes('scraper') || descLower.includes('scrape');
-    }
-    
-    return false;
-  });
+  const filteredProjects = projects.filter(project => matchesCategory(project, selectedCategory));
 
   useEffect(() => {
     setActiveIndex(0);
