@@ -17,8 +17,11 @@ export interface Project {
   description: string;
   tech: string[];
   link?: string;
+  github?: string;
   image: string;
   domain?: string;
+  status?: string;
+  featured?: boolean;
   liveLink?: string;
   caseStudyLink?: string;
 }

@@ -18,37 +18,35 @@ const Navbar = () => {
   const isHome = location.pathname === '/';
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-navy-950/60 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#0B1220]/80 backdrop-blur-xl border-b border-[#2A3348] py-4' : 'bg-transparent py-8'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link 
           to="/" 
-          className="text-2xl font-bold tracking-tighter font-display"
+          className="text-2xl font-bold tracking-tight font-display text-[#EDEAE3]"
         >
           <motion.span
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            RUDRA<span className="text-accent-primary">DAS</span>
+            RUDRA<span className="text-[#E0995A]"> DAS</span>
           </motion.span>
         </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-10">
-          {navLinks.map((link, i) => {
-            const isExternal = link.href.startsWith('http');
+        {/* Desktop Links - Monospace per typography spec */}
+        <div className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => {
             const isHash = link.href.includes('#');
             
             if (isHash && !isHome) {
-              // If we are not on home, hash links should point to /#hash
               const hash = link.href.split('#')[1];
               return (
                 <Link
                   key={link.name}
                   to={`/#${hash}`}
-                  className="text-xs font-bold uppercase tracking-widest text-muted-slate hover:text-white transition-colors relative group"
+                  className="font-mono text-xs font-semibold uppercase tracking-wider text-[#8B93A6] hover:text-[#EDEAE3] transition-colors relative group"
                 >
                   {link.name}
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent-primary transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E0995A] transition-all duration-300 group-hover:w-full" />
                 </Link>
               );
             }
@@ -57,26 +55,27 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-xs font-bold uppercase tracking-widest text-muted-slate hover:text-white transition-colors relative group"
+                className="font-mono text-xs font-semibold uppercase tracking-wider text-[#8B93A6] hover:text-[#EDEAE3] transition-colors relative group"
               >
                 {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E0995A] transition-all duration-300 group-hover:w-full" />
               </Link>
             );
           })}
-          <motion.button
+          <motion.a
+            href="/#contact"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-accent-primary hover:opacity-90 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all accent-glow"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-[#E0995A] hover:bg-[#d68c4d] text-[#0B1220] px-7 py-2.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all accent-glow"
           >
             Hire Me
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button className="md:hidden text-[#EDEAE3]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -88,7 +87,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden fixed inset-0 top-[72px] bg-navy-950 z-40 p-6"
+            className="md:hidden fixed inset-0 top-[72px] bg-[#0B1220] border-b border-[#2A3348] z-40 p-6"
           >
             <div className="flex flex-col space-y-6">
               {navLinks.map((link) => (
@@ -96,12 +95,18 @@ const Navbar = () => {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-bold font-display hover:text-accent-primary transition-colors"
+                  className="font-display text-2xl font-bold text-[#EDEAE3] hover:text-[#E0995A] transition-colors"
                 >
                   {link.name}
                 </Link>
               ))}
-              <button className="bg-accent-primary text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm">Hire Me</button>
+              <a 
+                href="/#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="bg-[#E0995A] text-[#0B1220] py-4 rounded-xl text-center font-mono font-bold uppercase tracking-wider text-sm"
+              >
+                Hire Me
+              </a>
             </div>
           </motion.div>
         )}

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import CV from './pages/CV';
 import CaseStudy from './pages/CaseStudy';
+import InteractiveBackground from './components/InteractiveBackground';
 import { navLinks } from './constants';
 
 function ScrollToTop() {
@@ -29,12 +30,8 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <div className="relative min-h-screen bg-navy-950 text-white selection:bg-accent-primary/30">
-        {/* Background Elements */}
-        <div className="fixed inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-primary/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-secondary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-        </div>
+        {/* Dynamic Interactive & High-Tech Background */}
+        <InteractiveBackground />
 
         <Navbar />
 
@@ -53,7 +50,7 @@ export default function App() {
                 RUDRA<span className="text-accent-primary">DAS</span>
               </a>
               <p className="text-muted-slate text-sm mt-4 max-w-xs">
-                Software Developer Specialist focusing on SAP, Odoo, and Enterprise Solutions.
+                Software Engineer | AI & ML | SAP & Odoo ERP
               </p>
             </div>
             

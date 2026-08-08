@@ -12,13 +12,6 @@ import {
   Database, 
   Download, 
   Printer,
-  Calendar,
-  Building2,
-  GraduationCap,
-  Award,
-  Code2,
-  Cpu,
-  Layout,
   ExternalLink
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -44,19 +37,16 @@ const CV = () => {
           letterRendering: true,
           logging: false,
           onclone: (clonedDoc: Document) => {
-            // Fix oklch issues by adding a style tag that overrides oklch colors with hex
-            // Tailwind 4 uses oklch for its default color palette which html2canvas 1.4.1 doesn't support
             const style = clonedDoc.createElement('style');
             style.innerHTML = `
               :root {
-                --color-accent-primary: #10B981 !important;
-                --color-accent-secondary: #3B82F6 !important;
-                --color-bg-dark: #020617 !important;
-                --color-navy-900: #0f172a !important;
-                --color-navy-950: #020617 !important;
-                --color-muted-slate: #94A3B8 !important;
+                --color-accent-primary: #E0995A !important;
+                --color-accent-secondary: #5FB3B3 !important;
+                --color-bg-dark: #0B1220 !important;
+                --color-navy-900: #141D30 !important;
+                --color-navy-950: #0B1220 !important;
+                --color-muted-slate: #8B93A6 !important;
                 
-                /* Common gray overrides for html2canvas compatibility */
                 --color-gray-50: #f9fafb !important;
                 --color-gray-100: #f3f4f6 !important;
                 --color-gray-200: #e5e7eb !important;
@@ -69,7 +59,6 @@ const CV = () => {
                 --color-gray-900: #111827 !important;
               }
               
-              /* Force fallback colors for common Tailwind 4 oklch patterns */
               [class*="text-gray-"], [class*="bg-gray-"], [class*="border-gray-"] {
                 color-scheme: light !important;
               }
@@ -88,8 +77,6 @@ const CV = () => {
             `;
             clonedDoc.head.appendChild(style);
 
-            // Nuclear option: Scan all style tags and replace oklch(...) with a safe fallback color
-            // html2canvas fails when it tries to parse these strings in CSS rules.
             clonedDoc.querySelectorAll('style').forEach(tag => {
               if (tag.innerHTML.includes('oklch')) {
                 tag.innerHTML = tag.innerHTML.replace(/oklch\([^)]*\)/g, '#6b7280');
@@ -100,18 +87,15 @@ const CV = () => {
         jsPDF: { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
       };
 
-      // Ensure html2pdf is a function (sometimes it's a default export on an object)
       const exporter = typeof html2pdf === 'function' ? html2pdf : (html2pdf as any).default;
       
       if (exporter) {
         await exporter().set(opt).from(element).save();
       } else {
-        // Fallback to print if library fails to load
         window.print();
       }
     } catch (error) {
       console.error('PDF Generation Error:', error);
-      // Fallback
       window.print();
     } finally {
       setIsDownloading(false);
@@ -123,18 +107,18 @@ const CV = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 pt-32 pb-20 px-6 sm:px-10 selection:bg-accent-primary/20">
+    <div className="min-h-screen bg-[#0B1220] text-[#EDEAE3] pt-28 pb-20 px-6 sm:px-10">
       {/* Top Bar for Web View Only */}
       <div className="max-w-4xl mx-auto mb-10 flex flex-wrap gap-4 justify-between items-center print:hidden">
-        <Link to="/" className="text-sm font-bold text-gray-500 hover:text-accent-primary transition-colors flex items-center gap-2">
+        <Link to="/" className="text-sm font-mono font-bold text-[#8B93A6] hover:text-[#E0995A] transition-colors flex items-center gap-2">
           ← Back to Portfolio
         </Link>
         <div className="flex gap-3">
           <button 
             onClick={handleDownload}
             disabled={isDownloading}
-            className={`flex items-center gap-2 px-6 py-3 bg-accent-primary text-white rounded-xl font-bold transition-all flex-1 sm:flex-none justify-center ${
-              isDownloading ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+            className={`flex items-center gap-2 px-6 py-3 bg-[#E0995A] hover:bg-[#d68c4d] text-[#0B1220] rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-all flex-1 sm:flex-none justify-center ${
+              isDownloading ? 'opacity-70 cursor-not-allowed' : 'shadow-[0_0_20px_rgba(224,153,90,0.3)]'
             }`}
           >
             {isDownloading ? (
@@ -142,21 +126,21 @@ const CV = () => {
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                  className="w-4 h-4 border-2 border-[#0B1220] border-t-transparent rounded-full"
                 />
                 Generating...
               </>
             ) : (
               <>
-                <Download size={18} /> Download as PDF
+                <Download size={16} /> Download as PDF
               </>
             )}
           </button>
           <button 
             onClick={handlePrint}
-            className="hidden sm:flex items-center gap-2 px-6 py-3 bg-navy-950 text-white rounded-xl font-bold hover:bg-navy-900 transition-all"
+            className="hidden sm:flex items-center gap-2 px-6 py-3 bg-[#141D30] border border-[#2A3348] text-[#EDEAE3] rounded-xl font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#1a263d] transition-all"
           >
-            <Printer size={18} /> Print
+            <Printer size={16} /> Print
           </button>
         </div>
       </div>
@@ -166,115 +150,111 @@ const CV = () => {
         ref={cvRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-[800px] mx-auto bg-white shadow-2xl rounded-sm p-8 md:p-12 border border-gray-100 print:shadow-none print:border-none print:p-0"
+        className="max-w-[800px] mx-auto bg-white text-gray-900 shadow-2xl rounded-xl p-8 md:p-12 border border-gray-200 print:shadow-none print:border-none print:p-0"
       >
         {/* Header */}
         <header className="border-b-2 border-gray-900 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start gap-8">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight mb-2">Rudra Das</h1>
-            <p className="text-lg font-medium text-gray-600 mb-4">BSc in Computer Science and Engineering</p>
-            <div className="space-y-1 text-sm text-gray-600">
-              <p className="flex items-center gap-2"><Building2 size={14} /> East Delta University, Chattogram</p>
-              <p className="flex items-center gap-2"><MapPin size={14} /> Address: Boxir-bit, Terribazar, Chattogram</p>
-              <p className="flex items-center gap-2"><Phone size={14} /> Phone: +880-1796726405</p>
-              <p className="flex items-center gap-2"><Mail size={14} /> Email: dasrudra738@gmail.com</p>
+            <h1 className="text-3xl font-display font-bold tracking-tight mb-2 text-gray-900">Rudra Das</h1>
+            <p className="text-base font-bold text-gray-800 mb-1">Software Engineer — AI/ML & Enterprise Systems</p>
+            <p className="text-sm font-medium text-gray-600 mb-4">BSc in Computer Science and Engineering, East Delta University</p>
+            <div className="space-y-1 text-sm text-gray-600 font-mono">
+              <p className="flex items-center gap-2"><MapPin size={14} /> Chattogram, Bangladesh</p>
+              <p className="flex items-center gap-2"><Phone size={14} /> +880-1796726405</p>
+              <p className="flex items-center gap-2"><Mail size={14} /> dasrudra738@gmail.com</p>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm font-bold">
-            <a href="https://linkedin.com/in/dasrudra" className="flex items-center gap-2 hover:text-accent-primary transition-colors"><Linkedin size={16} /> Linkedin</a>
-            <a href="https://github.com/dasrudra" className="flex items-center gap-2 hover:text-accent-primary transition-colors"><Github size={16} /> Github</a>
-            <a href="https://dasrudra.netlify.app" className="flex items-center gap-2 hover:text-accent-primary transition-colors"><Globe size={16} /> Portfolio</a>
-            <a href="https://kaggle.com/rudradas2000" className="flex items-center gap-2 hover:text-accent-primary transition-colors"><Database size={16} /> Kaggle</a>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs font-mono font-bold">
+            <a href="https://linkedin.com/in/rudra-das-548bb42b2" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-gray-800 hover:text-[#E0995A] transition-colors"><Linkedin size={14} /> LinkedIn</a>
+            <a href="https://github.com/dasrudra" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-gray-800 hover:text-[#E0995A] transition-colors"><Github size={14} /> GitHub</a>
+            <a href="https://dasrudra.netlify.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-gray-800 hover:text-[#E0995A] transition-colors"><Globe size={14} /> Portfolio</a>
+            <a href="https://kaggle.com/rudradas2000" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-gray-800 hover:text-[#E0995A] transition-colors"><Database size={14} /> Kaggle</a>
           </div>
         </header>
 
-        {/* Career Objective */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Career Objective</h2>
-          <p className="text-sm leading-relaxed text-gray-700">
-            Driven IT specialist, Software and ERP Developer dedicated to transforming business processes through technical innovation with a solid background in system administration, data analysis, and computer science. With hands-on experience, I am committed to using technical knowledge, analytical aptitude, and problem-solving abilities to enhance organizational effectiveness and support data-driven decision-making in fast-paced and innovative environments.
+        {/* Profile / Objective */}
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Profile</h2>
+          <p className="text-xs leading-relaxed text-gray-700 font-sans">
+            Software Engineer specializing in AI/ML, building production systems in Python across enterprise software and applied machine learning. Currently develops on Odoo’s Python backend and writes SAP ABAP reports and enhancements at a South Korean manufacturing multinational, while independently designing and shipping end-to-end computer-vision and NLP systems and AI evaluation benchmarks. Published IEEE researcher; submitted a benchmark to Google DeepMind’s Kaggle hackathon on measuring AI cognitive abilities.
           </p>
         </section>
 
         {/* Employment */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-6">Employment</h2>
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-4 text-gray-900">Employment</h2>
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Assistant Engineer – Functional Applications (EAS)</h3>
-                  <p className="text-sm italic text-gray-600">Tekvision (BD) Ltd., subsidiary of Youngone Holdings</p>
+                  <h3 className="text-sm font-bold text-gray-900">Assistant Engineer – Functional Applications (EAS)</h3>
+                  <p className="text-xs italic text-gray-600">Tekvision (BD) Ltd., subsidiary of Youngone Holdings — Chattogram, Bangladesh</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">December 2025 – Present</span>
+                <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">December 2025 – Present</span>
               </div>
-              <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Serving as an ERP Developer within the Enterprise Application Services (EAS) team, developing, enhancing, and maintaining SAP-based business applications supporting commercial and production operations.</li>
-                <li>Designing and optimizing custom ABAP reports and enhancements to improve workflow efficiency, data accuracy, and system performance.</li>
-                <li>Providing technical and functional support to SAP Production Planning (PP) users by diagnosing system issues, troubleshooting operational challenges, and supporting smooth execution of production and commercial processes.</li>
-                <li>Involved in ERP customization, system integration, and process automation initiatives, including core-team participation in Odoo ERP implementation for APDL, requirement analysis, configuration support, vendor coordination, and UAT.</li>
-                <li>Supporting ERP deployment pricing and implementation-service costing, including implementation, training, customization, and post-go-live support models.</li>
-                <li>Contributing to AI-based computer vision systems, web applications, and data analytics tools to support operational efficiency and enterprise innovation.</li>
+              <ul className="list-disc ml-4 space-y-1 text-xs text-gray-700 mt-2 font-sans">
+                <li>Build AI-driven automation, computer-vision, and data-analytics tooling in Python to support production and commercial operations.</li>
+                <li>Core-team member on the Odoo ERP implementation for APDL, developing on Odoo’s Python-based backend – requirement analysis, configuration, and UAT.</li>
+                <li>Building hands-on SAP ABAP proficiency on the job: writing and optimizing custom reports and enhancements.</li>
+                <li>Provide technical and functional support to SAP Production Planning (PP) users, diagnosing and resolving system issues across production workflows.</li>
+                <li>Contribute to ERP deployment pricing and implementation-service costing models covering implementation, training, and post-go-live support.</li>
               </ul>
             </div>
 
             <div>
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Web Developer (Volunteer) – Remote</h3>
-                  <p className="text-sm italic text-gray-600">FreeAppStore, New Zealand</p>
+                  <h3 className="text-sm font-bold text-gray-900">Web Developer (Volunteer)</h3>
+                  <p className="text-xs italic text-gray-600">FreeAppStore, New Zealand — Remote</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>
+                <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>
               </div>
-              <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Contributing to a free-forever web application ecosystem through frontend development and platform support.</li>
-                <li>Supporting responsive, accessible, and user-friendly web applications using React.js, TypeScript, Tailwind CSS, HTML, CSS, and JavaScript.</li>
-                <li>Collaborating with the volunteer/community team through platform workflow, documentation, and issue-based contribution processes.</li>
-                <li>Gaining practical experience in open-source product development, PWA-based applications, Git/GitHub workflow, and remote technical collaboration.</li>
+              <ul className="list-disc ml-4 space-y-1 text-xs text-gray-700 mt-2 font-sans">
+                <li>Build responsive, accessible features in React.js, TypeScript, and Tailwind CSS for a free, open-source web-app ecosystem.</li>
+                <li>Collaborate asynchronously with a distributed volunteer team through an issue-based Git/GitHub contribution workflow.</li>
               </ul>
             </div>
 
             <div>
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Officer – IT, MIS</h3>
-                  <p className="text-sm italic text-gray-600">Padma Plastics Ltd., a sister concern of Padma Group of Converters, Dhaka, Bangladesh</p>
+                  <h3 className="text-sm font-bold text-gray-900">Officer – IT, MIS</h3>
+                  <p className="text-xs italic text-gray-600">Padma Plastics Ltd., sister concern of Padma Group — Dhaka, Bangladesh</p>
                 </div>
-                <span className="text-sm font-medium text-gray-600 shrink-0 ml-4">May 2024 – November 2025</span>
+                <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">May 2024 – November 2025</span>
               </div>
-              <ul className="list-disc ml-4 space-y-1 text-sm text-gray-700 mt-3">
-                <li>Managed IT operations including SAP data-entry monitoring, data-accuracy checking, and timely reporting, ensuring smooth workflow and compliance with organizational standards.</li>
-                <li>Performed IT audits, system backup and recovery, hardware/software maintenance, OS installation, and troubleshooting to ensure uninterrupted IT infrastructure.</li>
-                <li>Maintained IT asset registers, hardware/software/network inventory, and warranty/replacement documentation.</li>
-                <li>Supported departmental KPI evaluation, 5S/TPM/ISO activities, and management reporting through accurate and timely documentation.</li>
+              <ul className="list-disc ml-4 space-y-1 text-xs text-gray-700 mt-2 font-sans">
+                <li>Monitored SAP data-entry accuracy and produced management reporting supporting organizational compliance standards.</li>
+                <li>Maintained IT infrastructure reliability – backups, recovery, maintenance, troubleshooting – and a full hardware/software/network asset register.</li>
+                <li>Supported 5S/TPM/ISO and departmental KPI initiatives through IT-side documentation and reporting.</li>
               </ul>
             </div>
           </div>
         </section>
 
         {/* Publications */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Publications</h2>
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-sm font-bold text-gray-900 italic">Unveiling Predictive Factors in Apple Quality</h3>
-            <span className="text-sm text-gray-600">March 2024</span>
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Publications</h2>
+          <div className="flex justify-between items-start mb-1">
+            <h3 className="text-xs font-bold text-gray-900 italic">Unveiling Predictive Factors in Apple Quality</h3>
+            <span className="text-xs font-mono text-gray-600">March 2024</span>
           </div>
-          <p className="text-xs text-gray-600 mb-2">Military Institute of Science and Technology (MIST), Dhaka-1216, Bangladesh</p>
-          <p className="text-xs text-gray-700">
+          <p className="text-xs text-gray-600 mb-1">Military Institute of Science and Technology (MIST), Dhaka, Bangladesh</p>
+          <p className="text-xs text-gray-700 font-sans">
             2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
           </p>
-          <a href="https://ieeexplore.ieee.org/document/10534426" className="text-[10px] text-accent-primary hover:underline flex items-center gap-1 mt-1">
+          <a href="https://ieeexplore.ieee.org/document/10534426" className="text-[10px] font-mono text-[#E0995A] hover:underline flex items-center gap-1 mt-1">
             <ExternalLink size={10} /> View on IEEE Xplore
           </a>
         </section>
 
         {/* Education */}
-        <section className="mb-10 break-before-page print:pt-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Education</h2>
-          <table className="w-full text-xs text-left border-collapse">
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Education</h2>
+          <table className="w-full text-xs text-left border-collapse font-sans">
             <thead>
-              <tr className="border-b border-gray-200 text-gray-600">
+              <tr className="border-b border-gray-200 text-gray-600 font-mono">
                 <th className="py-2 pr-4 font-bold">Degree/Certificate</th>
                 <th className="py-2 px-4 font-bold">Institute/Board</th>
                 <th className="py-2 px-4 font-bold">CGPA/Percentage</th>
@@ -283,241 +263,90 @@ const CV = () => {
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr className="border-b border-gray-50 uppercase">
-                <td className="py-3 pr-4 font-bold">Bachelor of Science</td>
-                <td className="py-3 px-4">East Delta University, Chattogram</td>
-                <td className="py-3 px-4 italic">3.41 / 4.00</td>
-                <td className="py-3 px-4 text-center">2024</td>
-                <td className="py-3 pl-4">Computer Science and Engineering</td>
+              <tr className="border-b border-gray-100 uppercase">
+                <td className="py-2 pr-4 font-bold">Bachelor of Science</td>
+                <td className="py-2 px-4">East Delta University, Chattogram</td>
+                <td className="py-2 px-4 italic font-mono">3.41 / 4.00</td>
+                <td className="py-2 px-4 text-center font-mono">2024</td>
+                <td className="py-2 pl-4">Computer Science and Engineering</td>
               </tr>
-              <tr className="border-b border-gray-50 uppercase">
-                <td className="py-3 pr-4 font-bold">HSC</td>
-                <td className="py-3 px-4">Govt. Haji Muhammad Mohsin College</td>
-                <td className="py-3 px-4 italic">4.25 / 5.00</td>
-                <td className="py-3 px-4 text-center">2019</td>
-                <td className="py-3 pl-4">Science</td>
+              <tr className="border-b border-gray-100 uppercase">
+                <td className="py-2 pr-4 font-bold">HSC</td>
+                <td className="py-2 px-4">Govt. Haji Muhammad Mohsin College</td>
+                <td className="py-2 px-4 italic font-mono">4.25 / 5.00</td>
+                <td className="py-2 px-4 text-center font-mono">2019</td>
+                <td className="py-2 pl-4">Science</td>
               </tr>
-              <tr className="border-b border-gray-200 last:border-b-0 uppercase">
-                <td className="py-3 pr-4 font-bold">SSC</td>
-                <td className="py-3 px-4">Chattogram Collegiate School</td>
-                <td className="py-3 px-4 italic">5.00 / 5.00</td>
-                <td className="py-3 px-4 text-center">2017</td>
-                <td className="py-3 pl-4">Science</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        {/* Training */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Training</h2>
-          <table className="w-full text-xs text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gray-200 text-gray-600">
-                <th className="py-2 pr-4 font-bold">Course</th>
-                <th className="py-2 px-4 font-bold">Course Description</th>
-                <th className="py-2 px-4 font-bold">Institute</th>
-                <th className="py-2 pl-4 font-bold text-right whitespace-nowrap">Year</th>
-              </tr>
-            </thead>
-            <tbody className="text-gray-700">
-              <tr className="border-b border-gray-50">
-                <td className="py-3 pr-4 font-bold uppercase">ABAP and S/4 HANA</td>
-                <td className="py-3 px-4 italic">ABAP fundamentals and core programming concepts</td>
-                <td className="py-3 px-4">Coursera</td>
-                <td className="py-3 pl-4 text-right whitespace-nowrap">February 2026</td>
-              </tr>
-              <tr className="border-b border-gray-50">
-                <td className="py-3 pr-4 font-bold uppercase">Python Web Course</td>
-                <td className="py-3 px-4 italic">Fundamentals of Python web development</td>
-                <td className="py-3 px-4">Ostad</td>
-                <td className="py-3 pl-4 text-right whitespace-nowrap">March 2024</td>
-              </tr>
-              <tr className="border-b border-gray-50">
-                <td className="py-3 pr-4 font-bold uppercase">Data Science Crash Course</td>
-                <td className="py-3 px-4 italic">Basic statistics and fundamentals of data science</td>
-                <td className="py-3 px-4">Ostad</td>
-                <td className="py-3 pl-4 text-right whitespace-nowrap">March 2024</td>
-              </tr>
-              <tr>
-                <td className="py-3 pr-4 font-bold uppercase">Database and MySQL</td>
-                <td className="py-3 px-4 italic">Database management system and advanced SQL</td>
-                <td className="py-3 px-4">Great Learning</td>
-                <td className="py-3 pl-4 text-right whitespace-nowrap">February 2024</td>
+              <tr className="border-b border-gray-200 uppercase">
+                <td className="py-2 pr-4 font-bold">SSC</td>
+                <td className="py-2 px-4">Chattogram Collegiate School</td>
+                <td className="py-2 px-4 italic font-mono">5.00 / 5.00</td>
+                <td className="py-2 px-4 text-center font-mono">2017</td>
+                <td className="py-2 pl-4">Science</td>
               </tr>
             </tbody>
           </table>
         </section>
 
         {/* Projects & Hackathon */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-6">Projects & Hackathon</h2>
-          <div className="space-y-6">
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-4 text-gray-900">Projects & Hackathon</h2>
+          <div className="space-y-4">
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Odoo ERP Fund Management System</h3>
+                <h3 className="text-xs font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
               </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/NN-Fund-Management</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a custom Odoo 19 ERP module for fund account management, incoming fund tracking, allocation workflow, requisition control, and bill processing.</li>
-                <li>Designed computed fund balances including total received, unassigned balance, held balance, and assigned balance to support controlled fund utilization.</li>
-                <li>Configured Odoo security groups, access-control rules, multi-company record rules, XML views, menu actions, sequences, chatter tracking, and Docker-based setup.</li>
+              <a href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                View Repository
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Kaggle x Google DeepMind Hackathon 2026 – Measuring Progress Toward AGI: Cognitive Abilities.</li>
+                <li>Designed and submitted an evaluation harness measuring selective context retrieval in LLMs.</li>
               </ul>
             </div>
 
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Accounts & Ledger Management System</h3>
+                <h3 className="text-xs font-bold text-gray-900 uppercase">Smart AI Detection System</h3>
               </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Ledger-Software-frontend</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Designed and developed a role-based accounting and ledger application for digitizing daily customer-ledger operations and financial reporting.</li>
-                <li>Implemented party management, deterministic balance calculation, daily ledger closing, balance carry-forward, adjustment entries, personal-balance tracking, and historical reports.</li>
-                <li>Structured the frontend using reusable TypeScript components, centralized financial utilities, persistent application state, and an API-ready architecture for future FastAPI, MySQL, and LangChain integration.</li>
-              </ul>
-            </div>
-            
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">FocusDeck – Chrome New Tab Productivity Dashboard</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/FocusDeck---Chrome-Extension</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a custom Chrome New Tab productivity dashboard using React.js, TypeScript, Tailwind CSS, and Chrome Extension APIs.</li>
-                <li>Integrated Chrome Bookmarks, History, and Downloads with categorized bookmark folders, global search, and persistent local data storage using Chrome Storage API with localStorage fallback.</li>
-              </ul>
-            </div>
-            
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Kaggle x Google DeepMind Hackathon, 2026.</li>
-                <li>Created and submitted a benchmark for the Attention track in the Kaggle hackathon Measuring Progress Toward AGI: Cognitive Abilities.</li>
+              <a href="https://github.com/dasrudra/Smart-Detection-Ai" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                View Repository
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Real-time Smart Gate Detection & Counting System using YOLOv8 and OpenCV with FastAPI dashboard.</li>
               </ul>
             </div>
 
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Smart AI Detection System</h3>
+                <h3 className="text-xs font-bold text-gray-900 uppercase">Odoo ERP Fund Management System (Python)</h3>
               </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Smart-Detection-Ai</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a real-time Smart Gate Detection & Counting System using YOLOv8 and OpenCV to detect, track, and count people and vehicles crossing a virtual gate area with ROI-based line-crossing logic.</li>
-                <li>Built a data logging and analytics pipeline with SQLite, CSV reporting, and a FastAPI web dashboard, enabling real-time monitoring, event snapshots, and hourly traffic summaries.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Hotel Management System</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://shorturl.at/XsTEw</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a Hotel Management System web application using Python Flask and SQLite.</li>
-                <li>Built a modern, responsive UI with HTML, CSS, and Bootstrap, ensuring cross-device accessibility, clean workflow management, and scalable system architecture.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Sentiment Analysis Model for IMDB Movie Reviews</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/IMDB/blob/main/imdb.ipynb</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Built a sentiment-analysis model for IMDB movie reviews using Python and machine-learning techniques.</li>
-                <li>Implemented data preprocessing, NLP-based feature extraction, and model training.</li>
-              </ul>
-            </div>
-            
-            <div>
-              <div className="flex justify-between items-baseline">
-                <h3 className="text-sm font-bold text-gray-900 uppercase">Emotion Recognition from Speech Using Hybrid Model</h3>
-              </div>
-              <p className="text-[10px] text-accent-primary italic block mb-1">https://github.com/dasrudra/Speech-Emotion-Recognition</p>
-              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
-                <li>Developed a speech-emotion-recognition system using hybrid machine-learning models to identify emotional states from audio recordings.</li>
-                <li>Extracted key audio features and trained classifiers for emotion classification.</li>
+              <a href="https://github.com/dasrudra/NN-Fund-Management" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                View Repository
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Custom Odoo 19 ERP module for fund account management built on Odoo’s Python backend.</li>
               </ul>
             </div>
           </div>
         </section>
 
-        {/* Skills & Interests */}
-        <section className="mb-10 break-before-page print:pt-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Skills & Interests</h2>
-          <div className="space-y-3 text-xs leading-relaxed text-gray-700">
-            <p><span className="font-bold uppercase w-32 inline-block">Programming:</span> ABAP, Python, React.js, TypeScript, Tailwind CSS, SQL, HTML, CSS, JavaScript</p>
-            <p><span className="font-bold uppercase w-32 inline-block text-top">AI & Data Science:</span> Web Scraping, Data Engineering, CLI Development, Pytest, Responsive Design, Glassmorphism UI, Dashboard Design, Machine Learning, Data Analysis, Data Science, NLP, Image Processing, LLM Evaluation, Benchmark Design, Dataset Curation, LLM Applications, Prompt Engineering, RAG Systems, Workflow Automation, LLM Inference Optimization</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Frameworks & Tools:</span> Flask, FastAPI, REST API Integration, n8n, LangChain, Groq API, Git, GitHub, Kaggle Benchmarks, Google Colab, Matplotlib, Scikit-Learn, TensorFlow, Chrome Extension Development</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Enterprise Tools:</span> SAP, Odoo.sh, SAP BTP Generative AI</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Databases:</span> MySQL, SQLite</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Microsoft:</span> MS Word, Excel, PowerPoint, Outlook, Teams</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Operating Systems:</span> Windows</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Non-Technical:</span> Teaching Experience, Communication, Presentation, Consulting</p>
-            <p><span className="font-bold uppercase w-32 inline-block">Languages:</span> English (IELTS Academic 6.5), Bangla, Hindi</p>
+        {/* Skills */}
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Skills</h2>
+          <div className="space-y-1.5 text-xs text-gray-700 font-sans">
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Languages:</span> Python, ABAP, TypeScript, JavaScript, SQL, HTML/CSS</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block align-top">AI & Machine Learning:</span> Machine Learning, Computer Vision (YOLOv8, OpenCV), NLP, LLM Applications, RAG Systems, Benchmarking, TensorFlow, PyTorch</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Enterprise Systems:</span> SAP (ABAP, Production Planning), Odoo (Python backend), SAP BTP Gen AI</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Web & Cloud:</span> React.js, Flask, FastAPI, REST APIs, MySQL, SQLite, Git, GitHub, Docker</p>
           </div>
         </section>
 
-        {/* Internships & Extra-Curricular Activities */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-4">Internships & Extra-Curricular Activities</h2>
-          <div className="space-y-4 text-xs">
-            <div>
-              <p className="font-bold uppercase">Data Science Intern | Skill Genie</p>
-              <p className="text-gray-700">Worked on real-time data-science projects including email spam filtering and IMDB movie review sentiment analysis. Developed NLP-based models for text classification and data preprocessing to enhance prediction accuracy.</p>
-            </div>
-            <div>
-              <p className="font-bold uppercase">Machine Learning Intern | Cognifyz Technologies</p>
-              <p className="text-gray-700">Contributed to machine-learning model development and optimization for scalable technology solutions. Collaborated with cross-functional teams on development and testing of machine-learning applications.</p>
-            </div>
-            <div>
-              <p className="font-bold uppercase">Leadership in Academic Projects</p>
-              <p className="text-gray-700 italic">Served as Team Leader and contributed to innovation and teamwork.</p>
-            </div>
-            <div className="flex gap-4">
-              <p className="text-gray-700"><span className="font-bold uppercase">Volunteer, EDU Cricket Tournament (Season 1):</span> Assisted in organizing and coordinating event operations.</p>
-            </div>
-            <div className="flex gap-4">
-              <p className="text-gray-700"><span className="font-bold uppercase">Volunteer, EDU Indoor Games:</span> Managed logistics, participant coordination, and event flow.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* References */}
-        <section className="mb-10">
-          <h2 className="text-base font-bold uppercase tracking-widest border-b border-gray-200 pb-1 mb-6">References</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="text-xs space-y-1 text-gray-700">
-              <p className="font-bold text-sm text-gray-900 mb-2 underline">Reference 1:</p>
-              <p><span className="font-bold">Name:</span> Dr. Mohammed Nazim Uddin</p>
-              <p><span className="font-bold">Organization:</span> East Delta University</p>
-              <p><span className="font-bold">Designation:</span> Vice-Chancellor</p>
-              <p><span className="font-bold">Address:</span> Abdullah Al Noman Road, Noman Society, Chattogram</p>
-              <p><span className="font-bold">Mobile:</span> 01730794514</p>
-              <p><span className="font-bold">E-mail:</span> nazim@eastdelta.edu.bd</p>
-              <p><span className="font-bold text-accent-primary italic">Relation: Academic</span></p>
-            </div>
-            <div className="text-xs space-y-1 text-gray-700">
-              <p className="font-bold text-sm text-gray-900 mb-2 underline">Reference 2:</p>
-              <p><span className="font-bold">Name:</span> Linkon Chowdhury</p>
-              <p><span className="font-bold">Organization:</span> East Delta University</p>
-              <p><span className="font-bold">Designation:</span> Assistant Professor, Department of CSE</p>
-              <p><span className="font-bold">Address:</span> Abdullah Al Noman Road, Noman Society, Chattogram</p>
-              <p><span className="font-bold">Mobile:</span> 01818633071</p>
-              <p><span className="font-bold">E-mail:</span> linkoncuetbd@gmail.com</p>
-              <p><span className="font-bold text-accent-primary italic">Relation: Academic</span></p>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer Signature placeholder */}
-        <footer className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-end italic text-xs text-gray-400">
-          <p>Generated via Digital Portfolio</p>
+        {/* Footer */}
+        <footer className="mt-8 pt-6 border-t border-gray-200 flex justify-between items-end italic text-xs text-gray-500 font-mono">
+          <p>Rudra Das — Professional CV</p>
           <div className="text-center">
-            <div className="w-32 h-[1px] bg-gray-400 mb-2" />
+            <div className="w-28 h-[1px] bg-gray-400 mb-1" />
             <p>Signature</p>
           </div>
         </footer>
