@@ -134,15 +134,22 @@ const Home = () => {
     
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
     
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      data[key] = value.toString();
+    });
+
+    const encode = (dataObj: Record<string, string>) =>
+      Object.keys(dataObj)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(dataObj[key]))
+        .join("&");
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...data }),
       });
       
       if (response.ok) {
@@ -150,8 +157,7 @@ const Home = () => {
         form.reset();
         setTimeout(() => setFormStatus('idle'), 5000);
       } else {
-        const result = await response.json();
-        console.error('API error:', result);
+        console.error('Submission error status:', response.status);
         setFormStatus('error');
       }
     } catch (error) {
@@ -912,9 +918,14 @@ const Home = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 onSubmit={handleFormSubmit}
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
                 className="space-y-4"
               >
-                <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="text" name="bot-field" style={{ display: 'none' }} />
                 <div className="grid md:grid-cols-2 gap-4">
                   <input 
                     name="name"
