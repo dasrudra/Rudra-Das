@@ -859,56 +859,59 @@ const Home = () => {
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-[#0B1220]">
         <div className="section-padding max-w-7xl mx-auto">
-          <div className="glass-card p-8 md:p-14 relative overflow-hidden rounded-3xl border border-[#2A3348] bg-[#141D30]">
+          <div className="glass-card p-8 md:p-14 relative overflow-hidden rounded-3xl border border-[#2A3348] bg-[#141D30] space-y-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="text-[#E0995A] font-mono text-xs font-bold uppercase tracking-wider mb-2 block">
+                Get In Touch
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-[#EDEAE3] mb-4">Let's Connect</h2>
+              <p className="text-[#8B93A6] text-sm md:text-base leading-relaxed font-sans max-w-2xl">
+                Interested in collaborating or discussing enterprise automation, machine learning projects, or custom ERP development? Reach out directly below.
+              </p>
+            </motion.div>
+
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 variants={staggerContainerVariants}
-                className="space-y-8"
+                className="space-y-4"
               >
-                <motion.div variants={staggerItemVariants}>
-                  <span className="text-[#E0995A] font-mono text-xs font-bold uppercase tracking-wider mb-2 block">
-                    Get In Touch
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-display font-bold text-[#EDEAE3] mb-4">Let's Connect</h2>
-                  <p className="text-[#8B93A6] text-sm leading-relaxed font-sans">
-                    Interested in collaborating or discussing enterprise automation, machine learning projects, or custom ERP development? Reach out directly below.
-                  </p>
-                </motion.div>
-
-                <div className="space-y-4">
-                  {[
-                    { icon: <Mail size={18} />, label: 'Email', val: 'dasrudra738@gmail.com', href: 'mailto:dasrudra738@gmail.com' },
-                    { icon: <MapPin size={18} />, label: 'Location', val: 'Chattogram, Bangladesh' },
-                    { icon: <Phone size={18} />, label: 'Phone', val: '+880-1796726405', href: 'tel:+8801796726405' },
-                    { icon: <Linkedin size={18} />, label: 'LinkedIn', val: 'linkedin.com/in/rudra-das-548bb42b2', href: 'https://www.linkedin.com/in/rudra-das-548bb42b2' },
-                    { icon: <Github size={18} />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
-                    { icon: <Database size={18} />, label: 'Kaggle', val: 'kaggle.com/rudradas2000', href: 'https://www.kaggle.com/rudradas2000' },
-                  ].map((item, i) => (
-                    <motion.div key={i} variants={staggerItemVariants} className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-[#0B1220] border border-[#2A3348] flex items-center justify-center text-[#E0995A] shrink-0">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono uppercase text-[#8B93A6]">{item.label}</p>
-                        {item.href ? (
-                          <a 
-                            href={item.href} 
-                            target={item.label !== 'Email' && item.label !== 'Phone' ? "_blank" : undefined}
-                            rel={item.label !== 'Email' && item.label !== 'Phone' ? "noopener noreferrer" : undefined}
-                            className="text-sm font-bold text-[#EDEAE3] hover:text-[#E0995A] transition-colors"
-                          >
-                            {item.val}
-                          </a>
-                        ) : (
-                          <p className="text-sm font-bold text-[#EDEAE3]">{item.val}</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                {[
+                  { icon: <Mail size={18} />, label: 'Email', val: 'dasrudra738@gmail.com', href: 'mailto:dasrudra738@gmail.com' },
+                  { icon: <MapPin size={18} />, label: 'Location', val: 'Chattogram, Bangladesh' },
+                  { icon: <Phone size={18} />, label: 'Phone', val: '+880-1796726405', href: 'tel:+8801796726405' },
+                  { icon: <Linkedin size={18} />, label: 'LinkedIn', val: 'linkedin.com/in/rudra-das-548bb42b2', href: 'https://www.linkedin.com/in/rudra-das-548bb42b2' },
+                  { icon: <Github size={18} />, label: 'GitHub', val: 'github.com/dasrudra', href: 'https://github.com/dasrudra' },
+                  { icon: <Database size={18} />, label: 'Kaggle', val: 'kaggle.com/rudradas2000', href: 'https://www.kaggle.com/rudradas2000' },
+                ].map((item, i) => (
+                  <motion.div key={i} variants={staggerItemVariants} className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#0B1220] border border-[#2A3348] flex items-center justify-center text-[#E0995A] shrink-0">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono uppercase text-[#8B93A6]">{item.label}</p>
+                      {item.href ? (
+                        <a 
+                          href={item.href} 
+                          target={item.label !== 'Email' && item.label !== 'Phone' ? "_blank" : undefined}
+                          rel={item.label !== 'Email' && item.label !== 'Phone' ? "noopener noreferrer" : undefined}
+                          className="text-sm font-bold text-[#EDEAE3] hover:text-[#E0995A] transition-colors"
+                        >
+                          {item.val}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-bold text-[#EDEAE3]">{item.val}</p>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
               {/* Contact Form */}
