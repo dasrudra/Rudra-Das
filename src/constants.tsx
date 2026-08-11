@@ -297,7 +297,7 @@ export const skills: Skill[] = [
 export const timeline: TimelineItem[] = [
   {
     year: 'Dec 2025 – Present',
-    title: 'Assistant Engineer – Functional Applications (EAS)',
+    title: 'Assistant Engineer – Manufacturing Applications',
     organization: 'Tekvision (BD) Ltd., subsidiary of Youngone Holdings',
     description: 'Build AI-driven automation, computer-vision, and data-analytics tooling in Python, core-team member on Odoo ERP implementation for APDL, and custom SAP ABAP report optimization.',
     type: 'experience',

@@ -769,7 +769,7 @@ const Home = () => {
               >
                 {[
                   {
-                    title: "Assistant Engineer – Functional Applications (EAS)",
+                    title: "Assistant Engineer – Manufacturing Applications",
                     company: "Tekvision (BD) Ltd.",
                     location: "Korean EPZ, Karnaphuli, Chattogram",
                     date: "December 2025 - Present",
@@ -795,7 +795,7 @@ const Home = () => {
                   {
                     title: "Officer – IT, MIS",
                     company: "Padma Plastics Ltd.",
-                    location: "Dhaka, Bangladesh",
+                    location: "Chattogram, Bangladesh",
                     date: "May 2024 - November 2025",
                     bullets: [
                       "Monitored SAP data-entry accuracy and produced management reporting supporting organizational compliance standards.",

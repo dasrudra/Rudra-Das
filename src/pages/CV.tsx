@@ -188,7 +188,7 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900">Assistant Engineer – Functional Applications (EAS)</h3>
+                  <h3 className="text-sm font-bold text-gray-900">Assistant Engineer – Manufacturing Applications</h3>
                   <p className="text-xs italic text-gray-600">Tekvision (BD) Ltd., subsidiary of Youngone Holdings — Chattogram, Bangladesh</p>
                 </div>
                 <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">December 2025 – Present</span>
@@ -220,7 +220,7 @@ const CV = () => {
               <div className="flex justify-between items-start mb-1">
                 <div>
                   <h3 className="text-sm font-bold text-gray-900">Officer – IT, MIS</h3>
-                  <p className="text-xs italic text-gray-600">Padma Plastics Ltd., sister concern of Padma Group — Dhaka, Bangladesh</p>
+                  <p className="text-xs italic text-gray-600">Padma Plastics Ltd., sister concern of Padma Group — Chattogram, Bangladesh</p>
                 </div>
                 <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">May 2024 – November 2025</span>
               </div>
