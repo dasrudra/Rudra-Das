@@ -285,7 +285,7 @@ const Home = () => {
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex items-center gap-3">
-                  <div className="text-3xl font-display font-bold text-[#E0995A]">9+</div>
+                  <div className="text-3xl font-display font-bold text-[#E0995A]">10+</div>
                   <div className="text-[10px] font-mono text-[#8B93A6] uppercase tracking-wider leading-tight">
                     Projects <br /> Delivered
                   </div>

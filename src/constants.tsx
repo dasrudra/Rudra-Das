@@ -2,6 +2,7 @@ import { Layers, Cpu, Database, Globe } from 'lucide-react';
 import { NavLink, Service, Project, Skill, TimelineItem } from './types';
 
 import distractCheckCover from './assets/images/distract_check_cover_1784703888424.jpg';
+import plantDashboardCover from './assets/images/plant_dashboard_cover_1787110872918.jpg';
 import smartDetectionCover from './assets/images/smart_detection_ai_cover_1786162259074.jpg';
 import nnFundCover from './assets/images/nn_fund_management_cover_1786162278657.jpg';
 import accountingLedgerCover from './assets/images/accounting_ledger_cover_1786162295638.jpg';
@@ -44,6 +45,19 @@ export const services: Service[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: 'Production Capacity & Operational Intelligence Dashboard',
+    description: 'A full-stack production planning dashboard that transforms monthly Excel Activity Plan data into executive KPIs, machine-level capacity analysis, utilization metrics, and operational insights. Built with a Python/Pandas/FastAPI ingestion pipeline and a React/TypeScript frontend with target-vs-capacity charts, machine schedules, and status distributions.',
+    tech: ['Python', 'FastAPI', 'React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Pandas', 'OpenPyXL', 'SQLite'],
+    image: plantDashboardCover,
+    link: 'https://github.com/dasrudra/Production-Plant-Dashboard',
+    domain: 'ERP & Manufacturing',
+    categories: ['ERP', 'Automation', 'Full Stack'],
+    status: 'Featured Production Tool',
+    featured: true,
+    liveLink: 'https://github.com/dasrudra/Production-Plant-Dashboard',
+    caseStudyLink: 'https://github.com/dasrudra/Production-Plant-Dashboard'
+  },
   {
     title: 'DistractCheck: Measuring Selective Attention in Language Models',
     description: "A benchmark measuring how reliably large language models retrieve the right answer when it's buried in distracting context. Submitted to Google DeepMind's Kaggle hackathon on measuring AI cognitive abilities — the Attention track, competing against 1,000+ teams for a $200,000 prize pool.",

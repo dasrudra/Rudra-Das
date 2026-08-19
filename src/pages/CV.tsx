@@ -156,7 +156,7 @@ const CV = () => {
         <header className="border-b-2 border-gray-900 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start gap-8">
           <div>
             <h1 className="text-3xl font-display font-bold tracking-tight mb-2 text-gray-900">Rudra Das</h1>
-            <p className="text-base font-bold text-gray-800 mb-1">Software Engineer — AI/ML & Enterprise Systems</p>
+            <p className="text-base font-bold text-gray-800 mb-1">Software Engineer — AI/ML</p>
             <p className="text-sm font-medium text-gray-600 mb-4">BSc in Computer Science and Engineering, East Delta University</p>
             <div className="space-y-1 text-sm text-gray-600 font-mono">
               <p className="flex items-center gap-2"><MapPin size={14} /> Chattogram, Bangladesh</p>
@@ -188,7 +188,7 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900">Assistant Engineer – Manufacturing Applications</h3>
+                  <h3 className="text-sm font-bold text-gray-900">Assistant Engineer – Manufacturing Applications (EAS)</h3>
                   <p className="text-xs italic text-gray-600">Tekvision (BD) Ltd., subsidiary of Youngone Holdings — Chattogram, Bangladesh</p>
                 </div>
                 <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">December 2025 – Present</span>
@@ -197,7 +197,7 @@ const CV = () => {
                 <li>Build AI-driven automation, computer-vision, and data-analytics tooling in Python to support production and commercial operations.</li>
                 <li>Core-team member on the Odoo ERP implementation for APDL, developing on Odoo’s Python-based backend – requirement analysis, configuration, and UAT.</li>
                 <li>Building hands-on SAP ABAP proficiency on the job: writing and optimizing custom reports and enhancements.</li>
-                <li>Provide technical and functional support to SAP Production Planning (PP) users, diagnosing and resolving system issues across production workflows.</li>
+                <li>Provide technical and functional support to SAP Production Planning (PP) users, diagnosing and resolving system issues across production and commercial workflows.</li>
                 <li>Contribute to ERP deployment pricing and implementation-service costing models covering implementation, training, and post-go-live support.</li>
               </ul>
             </div>
@@ -220,7 +220,7 @@ const CV = () => {
               <div className="flex justify-between items-start mb-1">
                 <div>
                   <h3 className="text-sm font-bold text-gray-900">Officer – IT, MIS</h3>
-                  <p className="text-xs italic text-gray-600">Padma Plastics Ltd., sister concern of Padma Group — Chattogram, Bangladesh</p>
+                  <p className="text-xs italic text-gray-600">Padma Plastics Ltd., a sister concern of Padma Group of Converters — Chattogram, Bangladesh</p>
                 </div>
                 <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">May 2024 – November 2025</span>
               </div>
@@ -240,11 +240,8 @@ const CV = () => {
             <h3 className="text-xs font-bold text-gray-900 italic">Unveiling Predictive Factors in Apple Quality</h3>
             <span className="text-xs font-mono text-gray-600">March 2024</span>
           </div>
-          <p className="text-xs text-gray-600 mb-1">Military Institute of Science and Technology (MIST), Dhaka, Bangladesh</p>
-          <p className="text-xs text-gray-700 font-sans">
-            2024 6th International Conference on Electrical Engineering and Information Communication Technology (ICEE-ICT)
-          </p>
-          <a href="https://ieeexplore.ieee.org/document/10534426" className="text-[10px] font-mono text-[#E0995A] hover:underline flex items-center gap-1 mt-1">
+          <p className="text-xs text-gray-600 mb-1">2024 6th International Conference on Electrical Engineering and Information & Communication Technology (ICEEICT) – hosted by Military Institute of Science and Technology (MIST), Dhaka, Bangladesh</p>
+          <a href="https://ieeexplore.ieee.org/document/10534426" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] hover:underline flex items-center gap-1 mt-1">
             <ExternalLink size={10} /> View on IEEE Xplore
           </a>
         </section>
@@ -288,20 +285,68 @@ const CV = () => {
           </table>
         </section>
 
+        {/* Training */}
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Training</h2>
+          <table className="w-full text-xs text-left border-collapse font-sans">
+            <thead>
+              <tr className="border-b border-gray-200 text-gray-600 font-mono">
+                <th className="py-2 pr-4 font-bold">Training Title</th>
+                <th className="py-2 px-4 font-bold">Topic</th>
+                <th className="py-2 px-4 font-bold">Institute</th>
+                <th className="py-2 pl-4 font-bold whitespace-nowrap">Date</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-700">
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4 font-bold">ABAP and S/4 HANA</td>
+                <td className="py-2 px-4">ABAP fundamentals and core programming concepts</td>
+                <td className="py-2 px-4">Coursera</td>
+                <td className="py-2 pl-4 font-mono">February 2026</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4 font-bold">Python Web Course</td>
+                <td className="py-2 px-4">Fundamentals of Python web development</td>
+                <td className="py-2 px-4">Ostad</td>
+                <td className="py-2 pl-4 font-mono">March 2024</td>
+              </tr>
+              <tr className="border-b border-gray-200">
+                <td className="py-2 pr-4 font-bold">Database and MySQL</td>
+                <td className="py-2 px-4">Database management system and advanced SQL</td>
+                <td className="py-2 px-4">Great Learning</td>
+                <td className="py-2 pl-4 font-mono">February 2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
         {/* Projects & Hackathon */}
         <section className="mb-8">
           <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-4 text-gray-900">Projects & Hackathon</h2>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between items-baseline">
-                <h3 className="text-xs font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
+                <h3 className="text-xs font-bold text-gray-900 uppercase">Production Capacity & Operational Intelligence Dashboard</h3>
               </div>
-              <a href="https://github.com/dasrudra/DistractCheck-Measuring-Selective-Attention-in-Language-Models" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
-                View Repository
+              <a href="https://github.com/dasrudra/Production-Plant-Dashboard" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                https://github.com/dasrudra/Production-Plant-Dashboard
               </a>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
-                <li>Kaggle x Google DeepMind Hackathon 2026 – Measuring Progress Toward AGI: Cognitive Abilities.</li>
-                <li>Designed and submitted an evaluation harness measuring selective context retrieval in LLMs.</li>
+                <li>Developed a full-stack production planning dashboard that transforms monthly Excel Activity Plan data into executive KPIs, machine-level capacity analysis, utilization metrics, and operational insights.</li>
+                <li>Built a Python-based Excel processing pipeline using Pandas/OpenPyXL to validate structured Plan-KPP workbooks and calculate, FastAPI REST APIs for Excel ingestion; implemented a SQLite-backed reporting layer; and developed the React/TypeScript frontend with KPI cards, target-vs-capacity charts, utilization analysis, machine planning tables, status distribution, saved reports, and month-to-month comparison.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-xs font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
+              </div>
+              <a href="https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Kaggle x Google DeepMind Hackathon 2026 – Measuring Progress Toward AGI: Cognitive Abilities ($200,000 total prize pool, 1,000+ competing teams).</li>
+                <li>Designed and submitted an evaluation harness measuring selective context retrieval in LLMs for the Attention track.</li>
               </ul>
             </div>
 
@@ -310,10 +355,24 @@ const CV = () => {
                 <h3 className="text-xs font-bold text-gray-900 uppercase">Smart AI Detection System</h3>
               </div>
               <a href="https://github.com/dasrudra/Smart-Detection-Ai" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
-                View Repository
+                https://github.com/dasrudra/Smart-Detection-Ai
               </a>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
-                <li>Real-time Smart Gate Detection & Counting System using YOLOv8 and OpenCV with FastAPI dashboard.</li>
+                <li>Developed a real-time Smart Gate Detection & Counting System using YOLOv8 and OpenCV to detect, track, and count people and vehicles crossing a virtual gate area with ROI-based line-crossing logic.</li>
+                <li>Built a data logging and analytics pipeline with SQLite, CSV reporting, and a FastAPI web dashboard, enabling real-time monitoring, event snapshots, and hourly traffic summaries.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-xs font-bold text-gray-900 uppercase">Emotion Recognition from Speech Using Hybrid Model</h3>
+              </div>
+              <a href="https://github.com/dasrudra/Speech-Emotion-Recognition" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                https://github.com/dasrudra/Speech-Emotion-Recognition
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Developed a speech-emotion-recognition system using hybrid machine-learning models to identify emotional states from audio recordings.</li>
+                <li>Extracted key acoustic features and trained classifiers for emotion classification.</li>
               </ul>
             </div>
 
@@ -322,10 +381,25 @@ const CV = () => {
                 <h3 className="text-xs font-bold text-gray-900 uppercase">Odoo ERP Fund Management System (Python)</h3>
               </div>
               <a href="https://github.com/dasrudra/NN-Fund-Management" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
-                View Repository
+                https://github.com/dasrudra/NN-Fund-Management
               </a>
               <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
-                <li>Custom Odoo 19 ERP module for fund account management built on Odoo’s Python backend.</li>
+                <li>Developed a custom Odoo 19 ERP module for fund account management, incoming fund tracking, allocation workflow, requisition control, and bill processing, built on Odoo’s Python backend.</li>
+                <li>Designed computed fund balances including total received, unassigned balance, held balance, and assigned balance to support controlled fund utilization.</li>
+                <li>Configured Odoo security groups, access-control rules, multi-company record rules, automated tests, and Docker-based setup.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-xs font-bold text-gray-900 uppercase">Accounts & Ledger Management System</h3>
+              </div>
+              <a href="https://github.com/dasrudra/Ledger-Software-frontend" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                https://github.com/dasrudra/Ledger-Software-frontend
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Built a role-based accounting and ledger application (Admin/Employee permission tiers) for digitizing daily customer-ledger operations, with balance carried forward automatically from each party’s previous closing entry and a profit-calculation engine deriving margin and commission profit from configurable rates.</li>
+                <li>Implemented a day-closing workflow that locks finalized ledgers and routes corrections through auditable adjustment entries, built with reusable TypeScript components on an API-ready architecture designed for a planned FastAPI/MySQL backend.</li>
               </ul>
             </div>
           </div>
@@ -335,11 +409,22 @@ const CV = () => {
         <section className="mb-8">
           <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Skills</h2>
           <div className="space-y-1.5 text-xs text-gray-700 font-sans">
-            <p><span className="font-mono font-bold uppercase w-48 inline-block">Languages:</span> Python, ABAP, TypeScript, JavaScript, SQL, HTML/CSS</p>
-            <p><span className="font-mono font-bold uppercase w-48 inline-block align-top">AI & Machine Learning:</span> Machine Learning, Computer Vision (YOLOv8, OpenCV), NLP, LLM Applications, RAG Systems, Benchmarking, TensorFlow, PyTorch</p>
-            <p><span className="font-mono font-bold uppercase w-48 inline-block">Enterprise Systems:</span> SAP (ABAP, Production Planning), Odoo (Python backend), SAP BTP Gen AI</p>
-            <p><span className="font-mono font-bold uppercase w-48 inline-block">Web & Cloud:</span> React.js, Flask, FastAPI, REST APIs, MySQL, SQLite, Git, GitHub, Docker</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Programming Languages:</span> Python, ABAP, TypeScript, JavaScript, SQL, HTML/CSS</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block align-top">AI & Machine Learning:</span> Machine Learning, Computer Vision (YOLOv8, OpenCV), NLP, LLM Applications, Prompt Engineering, RAG Systems, Benchmark Design & LLM Evaluation, TensorFlow, PyTorch, Scikit-learn</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Enterprise Systems:</span> SAP (ABAP, Production Planning), Odoo (Python backend, security & access control), SAP BTP Gen AI</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Web, Data & Tools:</span> React.js, Flask, FastAPI, REST APIs, MySQL, SQLite, Git, GitHub, Docker, Google Colab</p>
+            <p><span className="font-mono font-bold uppercase w-48 inline-block">Languages:</span> English (IELTS Academic 6.5), Bangla, Hindi</p>
           </div>
+        </section>
+
+        {/* Internships & Extra-Curricular Activities */}
+        <section className="mb-8">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-wider border-b border-gray-200 pb-1 mb-3 text-gray-900">Internships & Extra-Curricular Activities</h2>
+          <ul className="list-disc ml-4 space-y-1 text-xs text-gray-700 font-sans">
+            <li><span className="font-bold text-gray-900">Machine Learning Intern</span> — Cognifyz Technologies (April’24 – June’24): Contributed to ML model development and optimization in a cross-functional team.</li>
+            <li><span className="font-bold text-gray-900">Data Science Intern</span> — Skill Genie (Feb’24 – April’24): Built NLP models for spam filtering and movie-review sentiment classification.</li>
+            <li><span className="font-bold text-gray-900">Team Leader, Academic Projects:</span> Led cross-functional student project teams.</li>
+          </ul>
         </section>
 
         {/* Footer */}

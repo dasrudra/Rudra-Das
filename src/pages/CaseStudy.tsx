@@ -15,6 +15,18 @@ import { ProjectVisualMockup } from '../components/ProjectVisualMockup';
 import { SkillLogoBadge } from '../components/SkillLogoBadge';
 
 const HOW_IT_WORKS_DATA: { [key: string]: string[] } = {
+  'production': [
+    "Python/Pandas/OpenPyXL data pipeline ingests and validates structured monthly Plan-KPP activity workbooks",
+    "FastAPI backend calculates machine utilization, capacity vs target benchmarks, and KPI aggregates",
+    "SQLite-backed reporting layer persists monthly activity plans, shift targets, and status distributions",
+    "React/TypeScript frontend with Recharts renders dynamic capacity curves, machine schedules, and month-over-month variance analytics"
+  ],
+  'plant': [
+    "Python/Pandas/OpenPyXL data pipeline ingests and validates structured monthly Plan-KPP activity workbooks",
+    "FastAPI backend calculates machine utilization, capacity vs target benchmarks, and KPI aggregates",
+    "SQLite-backed reporting layer persists monthly activity plans, shift targets, and status distributions",
+    "React/TypeScript frontend with Recharts renders dynamic capacity curves, machine schedules, and month-over-month variance analytics"
+  ],
   'distractcheck': [
     "Injects controlled distractor content around a target fact, then scores whether the model's answer stays correct",
     "Built against Groq-hosted Llama 3.3 70B",

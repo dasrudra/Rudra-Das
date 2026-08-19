@@ -1,5 +1,6 @@
 {
   "name": "Rudra Das Portfolio",
-  "description": "Professional Software Developer portfolio featuring SAP ABAP expertise and enterprise solutions.",
-  "requestFramePermissions": []
+  "description": "Professional Software Developer & AI/ML Engineer portfolio featuring production systems, SAP ABAP, Odoo ERP, and machine learning research.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
