@@ -205,20 +205,6 @@ const CV = () => {
             <div>
               <div className="flex justify-between items-start mb-1">
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900">Web Developer (Volunteer)</h3>
-                  <p className="text-xs italic text-gray-600">FreeAppStore, New Zealand — Remote</p>
-                </div>
-                <span className="text-xs font-mono font-medium text-gray-600 shrink-0 ml-4">June 2026 – Present</span>
-              </div>
-              <ul className="list-disc ml-4 space-y-1 text-xs text-gray-700 mt-2 font-sans">
-                <li>Build responsive, accessible features in React.js, TypeScript, and Tailwind CSS for a free, open-source web-app ecosystem.</li>
-                <li>Collaborate asynchronously with a distributed volunteer team through an issue-based Git/GitHub contribution workflow.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-start mb-1">
-                <div>
                   <h3 className="text-sm font-bold text-gray-900">Officer – IT, MIS</h3>
                   <p className="text-xs italic text-gray-600">Padma Plastics Ltd., a sister concern of Padma Group of Converters — Chattogram, Bangladesh</p>
                 </div>

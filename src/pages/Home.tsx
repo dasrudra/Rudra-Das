@@ -782,17 +782,6 @@ const Home = () => {
                     technologies: ["Python", "Odoo ERP", "SAP ABAP", "SAP PP", "Data Analytics", "Computer Vision"]
                   },
                   {
-                    title: "Web Developer (Volunteer)",
-                    company: "FreeAppStore, New Zealand",
-                    location: "Remote",
-                    date: "June 2026 – Present",
-                    bullets: [
-                      "Build responsive, accessible features in React.js, TypeScript, and Tailwind CSS for a free, open-source web-app ecosystem.",
-                      "Collaborate asynchronously with a distributed volunteer team through an issue-based Git/GitHub contribution workflow."
-                    ],
-                    technologies: ["React.js", "TypeScript", "Tailwind CSS", "Git", "GitHub"]
-                  },
-                  {
                     title: "Officer – IT, MIS",
                     company: "Padma Plastics Ltd.",
                     location: "Chattogram, Bangladesh",
