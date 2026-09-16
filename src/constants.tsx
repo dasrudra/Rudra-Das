@@ -3,6 +3,7 @@ import { NavLink, Service, Project, Skill, TimelineItem } from './types';
 
 import distractCheckCover from './assets/images/distract_check_cover_1784703888424.jpg';
 import plantDashboardCover from './assets/images/plant_dashboard_cover_1787110872918.jpg';
+import sapHrmsEngineCover from './assets/images/sap_hrms_engine_cover_1789541544845.jpg';
 import smartDetectionCover from './assets/images/smart_detection_ai_cover_1786162259074.jpg';
 import nnFundCover from './assets/images/nn_fund_management_cover_1786162278657.jpg';
 import accountingLedgerCover from './assets/images/accounting_ledger_cover_1786162295638.jpg';
@@ -57,6 +58,19 @@ export const projects: Project[] = [
     featured: true,
     liveLink: 'https://github.com/dasrudra/Production-Plant-Dashboard',
     caseStudyLink: 'https://github.com/dasrudra/Production-Plant-Dashboard'
+  },
+  {
+    title: 'EAS KPI Engine',
+    description: 'Enterprise Application Services needed its SLA performance measured from raw system exports instead of hand-built spreadsheets. The EAS KPI Engine ingests ITSM ticket exports and SAP training feedback forms directly in the browser, scores them against signed KPI definitions, and presents the result as a live dashboard',
+    tech: ['Google Apps Script', 'JavaScript (ES6+)', 'Google Sheets API', 'Chart.js', 'SheetJS', 'Playwright', 'Node.js', 'HTML5 & CSS3'],
+    image: sapHrmsEngineCover,
+    link: 'https://github.com/dasrudra/SAP-HRMS-Engine',
+    domain: 'SAP & Enterprise Systems',
+    categories: ['ERP', 'Automation', 'Full Stack'],
+    status: 'Enterprise Tool',
+    featured: true,
+    liveLink: 'https://github.com/dasrudra/SAP-HRMS-Engine',
+    caseStudyLink: 'https://github.com/dasrudra/SAP-HRMS-Engine'
   },
   {
     title: 'DistractCheck: Measuring Selective Attention in Language Models',

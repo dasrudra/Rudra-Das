@@ -15,6 +15,36 @@ import { ProjectVisualMockup } from '../components/ProjectVisualMockup';
 import { SkillLogoBadge } from '../components/SkillLogoBadge';
 
 const HOW_IT_WORKS_DATA: { [key: string]: string[] } = {
+  'eas kpi': [
+    "Integrates monthly ITSM Performance Reports and Department exports across all four EAS departments (Manufacturing, Sales, SCM, Financial Applications)",
+    "Serverless Google Apps Script backend executes idempotent upsert pipeline on Ticket IDs, preserving man-hours and resolution provenance",
+    "Computes KPI 1 (Error/Issue Resolution Time SLA ≥ 99.50%) and KPI 2 (User Training Feedback Analysis ≥ 90%) with monthly rollup tables",
+    "Interactive responsive dashboard with URL-backed view states, operator audit logging, and automated reconciliation of discrepancies"
+  ],
+  'kpi engine': [
+    "Integrates monthly ITSM Performance Reports and Department exports across all four EAS departments (Manufacturing, Sales, SCM, Financial Applications)",
+    "Serverless Google Apps Script backend executes idempotent upsert pipeline on Ticket IDs, preserving man-hours and resolution provenance",
+    "Computes KPI 1 (Error/Issue Resolution Time SLA ≥ 99.50%) and KPI 2 (User Training Feedback Analysis ≥ 90%) with monthly rollup tables",
+    "Interactive responsive dashboard with URL-backed view states, operator audit logging, and automated reconciliation of discrepancies"
+  ],
+  'sap': [
+    "Integrates monthly ITSM Performance Reports and Department exports across all four EAS departments (Manufacturing, Sales, SCM, Financial Applications)",
+    "Serverless Google Apps Script backend executes idempotent upsert pipeline on Ticket IDs, preserving man-hours and resolution provenance",
+    "Computes KPI 1 (Error/Issue Resolution Time SLA ≥ 99.50%) and KPI 2 (User Training Feedback Analysis ≥ 90%) with monthly rollup tables",
+    "Interactive responsive dashboard with URL-backed view states, operator audit logging, and automated reconciliation of discrepancies"
+  ],
+  'hrms': [
+    "Integrates monthly ITSM Performance Reports and Department exports across all four EAS departments (Manufacturing, Sales, SCM, Financial Applications)",
+    "Serverless Google Apps Script backend executes idempotent upsert pipeline on Ticket IDs, preserving man-hours and resolution provenance",
+    "Computes KPI 1 (Error/Issue Resolution Time SLA ≥ 99.50%) and KPI 2 (User Training Feedback Analysis ≥ 90%) with monthly rollup tables",
+    "Interactive responsive dashboard with URL-backed view states, operator audit logging, and automated reconciliation of discrepancies"
+  ],
+  'eas': [
+    "Integrates monthly ITSM Performance Reports and Department exports across all four EAS departments (Manufacturing, Sales, SCM, Financial Applications)",
+    "Serverless Google Apps Script backend executes idempotent upsert pipeline on Ticket IDs, preserving man-hours and resolution provenance",
+    "Computes KPI 1 (Error/Issue Resolution Time SLA ≥ 99.50%) and KPI 2 (User Training Feedback Analysis ≥ 90%) with monthly rollup tables",
+    "Interactive responsive dashboard with URL-backed view states, operator audit logging, and automated reconciliation of discrepancies"
+  ],
   'production': [
     "Python/Pandas/OpenPyXL data pipeline ingests and validates structured monthly Plan-KPP activity workbooks",
     "FastAPI backend calculates machine utilization, capacity vs target benchmarks, and KPI aggregates",

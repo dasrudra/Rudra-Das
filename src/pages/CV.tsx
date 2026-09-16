@@ -325,6 +325,19 @@ const CV = () => {
 
             <div>
               <div className="flex justify-between items-baseline">
+                <h3 className="text-xs font-bold text-gray-900 uppercase">EAS KPI Engine</h3>
+              </div>
+              <a href="https://github.com/dasrudra/SAP-HRMS-Engine" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">
+                https://github.com/dasrudra/SAP-HRMS-Engine
+              </a>
+              <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5 font-sans">
+                <li>Architected an enterprise operational analytics and KPI management engine for SAP & HRMS daily operations across Enterprise Application Services (EAS) departments (Manufacturing, Sales, SCM, and Financial Applications).</li>
+                <li>Engineered an automated ITSM Performance Report and department export ingestion pipeline in Google Apps Script with idempotent Ticket ID upserting; computed SLA metrics for Error/Issue Resolution Time (KPI 1: &ge; 99.50%) and User Training Feedback Analysis (KPI 2: &ge; 90%); and built responsive operational dashboards with audit trail logging.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-baseline">
                 <h3 className="text-xs font-bold text-gray-900 uppercase">DistractCheck: Measuring Selective Attention in Language Models</h3>
               </div>
               <a href="https://kaggle.com/competitions/kaggle-measuring-agi/writeups/distract-check-measuring-selective-attention-in-l" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono text-[#E0995A] italic block mb-1 hover:underline">

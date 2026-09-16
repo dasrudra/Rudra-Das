@@ -34,6 +34,14 @@ const PROJECT_SKINS: ProjectSkin[] = [
     shadowGlow: 'shadow-[0_0_35px_rgba(224,153,90,0.2)]',
   },
   {
+    themeColor: '#E0995A', // Warm Amber - EAS KPI Engine
+    bgGradient: 'from-[#E0995A]/15 via-[#141D30] to-[#0B1220]',
+    borderColor: 'border-[#E0995A]/40 hover:border-[#E0995A]/60',
+    labelText: 'EAS KPI ENGINE',
+    accentText: 'text-[#E0995A]',
+    shadowGlow: 'shadow-[0_0_35px_rgba(224,153,90,0.2)]',
+  },
+  {
     themeColor: '#5FB3B3', // Muted Teal - DistractCheck (AI Benchmark)
     bgGradient: 'from-[#5FB3B3]/15 via-[#141D30] to-[#0B1220]',
     borderColor: 'border-[#5FB3B3]/40 hover:border-[#5FB3B3]/60',

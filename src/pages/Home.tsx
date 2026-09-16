@@ -285,7 +285,7 @@ const Home = () => {
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex items-center gap-3">
-                  <div className="text-3xl font-display font-bold text-[#E0995A]">10+</div>
+                  <div className="text-3xl font-display font-bold text-[#E0995A]">11+</div>
                   <div className="text-[10px] font-mono text-[#8B93A6] uppercase tracking-wider leading-tight">
                     Projects <br /> Delivered
                   </div>
@@ -511,14 +511,14 @@ const Home = () => {
                 icon: <Code2 size={22} className="text-[#E0995A]" />,
                 isAI: false,
                 focus: "Developing highly performant, type-safe frontends paired with resilient, clean backends and secure REST APIs designed to solve business problems.",
-                highlights: ["React.js & TypeScript", "Python (FastAPI & Flask)", "Tailwind CSS Layouts", "Secure REST APIs"]
+                highlights: ["React.js & TypeScript", "Python (FastAPI & Flask)", "Tailwind CSS Layouts", "Secure REST APIs", "Serverless Web Apps"]
               },
               {
                 title: "Data Engineering",
                 icon: <Database size={22} className="text-[#E0995A]" />,
                 isAI: false,
                 focus: "Structuring relational database schemas, orchestrating secure ETL data pipelines, conducting error analysis, and curating benchmarking datasets.",
-                highlights: ["Relational Schemas", "ETL Pipelines", "Data Modeling & Viz", "Benchmark Design"]
+                highlights: ["Relational Schemas", "ETL Pipelines", "Data Modeling & Viz", "Benchmark Design", "Idempotent Data Ingestion", "Excel/CSV Parsing"]
               }
             ].map((cap, i) => (
               <motion.div
@@ -568,17 +568,17 @@ const Home = () => {
                 {
                   level: "Core Expertise",
                   desc: "Primary technologies and architectures leveraged daily for core professional engineering deliverables.",
-                  skills: ["Python", "Machine Learning", "SAP ABAP", "Odoo ERP", "React.js", "TypeScript", "SQL Databases", "Data Analysis", "FastAPI"]
+                  skills: ["Python", "Machine Learning", "SAP ABAP", "Odoo ERP", "React.js", "TypeScript", "SQL Databases", "Data Analysis", "FastAPI", "Google Apps Script"]
                 },
                 {
                   level: "Strong Experience",
                   desc: "Robust frameworks, APIs, and design methodologies integrated regularly into production-ready platforms.",
-                  skills: ["Flask", "RAG Systems", "NLP / LLMs", "REST APIs", "Git & GitHub", "Tailwind CSS", "Process Automation", "Dataset Curation", "Error Analysis"]
+                  skills: ["Flask", "RAG Systems", "NLP / LLMs", "REST APIs", "Git & GitHub", "Tailwind CSS", "Process Automation", "Dataset Curation", "Error Analysis", "Chart.js", "Test Automation"]
                 },
                 {
                   level: "Working Knowledge",
                   desc: "Functional toolsets, libraries, and automation utilities applied in supporting roles and testing.",
-                  skills: ["Deep Learning", "TensorFlow", "Pandas & NumPy", "Pytest", "Web Scraping", "n8n", "LangChain", "Chrome Extension APIs"]
+                  skills: ["Deep Learning", "TensorFlow", "Pandas & NumPy", "Pytest", "Playwright", "Web Scraping", "n8n", "LangChain", "Chrome Extension APIs"]
                 },
                 {
                   level: "Emerging Tech & AI",

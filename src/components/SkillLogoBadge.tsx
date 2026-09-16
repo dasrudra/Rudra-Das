@@ -4,10 +4,20 @@ import { Sparkles } from 'lucide-react';
 export const getSkillIconDetails = (skill: string) => {
   const s = skill.toLowerCase();
   
+  if (s.includes('google apps script') || s.includes('apps script')) return { logo: 'https://cdn.simpleicons.org/googleappsscript' };
+  if (s.includes('google sheet') || s.includes('sheets')) return { logo: 'https://cdn.simpleicons.org/googlesheets' };
+  if (s.includes('sheetjs')) return { logo: 'https://sheetjs.com/sketch128.png' };
+  if (s.includes('chart.js') || s.includes('chartjs')) return { logo: 'https://cdn.simpleicons.org/chartdotjs' };
+  if (s.includes('playwright')) return { logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg' };
+  if (s.includes('node')) return { logo: 'https://cdn.simpleicons.org/nodedotjs' };
+  if (s.includes('serverless')) return { logo: 'https://cdn.simpleicons.org/serverless' };
+  if (s.includes('excel') || s.includes('csv')) return { logo: 'https://sheetjs.com/sketch128.png' };
+  if (s.includes('test automation')) return { logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg' };
+  if (s.includes('idempotent') || s.includes('ingestion')) return { logo: 'https://cdn.simpleicons.org/apachekafka' };
   if (s.includes('python')) return { logo: 'https://cdn.simpleicons.org/python' };
   if (s.includes('react')) return { logo: 'https://cdn.simpleicons.org/react' };
   if (s.includes('typescript')) return { logo: 'https://cdn.simpleicons.org/typescript' };
-  if (s.includes('javascript') || s.includes('js')) return { logo: 'https://cdn.simpleicons.org/javascript' };
+  if (s.includes('javascript') || s.includes('es6')) return { logo: 'https://cdn.simpleicons.org/javascript' };
   if (s.includes('sap') || s.includes('abap')) return { logo: 'https://cdn.simpleicons.org/sap' };
   if (s.includes('odoo')) return { logo: 'https://cdn.simpleicons.org/odoo' };
   if (s.includes('tailwind')) return { logo: 'https://cdn.simpleicons.org/tailwindcss' };
